@@ -1,0 +1,43 @@
+\documentclass{article}
+\title{Discrete Event System}
+\author{Tai Jiang}
+\date{October 2023}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\begin{document}
+  \maketitle
+  \tableofcontents
+  \pagenumbering{gobble}
+  \newpage
+  \pagenumbering{arabic}
+\paragraph{Nomenclature}:
+
+\begin{tabular}{l l}
+  $\mathbb{N}$ & $\{0, 1, 2, \cdots  \} (set of natural numbers) $ \\
+  $\mathbb{N}+$ & $\{1, 2, \cdots \} (set of positive integers)$ \\
+  $\mathbb{N}_k$ & $\{0, 1, 2, \cdots , k\} (set of natural numbers from 0 up to k)$ \\
+  $[a, b]$ & $\{a, a + 1, \cdots , b - 1, b\} \subseteq  N (a < b)$ \\
+  $\mathbb{Z}$ & $\{\cdots , -2, -1, 0, 1, 2, \cdots \} (set of integers)$ \\
+  $\mathbb{Q}$ & $\{a/b | a, b \in  Z, b \neq  0\} (set of rational numbers)$ \\
+  $\mathbb{R}$ & set of real numbers \\
+  $\mathbb{R}$ & $\geq 0 set of non-negative real numbers$ \\
+  $\mathbb{R}+$ & set of positive real numbers \\
+  $\mathbb{C}$ & set of complex numbers \\
+\end{tabular}
+
+
+
+\begin{tcolorbox}
+  Remark: Editing the homework using LATEX is strongly preferred (Tex studio, a popular yet free software package (\url{https://www.texstudio.org/}), is recommended, where images with JPG, PNG, EPS, and PDF formats can be used). An alternative is overleaf which is an online package of LATEX tool, for details see \url{https://www.overleaf.com/learn}. A full tutorial for LATEX beginners is found in \url{https://www.youtube.com/watch?v=ydOTMQC7np0\&t=1830s}. Questions marked by $\star $ are optional (diﬀicult more or less), but more interesting. Those marked with double-star serve as hints for the related questions to be followed. The questions marked with $\Delta $ are (also optional) only for the students whose research interests fall into the DES area, which are much more heuristic and are expected to guide and channelize them to the cutting-edge topics by making practice on specific problems that serve for the starting point of their scientific research.
+\end{tcolorbox}
+
+\section{(Irrational number) Dedekind cut in mathematics is a concept advanced in 1872 by Richard Dedekind (18311916, German mathematician) that combines an arithmetic formulation of the idea of continuity with a rigorous distinction between rational and irrational numbers. Dedekind reasoned that the real numbers form an ordered continuum so that any two numbers x and y must satisfy one and only one of the conditions x < y, x = y, or x > y. He postulated a cut that separates the continuum into two subsets, say X and Y , such that if x is any member of X and y is any member of Y , then x < y. If the cut is made so that X has a largest rational member or Y a least member, then the cut corresponds to a rational number. If, however, the cut is made so that X has no largest rational member and Y no least rational member, then the cut corresponds to an irrational number.}
+For example, if X is the set of all real numbers x less than or equal to 22/7 and Y is the set of real numbers y greater than 22/7, then the largest member of X is the rational number 22/7. If, however, X is the set of all real numbers x such that $x^2$ is less than or equal to 2 and Y is the set of real numbers y such that $y^2$ is greater than 2, then X has no largest rational member and Y has no least rational member: the cut defines the irrational number: the square root of 2, i.e., $\sqrt{2}$.
+\begin{tcolorbox}
+  Question: Show that e is an irrational number (starting from e as an infinite series $e = 1+1+ \frac{1}{2!}  + \frac{1}{3!} +\ldots $).
+\end{tcolorbox}
+
+\end{document}
