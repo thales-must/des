@@ -1,4 +1,6 @@
 \documentclass{article}
+\usepackage[top=1cm,left=1cm,right=1.5cm,bottom=2cm]{geometry}
+\usepackage[utf8]{inputenc}
 \title{Discrete Event System}
 \author{Tai Jiang}
 \date{October 2023}
@@ -38,6 +40,53 @@
 For example, if X is the set of all real numbers x less than or equal to 22/7 and Y is the set of real numbers y greater than 22/7, then the largest member of X is the rational number 22/7. If, however, X is the set of all real numbers x such that $x^2$ is less than or equal to 2 and Y is the set of real numbers y such that $y^2$ is greater than 2, then X has no largest rational member and Y has no least rational member: the cut defines the irrational number: the square root of 2, i.e., $\sqrt{2}$.
 \begin{tcolorbox}
   Question: Show that e is an irrational number (starting from e as an infinite series $e = 1+1+ \frac{1}{2!}  + \frac{1}{3!} +\ldots $).
+\end{tcolorbox}
+
+\section{* Show that e (Euler constant, approximating 2.718281828...) is a transcendental number.}
+
+\begin{tcolorbox}
+  Generally speaking, a transcendental number is not algebraic in the sense that it is not the solution of an algebraic equation with rational-number coeﬀicients. Transcendental numbers are irrational, but not all irrational numbers are transcendental. For example, $x^2 - 2 = 0$ has the solutions $x = \sqrt{2}$; thus, the Square root of 2, an irrational number, is an algebraic number and not transcendental. Nearly all real and complex numbers are transcendental, but very few numbers have been proven to be transcendental. The numbers e and $ \pi $ are transcendental numbers. The Euler-Mascheroni constant $\gamma $
+  
+  \begin{equation*}
+    \gamma = \lim_{n \to \infty}(- \log n+\sum_{k = 1}^{n} \frac{1}{k}  ) = 0.57721566490153286060651209008240243104215933593992\ldots      
+  \end{equation*}
+  
+  has not proven to be transcendental but is generally believed to be by mathematicians.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  Whether there is any transcendental number is not an easy question to answer. 
+  The discovery of the first transcendental number by Joseph Liouville (1809-1882, French mathematician and engineer) in 1851 sparked up an interest in the field and began a new era in the theory of transcendental numbers. 
+  In 1873, Charles Hermite (1822-1901, French mathematician) succeeded in proving that e is transcendental. And within a decade, Ferdinand von Lindemann (1852-1939, German mathematician) established the transcendence of $ \pi $ in 1882, which led to the impossibility of the ancient Greek problem of squaring the circle. 
+  The theory has progressed significantly in recent years, with an answer to the Hilbert's seventh problem and the discovery of a nontrivial lower bound for linear forms of logarithms of algebraic numbers. 
+  Although in 1874, the work of Georg Cantor (1845-1918, German mathematician) demonstrated the ubiquity of transcendental numbers (which is quite surprising), finding one or proving existing numbers are transcendental may be extremely hard. 
+  For more details, see \url{https://en.wikipedia.org/wiki/Transcendental_number}.
+\end{tcolorbox}
+
+\section{* Get a rough picture of Naive Set Theory (via the lifetime of the great figures who contributed to set theory). There is a textbook \textit{Naive Set Theory} by Paul Halmos Originally published by Van Nostrand in 1960, reprinted in the Springer-Verlag Undergraduate Texts in Mathematics series in 1974. In this book, Halmos writes:}
+
+\begin{tcolorbox}
+  Every mathematician agrees that every mathematician must know some set theory; the disagreement begins in trying to decide how much is some. This book contains my answer ... with the minimum of philosophical discourse and logical formalism.
+\end{tcolorbox}
+
+\section{* Understand the development history of function (including injections, surjections, and bijections).}
+
+\begin{tcolorbox}
+  Historically, the concept of a function emerged in the 17th century as a result of the development of analytic geometry and the infinitesimal calculus, see the following material on the development of notion of function: \url{http://www.ms.uky.edu/~droyster/courses/fall06/PDFs/Chapter05.pdf}, \url{http://www. mr-ideahamster.com/classes/assets/a_evfcn.pdf}, \url{https://mathshistory.st-andrews.ac.uk/HistTopics/Functions/}, \url{https://www.researchgate.net/publication/251211596_The_history_ of_the_concept_of_function_and_some_educational_implications}.
+\end{tcolorbox}
+
+\section{Euler's formula, named after Leonhard Euler (1707-1783, Swiss mathematician, physicist, astronomer, geographer, logician, and engineer), is a mathematical formula in complex analysis that establishes the fundamental relationship between the trigonometric functions and the complex exponential function. Euler's formula states that for any real number x:}
+
+\begin{equation*}
+  e^{ix} = cos x + i sin x,
+\end{equation*}
+
+where e is the base of the natural logarithm, i is the imaginary unit, and cos and sin are the trigonometric functions cosine and sine respectively. This complex exponential function is sometimes denoted cis x (cosine plus i sine). The formula is still valid if x is a complex number, and so some authors refer to the more general complex version as Euler's formula.
+
+Eule's formula is ubiquitous in mathematics, physics, chemistry, and engineering. The physicist Richard Feynman (1918-1988, American theoretical physicist, received the Nobel Prize in Physics in 1965 jointly with Schwinger and Tomonaga) called the equation “our jewel” and “the most remarkable formula in mathematics”. When $x = \pi$, Euler's formula boils down to $e^{i\pi} + 1 = 0$ or $e^{i\pi} = -1$, which is known as Euler's identity.
+
+\begin{tcolorbox}
+  \textbf{Question:} Show (prove) Euler’s formula using power-series expansions.
 \end{tcolorbox}
 
 \end{document}
