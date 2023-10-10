@@ -63,6 +63,38 @@ For example, if X is the set of all real numbers x less than or equal to 22/7 an
   For more details, see \url{https://en.wikipedia.org/wiki/Transcendental_number}.
 \end{tcolorbox}
 
+\paragraph{Answer}:
+
+\begin{enumerate}
+  \item Assume that 'e' is not transcendental and is algebraic (i.e., it is the root of a non-zero polynomial with integer coefficients).
+
+  \item Consider the Taylor series expansion of 'e':
+  
+  $e = 1 + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{4!} + \ldots$
+  
+  \item Now, suppose we have a polynomial P(x) with integer coefficients that has 'e' as a root.
+  
+  \item We can rewrite the Taylor series for 'e' as an infinite polynomial:
+  
+  $e = 1 + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{4!} + \ldots = 1 + \frac{x}{1!} + \frac{x^2}{2!}+ \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots$
+  
+  \item We can compare the two polynomials: P(x) and the polynomial expansion of 'e'. If 'e' is a root of P(x), then P(e) = 0.
+  
+  \item Now, substitute 'e' into P(x) and expand it as a power series:
+  
+  $P(e) = a_0 + a_1e + a_2e^2 + a_3e^3 + \ldots$
+  
+  \item Since P(e) = 0, we have:
+  
+  $O = a_0 + a_1e + a_2e^2 + a_3e^3 + \ldots$
+  
+  \item By comparing coefficients of like terms on both sides of the equation, we obtain a power series that equals zero.
+  
+  \item However, this leads to a contradiction because 'e' is known to be transcendental, and it cannot be the root of any non-zero polynomial with integer coefficients.
+  
+  \item Therefore, the initial assumption that 'e' is algebraic must be false, which implies that 'e' is indeed transcendental.
+\end{enumerate}
+
 \section{* Get a rough picture of Naive Set Theory (via the lifetime of the great figures who contributed to set theory). There is a textbook \textit{Naive Set Theory} by Paul Halmos Originally published by Van Nostrand in 1960, reprinted in the Springer-Verlag Undergraduate Texts in Mathematics series in 1974. In this book, Halmos writes:}
 
 \begin{tcolorbox}
@@ -86,7 +118,88 @@ where e is the base of the natural logarithm, i is the imaginary unit, and cos a
 Eule's formula is ubiquitous in mathematics, physics, chemistry, and engineering. The physicist Richard Feynman (1918-1988, American theoretical physicist, received the Nobel Prize in Physics in 1965 jointly with Schwinger and Tomonaga) called the equation “our jewel” and “the most remarkable formula in mathematics”. When $x = \pi$, Euler's formula boils down to $e^{i\pi} + 1 = 0$ or $e^{i\pi} = -1$, which is known as Euler's identity.
 
 \begin{tcolorbox}
-  \textbf{Question:} Show (prove) Euler’s formula using power-series expansions.
+  \textbf{Question:} Show (prove) Euler's formula using power-series expansions.
+\end{tcolorbox}
+
+\section{Fermat's last theorem (proposed by \href{https://en.wikipedia.org/wiki/Pierre_de_Fermat}{Pierre Fermat} (1607-1665, lawyer and government oﬀicial in Toulouse, France, who did mathematics on the side for fun) around 1637) states that for all $x, y, z, n \in \mathbb{N} $ with $n \leq 3$, there is no solution to}
+
+\begin{equation*}
+  x^n + y^n = z^n
+\end{equation*}
+
+A proof was done by British mathematician \href{https://en.wikipedia.org/wiki/Andrew_Wiles}{Andrew Wiles} (1953-) in 1996 with hundreds of pages. He actually proved the Shimura-Taniyama-Weil Conjecture that is related to modular forms and elliptic curves which are very complicated and abstract notions in mathematics. The following proof is from a Russian blog. It is interesting to identify and discern the errors in the proof.
+
+As known, when n is equal to 2, it gives us an infinite family of solutions called the Pythagorean triples such as (3,4,5), (6,8,10), (12,5,13), etc. To start with, by contradiction, we suppose that we have natural numbers x, y, z, and $n \leq 3$ such that $x^n + y^n = z^n$.
+
+Define a new number $r \in \mathbb{R} $ that is a real number such that
+
+\begin{equation*}
+  x^2 + y^2 = r^2
+\end{equation*}
+
+This decides a triangle as shown below with AC = x, AB = y, and the hypotenuse BC = r. By $n \leq 3$, $x^n > x^2$, and $y^n > y^2$, we have
+
+\begin{equation*}
+  r^n = (r^2)^{n/2} = (x^2 + y^2)^{n/2} > x^n + y^n = z^n
+\end{equation*}
+
+This means that r is bigger than z. We shorten the hypotenuse r while it will no longer be a hypotenuse because if we shorten this side, the right angle will decrease. By leaving y and x the same length and shortening r until it coincides with the number z, we get the figure on the right-hand side.
+
+Now, the angle $\angle BAC$ (with a side of length z) is not a right angle and it is actually an acute angle, denoted by $\Theta$ with $\Theta \in [0, \frac{\pi}{2} ]$. The Law of Cosines (also called the Cosine Rule) says
+
+\begin{equation*}
+  z^2 = x^2 + y^2 - 2xy \cos \Theta
+\end{equation*}
+
+We have then
+
+\begin{equation*}
+  \cos \Theta = \frac{1}{2xy} (x^2 + y^2 - z^2)
+\end{equation*}
+
+The author offering this proof tells us that we find a contradiction as notice what we have built is a value of cosine which is rational (note that a number is said to be rational if it can be written as the form $\frac{a}{b} $ , where
+$a, b \in Z$ and $b \neq 0$). Since the cosine function is continuous and $\Theta$ can be arbitrary, it is impossible that all cosine values are rational, leading to a contradiction. This completes the proof of Fermat’s last theorem. However, we know that the proof is definitely incorrect. Find the error in the proof.
+
+%7
+\section{Consider the motion of a rigid body with friction retarding its motion, which is proportional to the speed of the body with a proportionality constant, as shown in the free-body diagram that defines coordinates. It shows all forces acting on the body (heavy lines) and indicates the acceleration (dashed line). The coordinate of the body's position x is the distance from the reference line shown and is chosen so that the positive is to the right. Note that in this case, the inertial acceleration is simply the second derivative of x (i.e., $a = \ddot{x}$) because the body position is measured with respect to an inertial reference. Suppose that initially we have $x(0) = \dot{x}(0) = 0$.}
+
+\begin{tcolorbox}
+  The Laplace transform can be used in some cases to solve linear constant coeﬀicient differential equations with given initial conditions. For details, one refers to A. D. Polyanin, Handbook of Linear Partial Differential Equations for Engineers and Scientists, Chapman \& Hall/CRC Press, Boca Raton, 2002.
+\end{tcolorbox}
+
+The equation of motion is found using Eq. (1). The friction force acts opposite to the direction of motion; therefore it is drawn opposite the direction of positive motion and entered as a negative force in Eq. \eqref{eq:eq1}.
+
+\begin{equation}
+  m\ddot{x} = u - b\dot{x}
+  \label{eq:eq1}
+\end{equation}
+
+Suppose that m=1000 Kg, b = 50N · sec/m, and u = 500N. Find the solution of x and $\dot{x}$ and draw (using MATLAB) the response of the body to the step input u for $\dot{x}$. Change the parameter b and find solutions again.
+
+\section{The problem of determining whether a propositional formula (i.e., a compound proposition) is a tautology is fundamental in propositional logic. If there are n variables occurring in a formula then there are $2^n$ distinct valuations for the formula. Therefore, the task of determining whether or not the formula is a tautology can be done in a brute-force way: one needs to evaluate the truth value of the formula under each of its possible valuations. Verify that the following is a tautology.}
+
+\begin{itemize}
+  \item $\lnot p \land (p \lor q) \to q$.
+  \item $(p \land q) \to r \Leftrightarrow p \to (q \to r) $.
+  \item $[(p \to q) \land (q \to r)] \to [p \to r]$
+\end{itemize}
+
+The proof of a tautology or a contradiction can be done by means of logic equivalence laws (a list of equivalence laws can be found in Chapter II). For example, $(p \land q) \to (p \lor q)$ is a tautology, i.e., $(p \land q) \to (p \lor q) \equiv \mathsf{T} $, which can be shown by the following logic equivalences:
+
+\begin{equation*}
+  \begin{aligned}
+    (p \land q) \to (p \lor q) & \equiv \lnot (p \land q) \lor (p \lor q) \text{Substitution for} \to \\
+    & \equiv (\lnot p \land \lnot q) \lor (p \lor q) \text{De Morgan} \\
+    & \equiv (\lnot p \lor q) \lor (\lnot q \lor q) \text{Commutativity and Associativity} \\
+    & \equiv \mathsf{T} \lor \mathsf{T} text{Becouse of} \lnot p \lor p \equiv \mathsf{T} \\
+    & \equiv \mathsf{T}
+  \end{aligned}
+\end{equation*}
+
+Try to verify the above tautologies using the logic equivalence laws.
+
+\begin{tcolorbox}
+  For logic equivalence laws in Wiki, see \url{https://en.wikipedia.org/wiki/Logical_equivalence}. In addition to many, there is a nice webpage with a video for logical equivalence with 13 examples, see \url{https://calcworkshop.com/logic/logical-equivalence/}.
 \end{tcolorbox}
 
 \end{document}
