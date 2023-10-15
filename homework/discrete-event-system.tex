@@ -36,11 +36,52 @@
   Remark: Editing the homework using LATEX is strongly preferred (Tex studio, a popular yet free software package (\url{https://www.texstudio.org/}), is recommended, where images with JPG, PNG, EPS, and PDF formats can be used). An alternative is overleaf which is an online package of LATEX tool, for details see \url{https://www.overleaf.com/learn}. A full tutorial for LATEX beginners is found in \url{https://www.youtube.com/watch?v=ydOTMQC7np0\&t=1830s}. Questions marked by $\star $ are optional (diﬀicult more or less), but more interesting. Those marked with double-star serve as hints for the related questions to be followed. The questions marked with $\Delta $ are (also optional) only for the students whose research interests fall into the DES area, which are much more heuristic and are expected to guide and channelize them to the cutting-edge topics by making practice on specific problems that serve for the starting point of their scientific research.
 \end{tcolorbox}
 
-\section{(Irrational number) Dedekind cut in mathematics is a concept advanced in 1872 by Richard Dedekind (18311916, German mathematician) that combines an arithmetic formulation of the idea of continuity with a rigorous distinction between rational and irrational numbers. Dedekind reasoned that the real numbers form an ordered continuum so that any two numbers x and y must satisfy one and only one of the conditions x < y, x = y, or x > y. He postulated a cut that separates the continuum into two subsets, say X and Y , such that if x is any member of X and y is any member of Y , then x < y. If the cut is made so that X has a largest rational member or Y a least member, then the cut corresponds to a rational number. If, however, the cut is made so that X has no largest rational member and Y no least rational member, then the cut corresponds to an irrational number.}
+\section{(Irrational number) Dedekind cut in mathematics is a concept advanced in 1872 by Richard Dedekind (1831-1916, German mathematician) that combines an arithmetic formulation of the idea of continuity with a rigorous distinction between rational and irrational numbers. }
+
+Dedekind reasoned that the real numbers form an ordered continuum so that any two numbers x and y must satisfy one and only one of the conditions $x < y$, x = y, or $x > y$. He postulated a cut that separates the continuum into two subsets, say X and Y , such that if x is any member of X and y is any member of Y , then $x < y$. If the cut is made so that X has a largest rational member or Y a least member, then the cut corresponds to a rational number. If, however, the cut is made so that X has no largest rational member and Y no least rational member, then the cut corresponds to an irrational number.
+
 For example, if X is the set of all real numbers x less than or equal to 22/7 and Y is the set of real numbers y greater than 22/7, then the largest member of X is the rational number 22/7. If, however, X is the set of all real numbers x such that $x^2$ is less than or equal to 2 and Y is the set of real numbers y such that $y^2$ is greater than 2, then X has no largest rational member and Y has no least rational member: the cut defines the irrational number: the square root of 2, i.e., $\sqrt{2}$.
 \begin{tcolorbox}
   Question: Show that e is an irrational number (starting from e as an infinite series $e = 1+1+ \frac{1}{2!}  + \frac{1}{3!} +\ldots $).
 \end{tcolorbox}
+
+
+\paragraph{Answer:}
+% q1
+\begin{enumerate}
+  \item Definition of Set A:
+  \begin{itemize}
+    \item A includes all rational numbers p such that $p < e$.
+    \item This means A includes all such rational numbers as 1, 2, 2.5, 2.7, 2.71, ..., which are rational approximations to \textbf{e}.
+  \end{itemize}
+  \item Definition of Set B:
+  \begin{itemize}
+    \item B includes all rational numbers p such that $p > e$.
+    \item This means B includes all such rational numbers as 3, 2.9, 2.8, 2.72, ..., which are rational approximations to \textbf{e}.
+  \end{itemize}
+\end{enumerate}
+
+Now, we will prove that '\textbf{e}' is irrational, meaning it cannot be expressed as the ratio of two integers.
+
+Assume that '\textbf{e}' is a rational number, $e = \frac{a}{b}$, where a and b are coprime integers (having a greatest common divisor of 1). Then, we can partition A and B into two subsets:
+
+\begin{enumerate}
+  \item $A' = \{p^* \in A: p < \frac{a}{b} \}$
+  \item $B' = \{p^* \in B: p > \frac{a}{b} \}$
+\end{enumerate}
+
+Now, let $s = \frac{a}{b}$. Clearly, s belongs to both A' and B'. We can use the properties of Dedekind cuts to demonstrate that '\textbf{e}' is irrational.
+
+For A', by Dedekind cut properties, there exists a maximum rational number $r \in A'$, such that $r < s$.
+
+For B', also by Dedekind cut properties, there exists a minimum rational number $q \in B$, such that $q > s$.
+
+Now, consider the rational numbers s and r. According to the construction, $r < s < q$.
+
+However, by definition, A contains all rational numbers less than '\textbf{e}', and B contains all rational numbers greater than '\textbf{e}', so $r < e < q$.
+
+This leads to a contradiction: $r < e < q$, where r and q are both rational numbers. This means that '\textbf{e}' cannot simultaneously belong to A' and B', contradicting the construction of Dedekind cuts.
+
 
 \section{* Show that e (Euler constant, approximating 2.718281828...) is a transcendental number.}
 
@@ -64,7 +105,7 @@ For example, if X is the set of all real numbers x less than or equal to 22/7 an
 \end{tcolorbox}
 
 \paragraph{Answer}:
-
+% q2
 \begin{enumerate}
   \item Assume that 'e' is not transcendental and is algebraic (i.e., it is the root of a non-zero polynomial with integer coefficients).
 
@@ -101,11 +142,48 @@ For example, if X is the set of all real numbers x less than or equal to 22/7 an
   Every mathematician agrees that every mathematician must know some set theory; the disagreement begins in trying to decide how much is some. This book contains my answer ... with the minimum of philosophical discourse and logical formalism.
 \end{tcolorbox}
 
+\paragraph{Answer}:
+% q3
+
+Naive Set Theory is an elementary approach to set theory that deals with the basic concepts and principles of sets and functions without delving deeply into the more complex and formal aspects of axiomatic set theory. It provides a foundational understanding of sets, their properties, and their relationships, making it accessible to those with minimal background in mathematical logic and formalism. The development of set theory and the contributions of key figures in its history can be roughly summarized as follows:
+
+\begin{enumerate}
+  \item Georg Cantor (1845-1918): Cantor is often regarded as the founder of set theory. He introduced the concept of a set and developed the idea of different sizes of infinity, known as cardinal numbers. Cantor's work laid the foundation for many set theory concepts.
+  \item Richard Dedekind (1831-1916): Dedekind made significant contributions to the development of set theory, including introducing the notion of Dedekind cuts for defining real numbers and the principle of mathematical induction.
+  \item Ernst Zermelo (1871-1953) and Abraham Fraenkel (1891-1965): Zermelo-Fraenkel set theory, also known as ZFC, is a formal axiomatic system that provides a basis for modern set theory. Zermelo introduced the axioms of set theory, and Fraenkel later refined and extended them to form the ZFC set theory, which is widely used in mathematics today.
+  \item Paul Halmos (1916-2006): Paul Halmos, a renowned mathematician, made significant contributions to various areas of mathematics, including set theory. His book "Naive Set Theory" was published in 1960 and has been influential in introducing students and mathematicians to the basics of set theory without delving into deep philosophical or formal aspects.
+\end{enumerate}
+
+Halmos's approach in \textbf{"Naive Set Theory"} is to provide an accessible introduction to sets, functions, and basic set-theoretic concepts without requiring extensive knowledge of formal logic. It focuses on intuitive understanding and practical applications in mathematics. While the book does not cover the most advanced aspects of set theory, it serves as a valuable resource for mathematicians and students who need a solid foundation in the subject.
+
+Naive Set Theory is often used as a starting point for those looking to explore more advanced set theory and its various applications in mathematics, logic, and other fields.
+
+
 \section{* Understand the development history of function (including injections, surjections, and bijections).}
 
 \begin{tcolorbox}
   Historically, the concept of a function emerged in the 17th century as a result of the development of analytic geometry and the infinitesimal calculus, see the following material on the development of notion of function: \url{http://www.ms.uky.edu/~droyster/courses/fall06/PDFs/Chapter05.pdf}, \url{http://www. mr-ideahamster.com/classes/assets/a_evfcn.pdf}, \url{https://mathshistory.st-andrews.ac.uk/HistTopics/Functions/}, \url{https://www.researchgate.net/publication/251211596_The_history_ of_the_concept_of_function_and_some_educational_implications}.
 \end{tcolorbox}
+
+\paragraph{Answer}:
+% q4
+
+The concept of a function has a rich history that evolved over centuries. Here is a brief overview of the historical development of the notion of functions, including injections, surjections, and bijections:
+
+\begin{enumerate}
+  \item Ancient Roots: The idea of associating one quantity with another has ancient roots, with early mathematicians and scientists using functions informally. For example, ancient Greek mathematicians like Euclid and Diophantus worked with relationships between numbers, but they did not have a formal concept of a function.
+  \item Analytic Geometry (17th Century): The concept of a function began to take shape in the 17th century with the development of analytic geometry by René Descartes. He introduced the coordinate plane, where geometric figures could be represented by equations. Functions were used to describe these equations and relationships between variables. However, the concept was still informal at this stage.
+  \item Infinitesimal Calculus (17th-18th Century): The development of calculus by Isaac Newton and Gottfried Wilhelm Leibniz in the late 17th century further advanced the notion of functions. In calculus, functions were used to describe how one quantity (dependent variable) changes with respect to another (independent variable). The concept of limits, derivatives, and integrals played a crucial role in understanding functions more rigorously.
+  \item Euler and Taylor (18th Century): Leonhard Euler and Brook Taylor made significant contributions to the study of functions and their expansions. Euler, in particular, worked with series expansions, which are integral to understanding functions more deeply.
+  \item Cauchy and Rigor (19th Century): Augustin-Louis Cauchy and other mathematicians in the 19th century worked to provide a rigorous foundation for calculus, including the notion of functions. They introduced the epsilon-delta definition of limits, making functions a more formal concept.
+  \item Dirichlet and Baire (19th-20th Century): Mathematicians like Peter Gustav Lejeune Dirichlet and René-Louis Baire made important contributions to the study of real and complex functions. They extended the concept of functions to more abstract spaces.
+  \item Modern Set Theory (20th Century): The development of modern set theory, led by mathematicians like Ernst Zermelo and Abraham Fraenkel, provided a formal foundation for functions as set-theoretic objects. Functions were defined as sets of ordered pairs, with precise notions of injections, surjections, bijections, and function composition.
+  \item Abstract Algebra (20th Century): In abstract algebra, the concept of functions was generalized in the form of group homomorphisms, ring homomorphisms, and other algebraic structures. These concepts extend the notion of functions beyond real and complex numbers.
+  \item Category Theory (20th Century): Category theory provided a unifying framework for studying functions and morphisms across various mathematical structures. It introduced the concept of functors and natural transformations, allowing for a more abstract and generalized understanding of functions.
+\end{enumerate}
+
+Today, functions play a central role in nearly all branches of mathematics and have numerous applications in science and engineering. The historical development of the notion of functions reflects the evolving understanding of mathematical concepts and the increasing rigor applied to mathematical foundations.
+
 
 \section{Euler's formula, named after Leonhard Euler (1707-1783, Swiss mathematician, physicist, astronomer, geographer, logician, and engineer), is a mathematical formula in complex analysis that establishes the fundamental relationship between the trigonometric functions and the complex exponential function. Euler's formula states that for any real number x:}
 
@@ -120,6 +198,66 @@ Eule's formula is ubiquitous in mathematics, physics, chemistry, and engineering
 \begin{tcolorbox}
   \textbf{Question:} Show (prove) Euler's formula using power-series expansions.
 \end{tcolorbox}
+
+
+\paragraph{Answer}:
+% q5
+
+Euler's formula, often written as \textbf{ "$e^{i \pi} + 1 = 0$"}, is a remarkable mathematical result that relates five of the most important constants in mathematics: e, i (the imaginary unit), $\pi$, 1, and 0. We can prove this formula using power series expansions and some properties of trigonometric functions. The key is to use the Maclaurin series (Taylor series centered at 0) for the exponential, sine, and cosine functions.
+
+We know the Maclaurin series for the exponential function $e^x$ is:
+
+$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!}  + \frac{x^4}{4!}  + \ldots $
+
+Now, let's use this series for $x = i\pi$:
+
+$e^{i\pi} = 1 + i\pi + \frac{(i\pi)^2}{2!} + \frac{(i\pi)^3}{3!} + \frac{(i\pi)^4}{4!}  + \ldots$
+
+Simplify this expression:
+
+$e^{i\pi} = 1 + i\pi - \frac{(\pi)^2}{2!}  - \frac{i\pi^3}{3!} + \frac{\pi^4}{4!}  + \ldots$
+
+Now, let's consider the Maclaurin series for the sine and cosine functions:
+
+\begin{equation*}
+  \begin{aligned}
+    \sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots \\
+    \cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \ldots  
+  \end{aligned}
+\end{equation*}
+
+Using these series for $x = \pi$:
+
+\begin{equation*}
+  \begin{aligned}
+    \sin(\pi) &= 0 \\
+    \cos(\pi) &= -1
+  \end{aligned}
+\end{equation*}
+
+Now, we can express $e^{i\pi}$ as a combination of sine and cosine:
+
+\begin{equation*}
+  \begin{aligned}
+    e^{i\pi} &= 1 + i\pi - \frac{\pi^2}{2!}  - \frac{i\pi^3}{3!} + \frac{\pi^4}{4!}  + \ldots \\
+    &= (1 - \frac{\pi^2}{2!} + \frac{\pi^4}{4!} - \ldots)  + i(\pi - \frac{\pi^3}{3!} + \frac{\pi^5}{5!} - \ldots)
+  \end{aligned}
+\end{equation*}
+
+Now, notice that the real part is the Maclaurin series for the cosine of $\pi$, and the imaginary part is the Maclaurin series for the sine of $\pi$. We already established that $\cos(\pi) = -1$ and $\sin(\pi) = 0$, so we have:
+
+\begin{equation*}
+  \begin{aligned}
+    e^{i\pi} &= -i + 0i \\
+    e^{i\pi} &= -1    
+  \end{aligned}
+\end{equation*}
+
+Now, we can rearrange Euler's formula:
+
+$e^{i\pi} + 1 = -1 + 1 = 0$
+
+So, we've shown that Euler's formula, $e^{i\pi} + 1 = 0$, is indeed true using power series expansions and trigonometric properties.
 
 \section{Fermat's last theorem (proposed by \href{https://en.wikipedia.org/wiki/Pierre_de_Fermat}{Pierre Fermat} (1607-1665, lawyer and government oﬀicial in Toulouse, France, who did mathematics on the side for fun) around 1637) states that for all $x, y, z, n \in \mathbb{N} $ with $n \leq 3$, there is no solution to}
 
@@ -201,5 +339,17 @@ Try to verify the above tautologies using the logic equivalence laws.
 \begin{tcolorbox}
   For logic equivalence laws in Wiki, see \url{https://en.wikipedia.org/wiki/Logical_equivalence}. In addition to many, there is a nice webpage with a video for logical equivalence with 13 examples, see \url{https://calcworkshop.com/logic/logical-equivalence/}.
 \end{tcolorbox}
+
+
+\section{Logical implication is a type of relationship between two statements or sentences. Even for a single mathematical statement, there exists implicit logical implication among its variables (arguments). The relation translates verbally into “logically implies” or the logical connective “if/then” and is symbolized by a double-lined arrow pointing toward the right $\Longrightarrow $}
+
+In logic, implication is the relationship between different propositions where the second proposition is a logical consequence of the first. For instance, if A and B represent semantic statements, then $A \Longrightarrow B$ means “A implies B” or “If A, then B.” The word “implies” is used in the strongest possible sense.
+
+\begin{tcolorbox}
+  \textbf{Question:} Propose a logical implication formula for the statement $x \leq y$ (suppose that x and y are real numbers). Moreover, from this example, we will explore the equivalence of the two logical formulas $P \lor Q and \lnot P \Longrightarrow Q$ by a gut feeling.
+\end{tcolorbox}
+
+
+\section{Use predicate logic to express Goldbach’s weak conjecture and Chen’s theorem}
 
 \end{document}
