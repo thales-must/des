@@ -298,7 +298,10 @@ We have then
 The author offering this proof tells us that we find a contradiction as notice what we have built is a value of cosine which is rational (note that a number is said to be rational if it can be written as the form $\frac{a}{b} $ , where
 $a, b \in Z$ and $b \neq 0$). Since the cosine function is continuous and $\Theta$ can be arbitrary, it is impossible that all cosine values are rational, leading to a contradiction. This completes the proof of Fermat’s last theorem. However, we know that the proof is definitely incorrect. Find the error in the proof.
 
-%7
+\paragraph{Answer}:
+wait
+% 6
+
 \section{Consider the motion of a rigid body with friction retarding its motion, which is proportional to the speed of the body with a proportionality constant, as shown in the free-body diagram that defines coordinates. It shows all forces acting on the body (heavy lines) and indicates the acceleration (dashed line). The coordinate of the body's position x is the distance from the reference line shown and is chosen so that the positive is to the right. Note that in this case, the inertial acceleration is simply the second derivative of x (i.e., $a = \ddot{x}$) because the body position is measured with respect to an inertial reference. Suppose that initially we have $x(0) = \dot{x}(0) = 0$.}
 
 \begin{tcolorbox}
@@ -313,6 +316,10 @@ The equation of motion is found using Eq. (1). The friction force acts opposite 
 \end{equation}
 
 Suppose that m=1000 Kg, b = 50N · sec/m, and u = 500N. Find the solution of x and $\dot{x}$ and draw (using MATLAB) the response of the body to the step input u for $\dot{x}$. Change the parameter b and find solutions again.
+
+\paragraph{Answer}:
+wait
+% 7
 
 \section{The problem of determining whether a propositional formula (i.e., a compound proposition) is a tautology is fundamental in propositional logic. If there are n variables occurring in a formula then there are $2^n$ distinct valuations for the formula. Therefore, the task of determining whether or not the formula is a tautology can be done in a brute-force way: one needs to evaluate the truth value of the formula under each of its possible valuations. Verify that the following is a tautology.}
 
@@ -340,6 +347,10 @@ Try to verify the above tautologies using the logic equivalence laws.
   For logic equivalence laws in Wiki, see \url{https://en.wikipedia.org/wiki/Logical_equivalence}. In addition to many, there is a nice webpage with a video for logical equivalence with 13 examples, see \url{https://calcworkshop.com/logic/logical-equivalence/}.
 \end{tcolorbox}
 
+\paragraph{Answer}:
+wait
+% 8
+
 
 \section{Logical implication is a type of relationship between two statements or sentences. Even for a single mathematical statement, there exists implicit logical implication among its variables (arguments). The relation translates verbally into “logically implies” or the logical connective “if/then” and is symbolized by a double-lined arrow pointing toward the right $\Longrightarrow $}
 
@@ -349,7 +360,141 @@ In logic, implication is the relationship between different propositions where t
   \textbf{Question:} Propose a logical implication formula for the statement $x \leq y$ (suppose that x and y are real numbers). Moreover, from this example, we will explore the equivalence of the two logical formulas $P \lor Q and \lnot P \Longrightarrow Q$ by a gut feeling.
 \end{tcolorbox}
 
+\paragraph{Answer}:
+% 9
 
-\section{Use predicate logic to express Goldbach’s weak conjecture and Chen’s theorem}
+The logical implication formula for the statement \textbf{"$x \leq y$"} is:
+
+$x \leq y \Rightarrow True$
+
+This formula states that if "x is less than or equal to y," then the implication is True. In other words, if the condition  \textbf{"$x \leq y$"} is met, then the implication is always True, indicating that the statement \textbf{"$x \leq y$"} is satisfied.
+
+Now, let's explore the equivalence of the two logical formulas:
+
+\begin{equation*}
+  \begin{aligned}
+    P \lor Q \\
+    \lnot P \Rightarrow Q
+  \end{aligned}  
+\end{equation*}
+
+The formula $P \lor Q$ represents a logical "or" statement, meaning it is True if either P or Q is True (or both). In other words, it allows for multiple possibilities, and it's True as long as at least one of the conditions P or Q is satisfied.
+
+The formula $\lnot P \Rightarrow Q$ represents a logical implication. It states that if P is not True ($\not P$) then Q must be True. In this case, it's a conditional statement, and it implies that if the condition P is not met, then the condition Q must be met.
+
+These two formulas are not equivalent. The key difference is that in the first formula ($P \lor Q$), you have the flexibility that either P or Q (or both) can be True to make the statement True. In the second formula ($\lnot P \longrightarrow Q$), it specifically states that if P is not True, then Q must be True for the implication to be satisfied.
+
+For example, let's use P to represent "It is raining" and Q to represent "I carry an umbrella."
+
+\begin{itemize}
+  \item The formula $P \lor Q$ means that if it's either raining or I carry an umbrella, the statement is True. This allows for the possibility that I might carry an umbrella even when it's not raining.
+  \item The formula $\lnot P \Rightarrow Q$ means that if it's not raining, then I must carry an umbrella. This is a stronger condition, as it implies that the only situation where I would carry an umbrella is when it's not raining.
+
+\end{itemize}
+
+So, while these two logical formulas are related, they have different meanings and do not represent the same concept.
+
+
+\section{Use predicate logic to express Goldbach's weak conjecture and Chen's theorem}
+
+\paragraph{Answer}:
+wait
+%10
+
+\section{Given an alphabet}
+
+\paragraph{Answer}:
+wait
+%11
+
+\section{When quantifiers in the same predicate are of the same quantity}
+
+\paragraph{Answer}:
+wait
+%12
+
+\section{Suppose that an alphabet}
+
+\paragraph{Answer}:
+wait
+%13
+
+\section{* The set of polynomials with integer coeﬀicients is countable.}
+
+\paragraph{Answer}:
+%14
+
+Here's a more detailed explanation of the argument:
+
+\begin{itemize}
+  \item Each polynomial with integer coefficients can be represented as a finite sequence of its coefficients. For example, the polynomial:
+
+  $P(x) = 3x^2 - 2x + 1$
+  
+  can be represented as the sequence of coefficients: [3, -2, 1].
+  
+  \item Since each coefficient is an integer, each element of the sequence is an element of the countable set of integers.
+  
+  \item The set of all finite sequences of integers is countable because it can be put into one-to-one correspondence with the set of natural numbers (positive integers). This can be done by considering sequences of length 1, length 2, length 3, and so on, and ordering them in a systematic way.
+  
+  \item Therefore, since we can map each polynomial with integer coefficients to a finite sequence of integers, and the set of finite sequences of integers is countable, the set of polynomials with integer coefficients is also countable.
+\end{itemize}
+
+In summary, the set of polynomials with integer coefficients is countable because it can be put into a one-to-one correspondence with the countable set of all finite sequences of integers, which can be systematically ordered and enumerated.
+
+\section{* A complex number x is said to be algebraic if there are integers $a_0, a_1, . . ., a_n$, not all zero, such that $a_nx^n + a_{n-1}x^{n-1} + ... + a_1x + a_0 = 0$. Prove that the set of all algebraic numbers is countable.}
+
+\paragraph{Answer}:
+%15
+
+Proof:
+
+\begin{itemize}
+  \item Consider the set of all polynomials with integer coefficients. Each polynomial can be represented as:
+
+  $P(x) = a_nx^n + a_{n-1}x^(n-1) + ... + a_1*x + a_0$
+  
+  where a0, a1, ..., an are integers, and not all of them are zero.
+  
+  \item For each polynomial P(x), let's consider the set of its roots (solutions) in the complex numbers. These roots are the algebraic numbers associated with this polynomial.
+  
+  \item Now, for each polynomial P(x), the set of its roots is a finite set of complex numbers. These roots satisfy the polynomial equation P(x) = 0.
+  
+  \item We can define a mapping that associates each polynomial P(x) to its set of roots. In other words, we can create a function f(P) that takes a polynomial as input and outputs the set of roots for that polynomial.
+  
+  \item The number of such polynomials with integer coefficients is countable because the set of all finite sequences of integers is countable (as explained in a previous response).
+  
+  \item For each polynomial, the set of its roots is finite, and the union of countably many finite sets is still countable.
+  
+  \item Therefore, the set of algebraic numbers, which is the union of the sets of roots for all possible polynomials with integer coefficients, is also countable.
+\end{itemize}
+
+In conclusion, the set of algebraic numbers is countable because it can be shown that there are countably many polynomials with integer coefficients, and the set of algebraic numbers is a countable union of the finite sets of roots associated with these polynomials.
+
+\section{Let $\Sigma = \{0, 1\}$, $A = \{\omega \in \Sigma ^* | \omega \text{ has the equal number of 01}\}$, and $B = \{0^*1^*\} = {0^m1^n | m \geq 0, n \geq 0}$. Write the expression of $A \cap  B$.}
+
+\paragraph{Answer}:
+%16
+
+To write the expression for the intersection ($A \cap B$) of the two languages A and B, you need to find the strings that belong to both A and B. In this case, A represents strings with an equal number of '0's and '1's, and B represents strings that are in the form of $0^m1^n$, where m and n can be any non-negative integers.
+
+The intersection $A \cap B$ will contain strings that satisfy both conditions, i.e., strings that have an equal number of '0's and '1's and are in the form of $0^m1^n$. The only string that satisfies both conditions is the empty string $\epsilon$, as it has an equal number of '0's and '1's (zero each) and is also in the form $0^m1^n$ for m = 0 and n = 0.
+
+So, the expression is:
+
+$A \cap  B = \{\epsilon\}$
+
+In this case, the intersection of languages A and B contains only the empty string.
+
+\section{* (Mathematical proof)}
+
+\paragraph{Answer}:
+%17
+
+\section{(Methods of proof) Typical mathematical proof methods include Direct proof, Proof by mathematical induction, Proof by contrapositive, Proof by contradiction, Proof by construction, Proof by exhaustion, Probabilistic proof, Combinatorial proof, Nonconstructive proof, Statistical proof in pure mathematics, and Computerassisted proof. Here we focus on the proofs by contradiction and by contrapositive.}
+
+\paragraph{Answer}:
+%18
+
 
 \end{document}
