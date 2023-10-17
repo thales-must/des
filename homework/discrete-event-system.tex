@@ -4,6 +4,7 @@
 \title{Discrete Event System}
 \author{Tai Jiang}
 \date{October 2023}
+\usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{tcolorbox}
 \usepackage{amsmath}
@@ -496,5 +497,241 @@ In this case, the intersection of languages A and B contains only the empty stri
 \paragraph{Answer}:
 %18
 
+\section{Group is an elementary notion in algebra}
+
+\paragraph{Answer}:
+%19
+
+
+\section{* (Russell’s paradox) In mathematical logic}
+
+\paragraph{Answer}:
+%20
+
+\section{* Often called the language of the universe, mathematics is fundamental to our understanding of the world.}
+
+\paragraph{Answer}:
+%21
+
+\section{Given an alphabet $\Sigma$, a language is a subset of $\Sigma^*$. Two languages $L_1$ and $L_2$ are said to be \textit{nonconflicting} if}
+
+$\overline{L_1 \cap L_2} = \overline{L_1} \cap \overline{L_2} $
+
+where $\overline{L_i} (i = 1, 2)$ is the prefix-closure of $L_i$. Give an example of two conflicting languages and an example of two non-conflicting languages. One can use TCT to verify the correctness of her/his results.
+
+\begin{tcolorbox}
+  true/false = nonconflict(DES1,DES2) tests whether DES1, DES2 are nonconflicting, namely whether all reachable states of the product DES are coreachable. Not for use with vocalized DES. Note that by doing the product of two DESs, only shared events are executed if their alphabets are not the same.
+\end{tcolorbox}
+
+\paragraph{Answer}:
+%22
+
+\textbf{Conflicting Languages:}
+
+\begin{itemize}
+  \item Language $L_1$: {0, 00, 000, ...} (The set of all strings consisting of '0' with different lengths, including the empty string $\epsilon$).
+  \item Language $L_2$: {1, 11, 111, ...} (The set of all strings consisting of '1' with different lengths, including the empty string $\epsilon$).
+\end{itemize}
+
+In this case, the prefix-closure of $L_1$ is $L_1$, and the prefix-closure of $L_2$ is $L_2$. The intersection of their complements ($\overline{L_1} \cap \overline{L_2}$) is still $L_1$ and $L_2$, respectively. However, the intersection of the original languages ($\overline{L_1 \cap L_2}$) is the empty set ($\phi $), indicating that they are conflicting languages. There are no strings that belong to both $L_1$ and $L_2$ in their original forms.
+
+\textbf{Non-Conflicting Languages:}
+
+\begin{itemize}
+  \item Language $A$: {0, 01, 001, 0001, ...} (The set of strings that start with '0' and can have any number of additional '0's or '1's).
+  \item Language $B$: {1, 10, 110, 1110, ...} (The set of strings that start with '1' and can have any number of additional '0's or '1's).
+\end{itemize}
+
+In this case, the prefix-closure of $A$ is $A$, and the prefix-closure of $B$ is $B$. The intersection of their complements ($\overline{A} \cap \overline{B}$) is still $A$ and $B$, respectively. The intersection of the original languages ($\overline{A \cap B}$) is also non-empty and contains strings like "0" and "1" that belong to both $A$ and $B$. Therefore, $A$ and $B$ are non-conflicting languages.
+
+To verify these results using TCT (Theory of Computation Tools), construct deterministic finite automata (DFAs) for the languages and then compare the intersections to determine whether they are conflicting or non-conflicting.
+
+\section{Given an alphabet $\Sigma$, a language $L \subseteq  \Sigma^*$ is said to be prefix-closed (closed for simplicity) if $L = \overline{L}$. A language $L \subseteq  K$ is said to be closed with respect to K, or simply K-closed if $L = \overline{L} \cap K$.}
+
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if two languages $L_1$ and $L_2$ are K-closed, then $L_1 \cap L_2$ is K-closed.
+  \item Show that if $L = \overline{L}$ and define $L^\prime  = L \cap K$, then $L^\prime$ is K-closed.
+  \item Propose a few examples of languages that are closed or K-closed given a language K.
+\end{enumerate}
+
+\paragraph{Answer}:
+%23
+
+\paragraph{(a)}:
+
+\textbf{$L_1 \cap L_2$ is Prefix-Closed Within Itself:}
+
+Since $L_1$ and $L_2$ are both K-closed, they are individually prefix-closed within themselves. This means that for any string in $L_1$ or $L_2$, it does not have any proper prefixes within $L_1$ or $L_2$.
+
+Now, consider the intersection $L_1 \cap L_2$. For any string $\omega \in L_1 \cap L_2$, it means that $\omega$ is both in $L_1$ and $L_2$. Therefore, it follows that $\omega$ does not have any proper prefixes within $L_1$ (because $L_1$ is prefix-closed), and $\omega$ does not have any proper prefixes within $L_2$ (because $L_2$ is prefix-closed). As a result, $\omega$ does not have any proper prefixes within $L_1 \cap L_2$.
+
+This demonstrates that $L_1 \cap L_2$ is prefix-closed within itself.
+
+\textbf{$L_1 \cap L_2 \subset K$:}
+
+Because $L_1$ and $L_2$ are both K-closed, it means that they are both subsets of K. That is, for any string in $L_1$ or $L_2$, it is also a member of K.
+
+Now, let's consider the intersection $L_1 \cap L_2$. For any string $\sigma \in L_1 \cap L_2$, it means that $\omega$ is both in $L_1$ and $L_2$. Since $L_1$ and $L_2$ are both subsets of K, it follows that $\sigma$ is a member of K as well, as it satisfies the condition of being in both $L_1$ and $L_2$.
+
+This demonstrates that $L_1 \cap L_2 \subset K$.
+
+Therefore, we have shown that $L_1 \cap L_2$ is both prefix-closed within itself and a subset of K, which means that it is K-closed, as required.
+
+\paragraph{(b)}:
+
+we need to demonstrate that $L^\prime$ satisfies the properties of being prefix-closed within itself and being a subset of K.
+
+\begin{enumerate}
+  \item $L^\prime$ is Prefix-Closed Within Itself:
+  
+  Given that $L = \overline{L}$, it means that L is a prefix-closed language within itself. For any string $\omega \in L$, it does not have any proper prefixes within L.
+
+  Now, consider the language $L^\prime$. For any string $\omega \in L^\prime$, it means that $\omega$ is both in L (which is prefix-closed) and in K. Since $\omega  \in L$, it does not have any proper prefixes within L. Additionally, because $\omega \in K$, it follows that $\omega$ is a member of K.
+  
+  Therefore, $\omega$ does not have any proper prefixes within $L^\prime$ (since it doesn't have any within L), and $\omega$ is a member of K.
+  
+  This demonstrates that $L^\prime$ is prefix-closed within itself.
+
+  \item $L^\prime$ is a Subset of K:
+  
+  Given that $L^\prime = L \cap K$, it implies that $L^\prime$ is the intersection of L and K. Therefore, for any string $\omega \in L^\prime$, it means that $\omega$ is both in L and in K.
+
+  Since $L = \overline{L}$, it follows that for any string in L (including those in $L^\prime$), they do not have any proper prefixes within L. Additionally, because $\omega \in K$, it follows that $\omega$ is a member of K.
+
+  This demonstrates that $L^\prime$ is a subset of K.
+
+  Therefore, we have shown that $L^\prime$ is both prefix-closed within itself and a subset of K, which means that it is K-closed, as required.
+
+\end{enumerate}
+
+\paragraph{(c)}:
+
+\textbf{Closed Languages ($L = \overline{L}$):}
+
+\begin{enumerate}
+  \item Language $L_1: \{\epsilon\}$ (the language containing only the empty string)
+  
+  $L_1$ is closed because it is equal to its own complement. There are no proper prefixes of $\epsilon$, so it is prefix-closed.
+  
+  \item Language $L_2: \{0, 1, 00, 11, \ldots\}$ (the set of all strings consisting of '0' and '1', including the empty string $\epsilon$)
+  
+  $L_2$ is closed because it contains all possible strings of '0' and '1', and there are no proper prefixes within itself.
+\end{enumerate}
+
+\textbf{K-Closed Languages ($L = \overline{L} \cap K$):}
+
+\begin{enumerate}
+  \item Language $A: \{0, 00, 000, \ldots\}$ (the set of all strings consisting of '0' with different lengths, including the empty string $\epsilon$)
+  
+  If $K = \{0\}$, then A is K-closed because it is the intersection of its own complement and K. A consists of strings without proper prefixes, and it is a subset of K.
+  
+  \item Language $B: \{1, 11, 111, \ldots\}$ (the set of all strings consisting of '1' with different lengths, including the empty string $\epsilon$)
+  
+  If $K = \{1\}$, then B is K-closed because it is the intersection of its own complement and K. B consists of strings without proper prefixes, and it is a subset of K.
+
+  \item Language $C: \{\epsilon, 00, 11, 0000, 1111, \ldots\}$ (the set of all strings consisting of repeated '0's or '1's, including the empty string $\epsilon$)
+  
+  If $K = \{\epsilon, 0, 1\}$, then C is K-closed because it is the intersection of its own complement and K. C consists of strings without proper prefixes, and it is a subset of K.
+
+  \item Language $D: \{ab, aab, aaab, \ldots\}$ (the set of strings with 'a's followed by one or more 'b's)
+  
+  If $K = \{ab, aab, \ldots\}$, then D is K-closed because it is the intersection of its own complement and K. D consists of strings without proper prefixes, and it is a subset of K.
+
+\end{enumerate}
+
+\section{$\Delta $ One refers to a review article on the history of supervisory control theory (SCT) of DES if she/he is interested in the development of DES modeling, }
+
+analysis and control, see [W. M. Wonham, K. Cai, and K. Rudie, Supervisory control of discrete event systems: A brief history, Annual Annual Reviews in Control, vol. 45, 2018, Pages 250-256]. A similar version can be found in \url{https://www.control.utoronto.ca/~wonham/Wonham_SCDES_history.pdf}
+
+\paragraph{Answer}:
+
+%24
+
+\section{* (Petri nets and discrete event systems) Petri nets serve as an important yet powerful alternative to automata for the modeling and control of untimed DES.}
+
+\paragraph{Answer}:
+
+%25
+
+\section{** Conventionally, people think of models as either toys or simple copies of reality.}
+
+\paragraph{Answer}:
+
+%26
+
+\section{A computer system operates with two parallel processors P1 and P2. The total capacity (queue and server included) of P1 is $K_1 = 1$, and that of P2 is $K_2 = 2$. The system receives two types of jobs, labeled $J_1$ and $J_2$. Jobs of type $J_1$ must be processed at P1, and jobs of type $J_2$ must be processed at P2. When a job is processed, it leaves the system. If a job finds a full queue upon arrival, then the job is simply rejected. Build an automaton model of this system.}
+
+\begin{tcolorbox}
+  Four events are identified: 
+  
+  $a_i$: arrival of $J_i$ 
+  $d_i$: departure of $J_i$.
+  A state is of the form ($n_1$, $n_2$) where $n_i$ is the number of jobs in (queue and server) in processor $P_i$. 
+  Note that the model has six states totally.
+\end{tcolorbox}
+
+\paragraph{Answer}:
+
+%27
+
+\section{A workcell consists of two machines M1 and M2 and an automated guided vehicle AGV, along with two auxiliary devices: input buffer and output buffer whose capacity is assumed to be large enough.}
+
+\paragraph{Answer}:
+
+%28
+
+\section{Propose the Petri net model for the system in Question 28.}
+
+\paragraph{Answer}:
+
+%29
+
+\section{Given $L, L_1, L_2, L_3 \subseteq  \Sigma^*$, show}
+
+\begin{equation*}
+  \begin{aligned}
+    L \subseteq \overline{L}, \\
+    \overline{ L_1 \cap L_2 } \subseteq \overline{L_1} \cap \overline{L_2},
+    L_1(L_2 \cup L_3) = L_1L_2 \cup L_1L_3, and.
+    L_1(L_2 \cap L_3) = L_1L_2 \cap L_1L_3.
+  \end{aligned}
+\end{equation*}
+
+\paragraph{Answer}:
+
+%30
+
+\section{Let G be a generator with the alphabet $\Sigma$ and $K \subseteq \Sigma^*$ be a language. Show $\overline{K} \subseteq L(G)$ if $K \subseteq L(G)$: [hint: L(G) is prefix-closed].}
+
+\paragraph{Answer}:
+%31
+
+\section{Given a generator G with $\Sigma = \{a, b, c\}$ as shown below, assume that b is not observable. Find P (G).}
+
+\paragraph{Answer}:
+%32
+
+\section{Show the properties of projection.}
+
+\begin{enumerate}
+  \item If $A \subseteq B$, $P A \subseteq P B$ and $P^{-1}A \subseteq P^{-1}B$.
+  \item $P [P^{-1}(L)] = L$; $L \subseteq P^{-1}[P (L)]$.
+  \item $P (A \cup B) = P A \cup P B$.
+  \item $P^{-1} (A \cup B) = P^{-1} (A) \cup P^{-1} (B)$; $P^{-1} (A \cap B) = P^{-1} (A) \cap P^{-1} (B)$.
+  \item $P (AB) = P (A)P (B); P^{-1} (AB) = P^{-1} (A)P^{-1}(B)$.
+\end{enumerate}
+
+\paragraph{Answer}:
+%33
+
+\section{Given H, K, L, and $\Sigma = \Sigma_c \dot{\cup} \Sigma_u$ such that $H \subseteq K = K \subseteq L = L \subseteq \Sigma^*$, suppose that H is controllable with respect to K and $\Sigma_u$ and K is controllable with respect to L and $\Sigma_u$. Show that H is controllable with respect to L and $\Sigma_u$ (check whether $L = \overline{L}$ is a necessity for the controllability of H with respect to L and $\Sigma_u$).}
+
+\paragraph{Answer}:
+%34
+
+\section{Let MACH as depicted below be a generator with $\Sigma = \{\alpha , \beta , \lambda , \mu \}$, where $\alpha$ and $\mu$ are controllable. Suppose that the SPEC is $K = \{\alpha\beta\alpha\beta\}$, i.e., MACH is shut down after two successful production cycles. By intuition, check if there exists a supervisor that can supervise MACH to implement this SPEC. If existing, portray it; otherwise, explain the reason of non-existence. Consider the case that $K = \{\alpha\beta\}$.}
+
+\paragraph{Answer}:
+%35
 
 \end{document}
