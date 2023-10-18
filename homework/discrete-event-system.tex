@@ -665,14 +665,71 @@ analysis and control, see [W. M. Wonham, K. Cai, and K. Rudie, Supervisory contr
   Four events are identified: 
   
   $a_i$: arrival of $J_i$ 
+
   $d_i$: departure of $J_i$.
+  
   A state is of the form ($n_1$, $n_2$) where $n_i$ is the number of jobs in (queue and server) in processor $P_i$. 
+  
   Note that the model has six states totally.
 \end{tcolorbox}
 
 \paragraph{Answer}:
 
 %27
+
+States:
+
+\begin{itemize}
+  \item State (0, 0): Initial state. No jobs are in the system.
+  \item State (1, 0): A job of type $J_1$ is in the queue for P1.
+  \item State (2, 0): Two jobs of type J1 are in the queue for P1 (queue full, no room for $J_2$).
+  \item State (0, 1): A job of type $J_2$ is in the queue for P2.
+  \item State (0, 2): Two jobs of type $J_2$ are in the queue for P2 (queue full, no room for $J_1$).
+  \item State (1, 1): A job of type $J_1$ is in the queue for P1, and a job of type $J_2$ is in the queue for P2 (both queues occupied).
+\end{itemize}
+
+Transitions:
+
+\begin{enumerate}
+  \item From State (0, 0):
+  \begin{itemize}
+    \item On arrival of a job of type $J_1$, transition to State (1, 0).
+    \item On arrival of a job of type $J_2$, transition to State (0, 1).
+  \end{itemize}
+  \item From State (1, 0):
+  \begin{itemize}
+    \item On arrival of another job of type $J_1$, transition to State (2, 0) (queue for P1 is full).
+    \item On arrival of a job of type $J_2$, transition to State (1, 1) ($J_2$ joins P2's queue).
+    \item On departure of the $J_1$ job from P1, transition back to State (0, 0).
+  \end{itemize}
+  \item From State (2, 0):
+  \begin{itemize}
+    \item On arrival of a job of type $J_1$, stay in State (2, 0) (queue is full, job rejected).
+    \item On arrival of a job of type $J_2$, stay in State (2, 0) (queue is full, job rejected).
+    \item On departure of the $J_1$ job from P1, transition to State (0, 0) (queue for P1 is free).
+  \end{itemize}
+  \item From State (0, 1):
+  \begin{itemize}
+    \item On arrival of a job of type $J_1$, transition to State (1, 1) ($J_1$ joins P1's queue).
+    \item On arrival of another job of type $J_2$, transition to State (0, 2) (queue for P2 is full).
+    \item On departure of the $J_2$ job from P2, transition back to State (0, 0).
+  \end{itemize}
+  \item From State (0, 2):
+  \begin{itemize}
+    \item On arrival of a job of type $J_1$, stay in State (0, 2) (queue is full, job rejected).
+    \item On arrival of a job of type $J_2$, stay in State (0, 2) (queue is full, job rejected).
+    \item On departure of the $J_2$ job from P2, transition to State (0, 1) (queue for P2 is free).
+  \end{itemize}
+  \item From State (1, 1):
+  \begin{itemize}
+    \item On arrival of another job of type $J_1$, stay in State (1, 1) (both queues are full, job rejected).
+    \item On arrival of another job of type $J_2$, stay in State (1, 1) (both queues are full, job rejected).
+    \item On departure of the $J_1$ job from P1, transition to State (0, 1) (queue for P1 is free).
+    \item On departure of the $J_2$ job from P2, transition to State (1, 0) (queue for P2 is free).
+  \end{itemize}
+  
+\end{enumerate}
+
 
 \section{A workcell consists of two machines M1 and M2 and an automated guided vehicle AGV, along with two auxiliary devices: input buffer and output buffer whose capacity is assumed to be large enough.}
 
@@ -688,28 +745,156 @@ analysis and control, see [W. M. Wonham, K. Cai, and K. Rudie, Supervisory contr
 
 \section{Given $L, L_1, L_2, L_3 \subseteq  \Sigma^*$, show}
 
-\begin{equation*}
-  \begin{aligned}
-    L \subseteq \overline{L}, \\
-    \overline{ L_1 \cap L_2 } \subseteq \overline{L_1} \cap \overline{L_2},
-    L_1(L_2 \cup L_3) = L_1L_2 \cup L_1L_3, and.
-    L_1(L_2 \cap L_3) = L_1L_2 \cap L_1L_3.
-  \end{aligned}
-\end{equation*}
+\begin{gather*}
+  L \subseteq \overline{L}, \\
+  \overline{ L_1 \cap L_2 } \subseteq \overline{L_1} \cap \overline{L_2}, \\
+  L_1(L_2 \cup L_3) = L_1L_2 \cup L_1L_3, and. \\
+  L_1(L_2 \cap L_3) = L_1L_2 \cap L_1L_3.
+\end{gather*}
 
 \paragraph{Answer}:
 
 %30
 
+\begin{itemize}
+  \item $L \subseteq \overline{L}$
+  
+  To show that a language $L$ is a subset of its complement, you want to prove that for every string $x$ in $L$, it is also in $\overline{L}$, which means that $L \subseteq \overline{L}$.
+
+  Here's the formal proof:
+
+  Let $x$ be an arbitrary string in $L$. This means that $x$ is an element of $L$. Since $x$ is in $L$, it is also not in $\overline{L}$, by definition. Therefore, $x$ is in $L$ and not in $\overline{L}$.
+
+  Because $x$ was an arbitrary string chosen from $L$, this proof holds for all strings in $L$. Therefore, we can conclude that for every string $x$ in $L, x$ is also in $\overline{L}$, which means $L \subseteq \overline{L}$.
+
+  In other words, the entire language $L$ is a subset of its own complement $\overline{L}$.
+
+  \item $\overline{ L_1 \cap L_2 } \subseteq \overline{L_1} \cap \overline{L_2}$
+  
+  To show that $\overline{L_1 \cap L_2} \subseteq \overline{L_1} \cap \overline{L_2}$, we need to prove that if a string is in the complement of the intersection of two languages $L_1$ and $L_2$, then it is also in the intersection of the complements of these languages.
+
+  Let's use set notation to represent this:
+  
+  $\overline{L_1 \cap L_2}$ represents the complement of the intersection of $L_1$ and $L_2$.
+  
+  $\overline{L_1} \cap \overline{L_2}$ represents the intersection of the complements of $L_1$ and $L_2$.
+  
+  We want to prove that for any string $x$:
+  
+  If $x \in \overline{L_1 \cap L_2}$, then $x \in \overline{L_1} \cap \overline{L_2}$.
+  
+  Here's the proof:
+  
+  Suppose $x \in \overline{L_1 \cap L_2}$. This means that $x$ is not in the intersection of $L_1$ and $L_2$. In other words, $x \notin (L_1 \cap L_2)$.
+  
+  Now, we can use De Morgan's Law, which states that the complement of an intersection is equal to the union of complements:
+  
+  $\overline{L_1 \cap L_2} = \overline{L_1} \cup \overline{L_2}$
+  
+  So, we have $x \in (\overline{L_1} \cup \overline{L_2})$. This means that $x$ is in either the complement of $L_1$ or the complement of $L_2$, or both.
+  
+  Therefore, $x \in \overline{L_1}$ and $x \in \overline{L_2}$.
+  
+  This is precisely what is represented by $x \in \overline{L_1} \cap \overline{L_2}$, which is the intersection of the complements of $L_1$ and $L_2$.
+  
+  So, we have shown that if $x \in \overline{L_1 \cap L_2}$, then $x \in \overline{L_1} \cap \overline{L_2}$, which proves the inclusion $\overline{L_1 \cap L_2} \subseteq \overline{L_1} \cap \overline{L_2}$.
+
+  \item $L_1(L_2 \cup L_3) = L_1L_2 \cup L_1L_3$
+  
+  To prove that $L_1(L_2 \cup L_3) = L_1L_2 \cup L_1L_3$, we need to show that every string in the left-hand side (LHS) language is also in the right-hand side (RHS) language, and vice versa.
+
+  Let's break this proof into two parts:
+  
+  Part 1: Proving $L_1(L_2 \cup L_3) \subseteq L_1L_2 \cup L_1L_3$:
+  
+  Let $x$ be a string in $L_1(L_2 \cup L_3)$. This means that $x$ is of the form $x = yz$, where $y \in L_1$ and $z \in (L_2 \cup L_3)$. Since $z \in (L_2 \cup L_3)$, it means that $z$ can be either in $L_2$ or $L_3$.
+  
+  \begin{enumerate}
+    \item If $z \in L_2$, then $yz$ is in $L_1L_2$, and therefore, $x$ is in $L_1L_2 \cup L_1L_3$.
+    
+    \item If $z \in L_3$, then $yz$ is in $L_1L_3$, and therefore, $x$ is in $L_1L_2 \cup L_1L_3$.
+  \end{enumerate}
+  
+  In both cases, $x$ is in $L_1L_2 \cup L_1L_3$. Therefore, we have shown that $L_1(L_2 \cup L_3) \subseteq L_1L_2 \cup L_1L_3$.
+  
+  Part 2: Proving $L_1(L_2 \cup L_3) \supseteq L_1L_2 \cup L_1L_3$:
+  
+  Let $x$ be a string in $L_1L_2 \cup L_1L_3$. This means that $x$ is either in $L_1L_2$ or $L_1L_3$.
+  
+  \begin{enumerate}
+    \item If $x$ is in $L_1L_2$, it means $x = yz$, where $y \in L_1$ and $z \in L_2$. Since $z \in L_2$, we can say that $z$ is in $(L_2 \cup L_3)$, and therefore, $x$ is in $L_1(L_2 \cup L_3)$.
+    \item If $x$ is in $L_1L_3$, it means $x = yz$, where $y \in L_1$ and $z \in L_3$. Similar to the first case, since $z \in L_3$, we can say that $z$ is in $(L_2 \cup L_3)$, and therefore, $x$ is in $L_1(L_2 \cup L_3)$.
+  \end{enumerate}
+  
+  In both cases, $x$ is in $L_1(L_2 \cup L_3)$. Therefore, we have shown that $L_1(L_2 \cup L_3) \supseteq L_1L_2 \cup L_1L_3$.
+  
+  Combining both parts, we have proven that $L_1(L_2 \cup L_3) = L_1L_2 \cup L_1L_3$.
+
+  \item $L_1(L_2 \cap L_3) = L_1L_2 \cap L_1L_3$
+  
+  To prove that $L_1(L_2 \cap L_3) = L_1L_2 \cap L_1L_3$, we need to show that every string in the left-hand side (LHS) language is also in the right-hand side (RHS) language, and vice versa.
+
+  Let's break this proof into two parts:
+
+  Part 1: Proving $L_1(L_2 \cap L_3) \subseteq L_1L_2 \cap L_1L_3$:
+
+  Let $x$ be a string in $L_1(L_2 \cap L_3)$. This means that $x$ is of the form $x = yz$, where $y \in L_1$ and $z \in (L_2 \cap L_3)$. Since $z \in (L_2 \cap L_3)$, it means that $z$ is in both $L_2$ and $L_3$.
+
+  \begin{enumerate}
+    \item Since $y \in L_1$ and $z \in L_2$, $yz$ is in $L_1L_2$, and therefore, $x$ is in $L_1L_2 \cap L_1L_3$.
+    \item Since $y \in L_1$ and $z \in L_3$, $yz$ is in $L_1L_3$, and therefore, $x$ is in $L_1L_2 \cap L_1L_3$.
+  \end{enumerate}
+  
+
+  In both cases, $x$ is in $L_1L_2 \cap L_1L_3$. Therefore, we have shown that $L_1(L_2 \cap L_3) \subseteq L_1L_2 \cap L_1L_3$.
+
+  Part 2: Proving $L_1(L_2 \cap L_3) \supseteq L_1L_2 \cap L_1L_3$:
+
+  Let $x$ be a string in $L_1L_2 \cap L_1L_3$. This means that $x$ is in both $L_1L_2$ and $L_1L_3$.
+
+  \begin{enumerate}
+    \item If $x$ is in $L_1L_2$, it means $x = yz$, where $y \in L_1$ and $z \in L_2$. Since $z \in L_2$, it follows that $z$ is in $L_2 \cap L_3$, and therefore, $x$ is in $L_1(L_2 \cap L_3)$.
+    \item If $x$ is in $L_1L_3$, it means $x = yz$, where $y \in L_1$ and $z \in L_3$. Similar to the first case, $z$ is in $L_2 \cap L_3$, and therefore, $x$ is in $L_1(L_2 \cap L_3)$.
+  \end{enumerate}
+  
+  In both cases, $x$ is in $L_1(L_2 \cap L_3)$. Therefore, we have shown that $L_1(L_2 \cap L_3) \supseteq L_1L_2 \cap L_1L_3$.
+
+  Combining both parts, we have proven that $L_1(L_2 \cap L_3) = L_1L_2 \cap L_1L_3$.
+
+\end{itemize}
+
+
+
+
 \section{Let G be a generator with the alphabet $\Sigma$ and $K \subseteq \Sigma^*$ be a language. Show $\overline{K} \subseteq L(G)$ if $K \subseteq L(G)$: [hint: L(G) is prefix-closed].}
 
 \paragraph{Answer}:
 %31
+To prove that the complement of language $\overline{K} \subseteq L(G)$ when $K \subseteq of L(G)$, given that L(G) is prefix-closed, we can use the property of prefix-closed languages.
+
+\textbf{Proof:}
+
+Suppose $K \subseteq L(G)$. This means that for every string x in K, x is also in L(G) because $K \subseteq L(G)$.
+
+Since L(G) is prefix-closed, we know that if a string x is in L(G), all of its prefixes are also in L(G).
+
+Now, let's consider the complement of K, which is $\overline{K}$. For any string y in $\overline{K}$, it means that y is not in K (because $\overline{K}$ is the set of all strings not in K).
+
+Since $K \subseteq L(G)$, if y is not in K, it is also not in L(G). This is because L(G) contains K, and if a string is not in K, it's not in L(G) either.
+
+Therefore, for any string y in $\overline{K}$, it is not in K, and it is also not in L(G).
+
+This implies that every string in $\overline{K}$ is also not in L(G), which is equivalent to saying that $\overline{K} \subseteq L(G)$.
+
+In conclusion, if $K \subseteq L(G)$ and L(G) is prefix-closed, then the complement of K, $\overline{K} \subseteq L(G)$.
 
 \section{Given a generator G with $\Sigma = \{a, b, c\}$ as shown below, assume that b is not observable. Find P (G).}
 
 \paragraph{Answer}:
 %32
+To determine the observable part (P(G)) of a generator G with an alphabet $\Sigma$, you need to find the set of symbols in $\Sigma$ that are observable, which means they appear in the generated strings. In this case, we have $\Sigma = \{a, b, c\}$ and it is mentioned that b is not observable. So, we need to find the observable symbols, which are $\{a, c\}$, and that will be P(G).
+
+So, in this case, $P(G) = \{a, c\}$, since b is not observable.
 
 \section{Show the properties of projection.}
 
