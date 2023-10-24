@@ -565,23 +565,152 @@ This is because, for any $y$, if $y$ is less than $x$, then $y$ must either equa
 
 
 
-\section{Given an alphabet}
+\section{Propose a predicate for Well-Ordering Principle.}
+
+Given an alphabet $\Sigma$, $L \subseteq \Sigma^*$ is said to be a language defined over $\Sigma$. A language L is called a regular language if it is recognized (or accepted) by a deterministic finite automaton (DFA) or a non-deterministic finite automaton (NFA); this implies that DFAs and NFAs have the same modeling power. A regular language has a nice property called the Pumping Lemma. Again, the pumping lemma is a property of a regular language. It is used to prove the non-regularity of certain languages. Regular languages always satisfy the pumping lemma. However, if the pumping lemma is satisfied, the language does not need to be regular. It is worth mentioning that this is only useful for infinite languages since all finite languages are regular.
+
+The Pumping Lemma is useful for disproving the regularity of a specific language in question. It was first proven by Michael Rabin (1928-, an Israeli mathematician and computer scientist) and Dana Scott (1932-, an American logician) in 1959. In 1976, the Turing Award was awarded jointly to M. Rabin and D. Scott for a paper written in 1959, the citation for which states that the award was granted:
+
+For their joint paper “Finite Automata and Their Decision Problems,” which introduced the idea of nondeterministic machines, which has proved to be an enormously valuable concept. Their (Scott \& Rabin) classic paper has been a continuous source of inspiration for subsequent work in this field.
+
+\begin{tcolorbox}
+  \textbf{ Pumping Lemma:} Let $L$ be a regular language. There exists a number $p \in \mathbb{N}$ such that for any $s \in L$ with $\left\lvert s\right\rvert \geq  p$, $s$ can be divided into three pieces, $s = xyz$, satisfying
+  \begin{itemize}
+    \item $xy^iz \in L \quad \text{for all } i \geq 0$,
+    \item $\left\lvert y\right\rvert \geq 1 \text{,i.e.,} y \neq \epsilon $,
+    \item $\left\lvert xy \right\rvert \leq p$
+  \end{itemize}
+\end{tcolorbox}
+
+The pumping lemma can be expressed as the predicate
+
+\begin{equation*}
+  (\forall s \in L)(\exists p \in \mathbb{N})\left\lvert s \right\rvert \geq  p \Longrightarrow 
+  [(\exists x, y, z \in \Sigma^*)s = xyz] \land [(\forall i \in \mathbb{N})xy_iz \in L] \land [\left\lvert y \right\rvert \geq 1] \land [\left\lvert xy \right\rvert \leq p]
+\end{equation*}
+
+\begin{tcolorbox}
+  \textbf{Question:} Propose a predicate for Well-Ordering Principle. In mathematics, the well-ordering principle states that every non-empty set of positive integers contains a least element. In other words, the set of positive integers is well-ordered by its “natural” or “magnitude” order in which x precedes y if and only if y is either x or the sum of x and some positive integer. The phrase “well-ordering principle” is sometimes taken to be synonymous with the “wellordering theorem”. On other occasions, it is understood to be the proposition that the set of integers \{. . . , -2, -1, 0, 1, 2, 3, . . .\} contains a well-ordered subset, called the natural numbers, in which every non-empty subset contains a least element.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  Depending on the framework in which the natural numbers are introduced, this property of the set of natural numbers is either an axiom or a provable theorem.
+
+  The well-ordering principle seems sort of obvious. However, it requires a nonempty set—it is false for the empty set which has no smallest element because it has no elements at all. Further, it requires a set of nonnegative integers—it is false for the set of negative integers and also false for some sets of nonnegative rationals, for example, the set of positive rationals. Actually, the well-ordering principle captures something special about the nonnegative integers. While the well-ordering principle may seem obvious, it in fact provides one of the most important proof rules in discrete mathematics.
+
+  In most cases, we actually have already taken this property for granted. For example, in proving that $\sqrt{2} $ is irrational, we naturally assume that for any positive integers $m\prime $ and $n\prime$, the fraction $m\prime / n\prime$ can be written in lowest terms, that is, in the form m/n, where m and n are positive integers with no common prime factors.
+\end{tcolorbox}
 
 \paragraph{Answer}:
-wait
 %11
 
-\section{When quantifiers in the same predicate are of the same quantity}
+\begin{equation*}
+  [S\prime=\{ a_1,a_2,a_3,...a_{k+1}\}S\prime \subset \mathbb{Z}^+][(x \in S\prime)(\forall y \in S\prime))][(x < y) \lor (y \leq x)] \Rightarrow (\forall S \in \mathbb{Z}^+) \land (S \neq \Phi) \land (\exists x \in S)(\forall y \in S)x < y
+\end{equation*}
+
+
+Consider a non-empty set $S'$ containing $k+1$ positive integers. We need to show that it also contains a least element. Let $S_1$ be a subset of $S'$ containing $k$ positive integers, and let $x$ be the $(k+1)$-th element in $S'$. According to our inductive hypothesis, the set $S_1$ has a least element, denoted as $y$.
+
+Now, compare $y$ and $x$:
+
+\begin{itemize}
+  \item If $y \leq x$, then $y$ is the least element in $S'$.
+  \item If $x < y$, then $x$ is the least element in $S'$. 
+\end{itemize}
+
+
+In either case, $S'$ contains a least element.
+
+
+
+\section{Order of forall and exists}
+
+When quantifiers in the same predicate are of the same quantity (all universal or all existential), the order in which they occur does not matter. However, when they are mixed, the order in which they occur becomes crucial. Consider the following examples:
+
+\begin{equation*}
+  \forall x \forall y \text{.Likes}(x, y) \Leftrightarrow \forall y \forall x \text{.Likes}(x, y) \text{, and}
+  \exists x \exists y \text{.Likes}(x, y) \Leftrightarrow \exists y \exists x \text{.Likes}(x, y)
+\end{equation*}
+
+These are clearly equivalent pairs. The first pair contains two different ways of saying everyone likes everyone. The second contains two different ways of saying someone likes someone.
+
+Now consider this mixed quantifier case:
+
+\begin{equation*}
+  \forall x \exists y \text{.Likes}(x, y) \nLeftrightarrow  \forall y \exists x \text{.Likes}(x, y)
+\end{equation*}
+
+Clearly, the two predicates are not equivalent. The one on the left says (very plausibly) that everyone likes someone (or another), but allows for the possibility that different people have different likes-I like Martinez, you like Griffey, Madonna likes herself, etc. The one on the right, however, says something much stronger-it says that there is at least one person so well-liked that everyone likes him or her. (It is very unlikely that there is such a person, and so very unlikely that the predicate on the right is true.)
+
+Notice that the stronger predicate (on the right) logically implies the weaker one (on the left). In general, an $\exists \forall$ predicate logically implies its $\forall \exists$ counterpart, but not conversely.
+
+\begin{tcolorbox}
+  \textbf{Question:} Plausibly, an $\exists \forall$ predicate logically implies its $\forall \exists$ counterpart. Elaborate upon in plain words the correctness of the above reasoning.
+  
+  Let us first consider a more dramatic contrast with the following two predicates:
+
+  \begin{equation*}
+    \forall x \exists y (x = y) \nLeftrightarrow  \forall y \exists x (x = y)
+  \end{equation*}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \textbf{Remark:} There exists a number of different ways to capture the difference between the two predicates $\forall x \exists y .P (x, y)$ and $\exists y \forall x.P (x, y)$. From the computational viewpoint, the former corresponds to the problem verification and the latter corresponds to the problem solution. In other words, $\forall x \exists y .P (x, y)$ means that given a certificate (solution) y, we are going to verify whether $P (x, y)$ is true, while $\exists y \forall x .P (x, y)$ implies that given a problem y, we have to find a solution x such that $P (x, y)$ is true. The latter is obviously harder in computation and stronger in logic than the former.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \textbf{Remark:} An exact and precise understanding of logic formulas is crucial. For example, the truth of $P \lor Q$ means that at least one of $P$ and $Q$ is true. Keeping this in mind, it is ready for us to observe the equivalence of $P \lor Q$ and $\lnot (\lnot P \land \lnot Q)$. From this formula, we could see that logic OR can be defined by “not” and “and”. Actually, in proposition logic, only $\lnot$ and $\land$ are primitives, while other connectives like $\Longrightarrow$ , $\lor$, and $\nLeftrightarrow $ can be defined by the two primitive connectives.
+\end{tcolorbox}
 
 \paragraph{Answer}:
-wait
 %12
+
+\begin{itemize}
+  \item $\forall x \exists y (x = y)$: This predicate states that for every element x, there exists another element y such that x equals y. In plain words, it means that everything is equal to something.
+
+  \item $\exists y \forall x (x = y)$: This predicate states that there exists an element y such that for all elements x, x equals y. In plain words, it means that there's a single element that is equal to everything.
+\end{itemize}
+
+These two predicates are not equivalent. The first one allows for each element to have its unique counterpart, while the second one implies that there's a universal element that is equal to everything, which might not be the case. The second predicate is stronger in its assertion and is not equivalent to the first one. It's an example of how the order of quantifiers matters in predicate logic.
 
 \section{Suppose that an alphabet}
 
+Suppose that an alphabet $\Sigma$ is finite. Show that $\Sigma^*$ is countable (hint: consider Cantor's diagonal argument by the lengths of the strings in $\Sigma^*$. Specifically, enumerate in the first row the string whose length is zero, in the second row the strings whose lengths are one, and so on).
+
+\begin{tcolorbox}
+  From time to time, we mention the terminology \textit{strings, finite strings}, and \textit{infinite strings}. Formally, a finite sequence of symbols (called a string in most cases) over an alphabet $\Sigma$ (usually finite) is a mapping $s : \{1, 2, . . . , n\} \to \Sigma$, denoted by the string $\sigma_1 \sigma_2 \cdots \sigma_n $, where $\sigma_i = s(i) \in \Sigma$ for every $1 \leq i \leq n$, or the mapping $\epsilon :\Theta \to \Sigma$, the empty sequence. An infinite sequence is a mapping s : $\mathbb{N} \to \Sigma$. We write $s = \sigma_1 \sigma_2 \Sigma_3 \cdots$ with $\sigma(i)=s(i) \in \Sigma$.
+\end{tcolorbox}
+
 \paragraph{Answer}:
-wait
 %13
+
+\begin{enumerate}
+  \item consider strings of length zero in $\Sigma^*$. There is only one empty string $\epsilon$.
+  \item consider strings of length one in $\Sigma^*$. Since $\Sigma$ is finite, there are a finite number of choices for each character in the string. Let's say there are m characters in $\Sigma$. So, there are m strings of length one: $\sigma_1, \sigma_2, ..., \sigma_m$.
+  \item For strings of length two, we can have $m^2$ possible strings. Enumerate them as $\sigma_1\sigma_1, \sigma_2\sigma_2, ..., \sigma_1\sigma_m, \sigma_2\sigma_1, \sigma_2\sigma_2, ..., \sigma_m\sigma_m$
+  \item Continue this process for strings of length three, four, and so on. For strings of length n, there are $m^n$ possibilities.
+\end{enumerate}
+
+Now, to prove that $\Sigma^*$ is countable, we can arrange all these strings in a table:
+
+\begin{table*}[h!]
+  \begin{center}
+    \begin{tabular}{l|l|r}
+      Length 0 & $\epsilon$ \\
+      Length 1 & $\sigma_1, \sigma_2, ..., \sigma_m$ \\
+      Length 2 & $\sigma_1\sigma_1, \sigma_2\sigma_2, ..., \sigma_1\sigma_m, \sigma_2\sigma_1, \sigma_2\sigma_2, ..., \sigma_m\sigma_m$ \\
+      Length 3 & $\cdots$ \\
+      Length 4 & $\cdots$ \\
+      ... & $\cdots$ \\
+    \end{tabular}    
+  \end{center}
+\end{table*}
+
+
+This enumeration covers all possible strings in $\Sigma^*$, organized by their lengths. Each cell in the table corresponds to a unique string in $\Sigma^*$.
+
+Since each row represents a finite set (the set of strings of a particular length), and there are countably many rows (one row for each non-negative integer), we can apply the countable union of countable sets principle to conclude that the set $\Sigma^*$ is countable.
+
 
 \section{* The set of polynomials with integer coeﬀicients is countable.}
 
@@ -650,20 +779,291 @@ $A \cap  B = \{\epsilon\}$
 
 In this case, the intersection of languages A and B contains only the empty string.
 
-\section{* (Mathematical proof)}
+\section{*Mathematical proof}
 
-\paragraph{Answer}:
+* (Mathematical proof) A mathematical proof is an inferential argument for a mathematical statement, showing that the stated assumptions logically guarantee the conclusion. The argument may use other previously established statements, such as theorems; but every proof can, in principle, be constructed using only certain basic or original assumptions known as axioms along with the accepted rules of inference. Proofs are examples of exhaustive deductive reasoning, which establish logical certainty, to be distinguished from empirical arguments or non-exhaustive inductive reasoning which establishes reasonable expectation. Presenting many cases in
+which the statement holds is not enough for proof, which must demonstrate that the statement is true for all possible cases. A proposition that has not been proved but is believed to be true is known as a conjecture, or a hypothesis if frequently used as an assumption for further mathematical work.
+
+Proofs employ logic expressed in mathematical symbols, along with natural language which usually admits some ambiguity. In most mathematical literature, proofs are written in terms of rigorous informal logic. Purely formal proofs, written fully in a symbolic language without the involvement of natural language, are considered in proof theory. The distinction between formal and informal proofs has led to much examination of current and historical mathematical practice, quasi-empiricism in mathematics, and so-called folk mathematics, oral traditions in the mainstream mathematical community or in other cultures. The philosophy of mathematics is concerned with the role of language and logic in proofs, and mathematics as a language.
+
+There is a book entitled “Book of Proof” by Professor Richard Hammack, which is \href{https://www.people.vcu.edu/~rhammack/BookOfProof/}{free-downloadable}. More books on mathematical proofs (as well as those on other mathematical disciplines) can be found on the website of \href{https://aimath.org/textbooks/approved-textbooks/}{American Institute of Mathematics' Open Textbook Initiative}.
+
+This book is an introduction to the language and standard proof methods of mathematics. It is a bridge from the computational courses (such as calculus or differential equations) that students typically encounter in their first year of college to a more abstract outlook. It lays a foundation for more theoretical courses such as topology, analysis and abstract algebra. Although it may be more meaningful to the student who has had some calculus, there is really no prerequisite other than a measure of mathematical maturity.
+
+The book “How to Read and Do Proofs: An Introduction to Mathematical Thought Processes,” (6th Edition) by Professor Daniel Solow, Department of Operations, Weatherhead School of Management, Case Western Reserve University, is designed to reduce the time and frustration involved in learning how to read, think about, understand, and “do” mathematical proofs and also to provide a description of other mathematical “thinking processes”. It is suitable as a text for an undergraduate transition-to-advanced-math course, as a supplement to any course involving proofs, or for self-guided reading (especially for Ph.D. students in mathrelated areas such as Statistics, Computer Science, Physics, Engineering, Finance, Economics, and Business). \href{https://bcs.wiley.com/he-bcs/Books?action=resource&bcsId=8432&itemId=1118164024&resourceId=33036}{Here are the videos} of the book.
+
+In addition, a noted textbook: Mathematical Proofs: A Transition to Advanced Mathematics by G. Chartrand, A. D. Polimeni, and P. Zhang is highly recommended.
+
+
+
+
 %17
 
-\section{(Methods of proof) Typical mathematical proof methods include Direct proof, Proof by mathematical induction, Proof by contrapositive, Proof by contradiction, Proof by construction, Proof by exhaustion, Probabilistic proof, Combinatorial proof, Nonconstructive proof, Statistical proof in pure mathematics, and Computerassisted proof. Here we focus on the proofs by contradiction and by contrapositive.}
+\section{Proof by contrapositive}
+
+(Methods of proof) Typical mathematical proof methods include Direct proof, Proof by mathematical induction, Proof by contrapositive, Proof by contradiction, Proof by construction, Proof by exhaustion, Probabilistic proof, Combinatorial proof, Nonconstructive proof, Statistical proof in pure mathematics, and Computerassisted proof. Here we focus on the proofs by contradiction and by contrapositive. As defined, a tautology is usually a compound statement that is true for all possible combinations of truth values of the component statements that are part of the statement. A contradiction is a compound statement that is false for all possible combinations of truth values of the component statements that are part of the statement. That is, a tautology is necessarily true in all circumstances, and a contradiction is necessarily false in all circumstances.
+
+\textbf{Proof by contradiction} is frequently used in mathematical proof. This method is based on the fact that a statement X can only be true or false (and not both). The idea is to prove that the statement X is true by showing that it cannot be false. This is done by assuming that X is false and proving that this leads to a contradiction. (The contradiction often has the form $Q \land \lnot Q$, where $Q$ is some statement.) When this happens, we can conclude that the assumption that the statement X is false is incorrect, and hence X cannot be false. Since it cannot be false, then X must be true.
+
+A logical basis for the contradiction method of proof is the tautology
+
+\begin{equation*}
+  [\lnot X \Rightarrow C] \Rightarrow X
+\end{equation*}
+
+where X is a statement and C is a contradiction. The following truth table establishes this tautology.
+
+\begin{table*}
+  \begin{center}
+    \begin{tabular}{l|l|l|l|l}
+$X$ & $C$ & $\lnot X$ & $\lnot X \Rightarrow C$ & $[\lnot X \Rightarrow C] \Rightarrow X$ \\
+\hline
+T & F & F & T & T \\
+F & F & T & F & T \\
+    \end{tabular}    
+  \end{center}
+\end{table*}
+
+This tautology shows that if $\lnot X$ leads to a contradiction, then $X$ must be true. The previous truth table also shows that the statement $\lnot X \Rightarrow C$ is logically equivalent to $X$. This means that if we have proved that $\lnot X$ leads to a contradiction, then we have proved statement $X$. So if we want to prove a statement $X$ using a proof by contradiction, we assume that $\lnot X$ is true and show that this leads to a contradiction.
+
+\begin{tcolorbox}
+  \textbf{Question:} Show by contradiction that for all real numbers $x$ and $y$, if $x \neq y , x>0 \text{, and }y>0$, then 
+  
+  $\frac{x}{y} + \frac{y}{x} > 2$.
+
+  Hint: consider a contradiction $[(\forall x, y \in \mathbb{R})(x-y)^2\geq 0]\land[(\forall X, y \in \mathbb{R})(x-y)^2 < 0)]$.
+\end{tcolorbox}
+
+In logic, the contrapositive of a conditional statement is formed by negating both terms and reversing the direction of inference. Proof by contrapositive takes actually advantage of the logical equivalence between “P implies Q” and “Not Q implies Not P ”. For example, the assertion “If it is my car, then it is red” is equivalent to “If that car is not red, then it is not mine”. Thus, to prove “If P , Then Q” by the method of contrapositive means to prove “If Not Q, Then Not P ”.
+
+Although it is possible to use direct proof exclusively, there are occasions where contrapositive proof is much easier. The difference between the Contrapositive method and the Contradiction method is subtle. Let us examine how the two methods work when trying to prove “If P , Then Q”.
+
+\begin{itemize}
+  \item Method of Contradiction: Assume P and Not Q and prove some sort of contradiction.
+  \item Method of Contrapositive: Assume Not Q and prove Not P .
+  \item The method of Contrapositive has the advantage that your goal is clear: Prove Not P . In the method of Contradiction, your goal is to prove a contradiction, but it is not always clear what the contradiction is going to be at the start.
+\end{itemize}
+
+\begin{table*}
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c}
+$P$ & $Q$ & $\lnot P$ & $\lnot Q$ & $p \Rightarrow Q$ & $ \lnot Q \Rightarrow \lnot P$ \\
+\hline
+T & T & F & F & T & T \\
+T & F & F & T & F & F \\
+F & T & T & F & T & T \\
+F & F & T & T & T & T \\
+    \end{tabular}    
+  \end{center}
+\end{table*}
+
+According to the table, statements $P \Rightarrow Q$ and $\lnot Q \Rightarrow lnot P$ are different ways of expressing exactly the same thing. The expression $\lnot Q \Rightarrow \lnot P$ is called the contrapositive form of $P \Rightarrow Q$. We outline for Contrapositive Proof as follows.
+
+\begin{tcolorbox}
+  \textbf{Proposition} If $P$, then $Q$.
+  
+  Proof : Suppose $\lnot Q$.
+  
+  $vdots$
+  
+  Therefore, $\lnot P$, which completes the proof.
+\end{tcolorbox}
+
+As seen, the setup for contrapositive proof is very simple. The first line of the proof is the sentence “Suppose that $Q$ is not true.” The last line is the sentence “Therefore $P$ is not true, which completes the proof.” Between the first and last line, we use logic and definitions to transform the statement $\lnot Q$ to the statement $\lnot P$ . To illustrate this new technique, and to contrast it with direct proof, we now prove a proposition in two ways: first with direct proof and then with contrapositive proof.
+
+\begin{tcolorbox}
+  \textbf{Question} Show by contrapositive the following result:
+  
+  If $x^2 - 6x + 5$ is even, then $x$ is odd. 
+  
+  Furthermore, propose a direct proof method and compare the two methods for this specific example.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \textbf{Remark:} A direct proof would be problematic. We would begin by assuming that $x^2 - 6x + 5$ is even, so $x^2 - 6x + 5 = 2a$ for some integer $a$. Then we would need to transform this into $x = 2b + 1$ for $b \in \mathbb{Z}$. However, it is not quite clear how that could be done, for it would involve isolating an $x$ from the quadratic expression. The proof becomes very simple if we use contrapositive proof.  
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \textbf{Question} Let $f (x)$ be a real polynomial function such that $f (2x) = f \prime(x)f \prime \prime(x)$. Show by contrapositive that the degree of $f (x)$ is not four.
+  
+  \textbf{Hint:} An n-degree polynomial takes the form $p(x) = a_nx^n + a_{n-1}x^{n-1} + . . . + a_1x + a_0$, where $n \in \mathbb{N}$ is a non-negative integer.
+\end{tcolorbox}
 
 \paragraph{Answer}:
 %18
 
+\paragraph{A1}:
+
+$(\frac{x}{y} + \frac{y}{x} > 2) (x,y \in \mathbb{R}) x \neq y, x>0, y>0, $
+  
+\begin{enumerate}
+  \item We assume the opposite, which is that there exist real numbers $x$ and $y$ such that $x \neq y$, $x > 0$, $y > 0$, and $\frac{x}{y} + \frac{y}{x} \leq 2$.
+
+  \item We then consider the expression $(x - y)^2$. Since $x,y \in \mathbb{R}$ and $x \neq y$, $(x - y)^2 > 0$.
+  
+  \item Now, we consider the expression $\frac{x}{y} + \frac{y}{x} - 2$, which is the same as $\frac{x^2 + y^2 - 2xy}{xy}$.
+  
+  \item We have assumed that $\frac{x}{y} + \frac{y}{x} \leq 2$, which means $\frac{x^2 + y^2 - 2xy}{xy} \leq 2$.
+  
+  \item Rearrange the above inequality: $x^2 + y^2 - 2xy \leq 2xy$.
+  
+  \item Simplify further: $x^2 + y^2 \leq 4xy$.
+  
+  \item Divide both sides by $xy$: $\frac{x}{y} + \frac{y}{x} \leq 4$.
+\end{enumerate}
+
+
+Now, we have a contradiction. We assumed that $\frac{x}{y} + \frac{y}{x} \leq 2$ and arrived at $\frac{x}{y} + \frac{y}{x} \leq 4$, which is a contradiction.
+
+Since our initial assumption led to a contradiction, we conclude that the original statement is true: For $x,y \in \mathbb{R}$, if $x \neq y$, $x > 0$, and $y > 0$, then $\frac{x}{y} + \frac{y}{x} > 2$.
+
+\paragraph{A2}:
+
+
+We assume the opposite, which is that if $x^2 - 6x + 5$ is even, $x$ is not necessarily odd.
+
+\begin{enumerate}
+  \item Let's assume that if $x^2 - 6x + 5$ is even, $x$ can be either even or odd. In other words, we assume that $x$ can be expressed as $x = 2k$ or $x = 2k + 1$, where $k \in \mathbb{Z}$.
+  \item We then calculate $x^2 - 6x + 5$:
+  
+$x^2 - 6x + 5 = (2k)^2 - 6(2k) + 5 = 4k^2 - 12k + 5 = 4(k^2 - 3k) + 5$
+  \item Since $k \in \mathbb{Z}$, $k^2 - 3k \in \mathbb{Z}$, and $4(k^2 - 3k)$ is a multiple of 4. Adding 5 to a multiple of 4 results in an integer, which means that $x^2 - 6x + 5$ is an odd number.
+  \item We have reached a contradiction. Our initial assumption stated that if $x^2 - 6x + 5$ is even, $x$ can be either even or odd. However, our calculation showed that $x^2 - 6x + 5$ is an odd number, which contradicts the assumption.
+\end{enumerate}
+
+Since our initial assumption leads to a contradiction, we conclude that the original statement is true: If $x^2 - 6x + 5$ is even, then $x$ is indeed an odd number.
+
+\paragraph{A3}:
+
+
+We want to prove that if the degree of $f(x)$ is four, then $f(2x) \neq f \prime(x)f \prime \prime(x)$. This is the contrapositive of the given statement.
+
+Let $f(x)$ be a polynomial of degree four:
+
+$f(x) = a_4x^4 + a_3x^3 + a_2x^2 + a_1x + a_0$
+
+Now, let's consider $f(2x)$:
+
+$f(2x) = a_4(2x)^4 + a_3(2x)^3 + a_2(2x)^2 + a_1(2x) + a_0$
+
+Simplify this expression:
+
+$f(2x) = 16a_4x^4 + 8a_3x^3 + 4a_2x^2 + 2a_1x + a_0$
+
+Next, we consider $f\prime(x)$ and $f\prime \prime(x)$. The derivatives are as follows:
+
+$f\prime(x) = 4a_4x^3 + 3a_3x^2 + 2a_2x + a_1$
+
+$f\prime \prime(x) = 12a_4x^2 + 6a_3x + 2a_2$
+
+Now, we calculate \(f \prime(x)f\prime \prime(x)\):
+
+$f\prime(x)f\prime \prime(x) = (4a_4x^3 + 3a_3x^2 + 2a_2x + a_1)(12a_4x^2 + 6a_3x + 2a_2)$
+
+Multiplying these polynomials:
+
+$f\prime(x)f\prime \prime(x) = 48a_4x^5 + 30a_3x^4 + (24a_4a_2 + 18a_3a_2)x^3 + (16a_4a_1 + 12a_3a_1 + 12a_2^2)x^2 + 6a_2a_1x$
+
+Now, we have the expressions for $f(2x)$ and $f\prime(x)f\prime \prime(x)$:
+
+$f(2x) = 16a_4x^4 + 8a_3x^3 + 4a_2x^2 + 2a_1x + a_0$
+
+$f\prime(x)f\prime \prime(x) = 48a_4x^5 + 30a_3x^4 + (24a_4a_2 + 18a_3a_2)x^3 + (16a_4a_1 + 12a_3a_1 + 12a_2^2)x^2 + 6a_2a_1x$
+
+Now, let's examine the degree of both polynomials:
+
+The degree of $f(2x)$ is 4.
+
+The degree of $f\prime(x)f\prime \prime(x)$ is 5.
+
+Since the degree of $f(2x)$ is not equal to the degree of $f\prime(x)f\prime \prime(x)$, we have shown that if the degree of $f(x)$ is four, then $f(2x)$ is not equal to $f\prime(x)f\prime \prime(x)$.
+
+Therefore, we have proved by contrapositive that the degree of $f(x)$ is not four.
+
 \section{Group is an elementary notion in algebra}
 
+Group is an elementary notion in algebra, which refers generally to a set with a binary operation regarding its elements and a special element in the set. As a special group, a monoid is a triple ($X, \Box , i$) consisting of a set $X$, a binary operation $\Box$, and a special element $i \in X$ (called the identity element of $X$), satisfying the following rules:
+
+\begin{equation*}
+  \left\{
+    \begin{array}{ll}
+      (x \Box y)\Box z = x \Box(y \Box z) &\text{(associative law)} \\
+      \Box i = i \Box x &\text{(identity law)}\\
+    \end{array} 
+  \right.
+\end{equation*}
+
+for all $x, y, z \in X$. The fundamental operations of the monoid are $\Box$ (binary) and $i$ (nullary). We may refer to $X$ itself as a monoid if $i$ and $\Box$ do not need to be specified explicitly. Given a monoid ($X, \Box, i$), X is called the underlying set of the monoid.
+
+\textbf{Question 1.} Let $\Sigma$ be an alphabet and $\epsilon \in \Sigma^*$ be the empty string. Show that ($\Sigma^*, o , \epsilon$) is a monoid, where $o$ is the concatenation operation of strings.
+
+\begin{tcolorbox}
+  \textbf{Further reading:} In abstract algebra, group theory studies the algebraic structures known as groups. The concept of a group is central to abstract algebra: other well-known algebraic structures, such as rings, fields, and vector spaces, can all be seen as groups endowed with additional operations and axioms. Groups recur throughout mathematics, and the methods of group theory have influenced many parts of algebra. Linear algebraic groups and Lie groups are two branches of group theory that have experienced advances and have become subject areas in their own right.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  In mathematics, a group is a set equipped with an operation that combines any two elements of the set to produce a third element of the set, in such a way that the operation is associative, an identity element exists and every element has an inverse. These three conditions, called group axioms, hold for number systems and many other mathematical structures. For example, the integers together with the addition operation form a group. The concept of a group and its definition through the group axioms was elaborated for handling, in a unified way, essential structural properties of entities of very different mathematical nature (such as numbers, geometric shapes and polynomial roots). Because of the ubiquity of groups in numerous areas (both within and outside mathematics), some authors consider them as a central organizing principle of contemporary mathematics.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  Groups arise naturally in geometry for the study of symmetries and geometric transformations: the symmetries of an object form a group, called the symmetry group of the object, and the transformations of a given type form generally a group. Lie groups arise as symmetry groups in geometry but appear also in the Standard Model of particle physics. The Poincaré (1854-1912, French mathematician, theoretical physicist, engineer, and philosopher of science) group is a Lie group consisting of the symmetries of spacetime in special relativity. Point groups describe symmetry in molecular chemistry.
+  
+  The concept of a group arose from the study of polynomial equations, starting with Évariste Galois (1811-1832, French mathematician) in the 1830s, who introduced the term group (groupe, in French) for the symmetry group of the roots of an equation, now called a Galois group. After contributions from other fields such as number theory and geometry, the group notion was generalized and firmly established around 1870. Modern group theory—an active mathematical discipline—studies groups in their own right. To explore groups, mathematicians have devised various notions to break groups into smaller, better-understandable pieces, such as subgroups, quotient groups and simple groups.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  In addition to their abstract properties, group theorists also study the different ways in which a group can be expressed concretely, both from a point of view of representation theory (that is, through the representations of the group) and of computational group theory. A theory has been developed for finite groups, which culminated with the classification of finite simple groups, completed in 2004. Since the mid-1980s, geometric group theory, which studies finitely generated groups as geometric objects, has become an active area in group theory (from \url{https://en.wikipedia.org/wiki/Group_(mathematics)}).
+\end{tcolorbox}
+
+\textbf{Example 1.} One of the more familiar groups is the set of integers $\mathbb{Z} = \{. . . , -4, -3, -2, -1, 0, 1, 2, 3, 4, . . .\}$ together with addition.
+
+For any two integers $a$ and $b$, the sum $a + b$ is also an integer; this closure property says that “+” is a binary operation on $\mathbb{Z}$. The following properties of integer addition serve as a model for the group axioms in the definition below.
+
+For all integers $a$, $b$, and $c$, one has $(a + b) + c = a + (b + c)$. Expressed in words, adding $a$ to $b$ first, and then adding the result to $c$ gives the same final result as adding $a$ to the sum of $b$ and $c$. This property is known as associativity.
+
+If a is any integer, then $0 + a = a$ and $a + 0 = a$. Zero is called the identity element of addition because adding it to any integer returns the same integer. For every integer a, there is an integer b such that $a + b = 0$ and $b + a = 0$. The integer $b$ is called the inverse element of the integer $a$, denoted $-a$. The integers, together with the operation +, form a mathematical object belonging to a broad class sharing similar structural aspects. To appropriately understand these structures as a collective, the following definition is developed.
+
+Formally, a group is a set $G$ together with a binary operation on $G$, here denoted by “·”, that combines any two elements $a$ and $b$ to form an element of $G$, denoted by $a · b$, such that the following three requirements, known as group axioms, are satisfied:
+
+\begin{itemize}
+  \item \textbf{Associativity:} For all $a, b, c$ in $G$, one has $(a · b) · c = a · (b · c)$.
+  \item \textbf{Identity element:} There exists an element $e$ in $G$ such that, for every a in $G$, one has $e · a = a$ and $a · e = a$. Such an element is unique, called the identity element of the group.
+  \item \textbf{Inverse element:} For each $a$ in $G$, there exists an element $b$ in $G$ such that $a · b = e$ and $b · a = e$, where $e$ is the identity element. For each $a$, the element $b$ is unique, called the inverse of $a$, denoted $a^{-1}$.
+\end{itemize}
+
+\begin{tcolorbox}
+  \textbf{Question 2.} Let $\mathbb{R}$ be the set of real numbers with the operation of addition. Show that ($\mathbb{R}, +$) is a group.
+\end{tcolorbox}
+
+A group $G$ with the property that $a \circ  b = b \circ  a$ for all $a, b \in G$ is called abelian or commutative. Groups not satisfying this property are said to be nonabelian or noncommutative. Notice that the set of real numbers 
+under addition have the additional property that $a + b = b + a$ and therefore ($\mathbb{R}, +$) forms an abelian group. Several other notations are commonly used for groups whose elements are not numbers. For a group whose elements are functions, the operation is often function composition $f \circ g$; then the identity may be denoted id.
 \paragraph{Answer}:
 %19
+
+\paragraph{A1}:
+
+% To show that ($\Sigma^*, o, \epsilon$) is a monoid, we need to verify that it satisfies the monoid axioms, which are closure, associativity, and the existence of an identity element.
+\begin{enumerate}
+  \item \textbf{Closure:} The closure property states that for any $x, y \in \Sigma^*$, the concatenation $x o y$ must also belong to $\Sigma^*$. Since $\Sigma^*$ contains all possible strings over the alphabet $\Sigma$, the concatenation of any two strings in $\Sigma^*$ will also result in a string in $\Sigma^*$. Therefore, ($\Sigma^*, o, \epsilon$) is closed under the concatenation operation.
+  \item \textbf{Associativity:} The associativity property states that for any $x, y, z \in \Sigma^*$, the expression $(x o y) o z$ must be equal to $x o (y o z)$. This property holds because the concatenation of strings is inherently associative. When you concatenate three strings, the order in which you group them doesn't affect the final result.
+  \item \textbf{Identity Element:} The identity element is an element $e \in \Sigma^*$ such that for any $x \in \Sigma^*$, $x o e = e o x = x$. In this case, the identity element is the empty string $\epsilon$ because for any string $x$, $x o \epsilon = \epsilon o x = x$.
+
+\end{enumerate}
+
+Since ($\Sigma^*, o, \epsilon$) satisfies all three monoid axioms (closure, associativity, and identity element), it is indeed a monoid.
+
+\paragraph{A2}:
+
+% To show that ($\mathbb{R}, +$) is a group, we need to verify that it satisfies the four group axioms: closure, associativity, identity element, and inverse element.
+
+\begin{enumerate}
+  \item \textbf{Closure:} The operation of addition on real numbers is closed because if you add two real numbers, the result is also a real number. In other words, for any $a, b \in \mathbb{R}$, $a + b \in \mathbb{R}$.
+  \item \textbf{Associativity:} Addition is an associative operation, which means that for any $a, b, c \in \mathbb{R}$, $(a + b) + c = a + (b + c)$. Associativity holds for addition, so this axiom is satisfied.
+  \item \textbf{Identity Element} The identity element for addition in the set of real numbers is 0. For any $a \in \mathbb{R}$, $a + 0 = 0 + a = a$. Thus, the identity element is 0.
+\end{enumerate}
+
+Since ($\mathbb{R}, +$) satisfies all four group axioms, it is indeed a group.
+
 
 
 \section{* (Russell’s paradox) In mathematical logic}
