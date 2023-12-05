@@ -1113,6 +1113,16 @@ Since ($\mathbb{R}, +$) satisfies all four group axioms, it is indeed a group.
 \paragraph{Answer}:
 %20
 
+Russell's paradox is a set-theoretical paradox formulated by Bertrand Russell in 1901. The paradox revolves around a set that contains all sets that do not contain themselves. This set can be represented as $R = \{x \,|\, x \notin x\}$, which includes all sets that satisfy the condition of "not being an element of themselves."
+
+First, let's assume that $R$ is an element of itself, i.e., $R \in R$. According to the definition of the set, $R$ satisfies the condition of "not being an element of itself," thereby contradicting the assumption $R \in R$.
+
+Next, let's assume that $R$ is not an element of itself, i.e., $R \notin R$. According to the definition of the set, $R$ satisfies the condition of "not being an element of itself," thereby fulfilling the assumption $R \notin R$.
+
+However, both assumptions lead to a paradox. If $R \in R$, then $R$ satisfies the condition $R \notin R$, and if $R \notin R$, then $R$ satisfies the condition $R \in R$. This is the core contradiction of Russell's paradox.
+
+Russell's paradox had a profound impact on set theory. It revealed issues of self-reference and paradoxical nature, forcing mathematicians to reexamine the foundations of set theory and revise the axiomatic systems of set theory. This led to further research and development in set theory, aiming to ensure its consistency and reliability. Russell's paradox also sparked investigations into mathematical logic and set theory, driving advancements in the foundations of mathematics.
+
 \section{* Often called the language of the universe, mathematics is fundamental to our understanding of the world.}
 
 \paragraph{Answer}:
@@ -1252,17 +1262,29 @@ analysis and control, see [W. M. Wonham, K. Cai, and K. Rudie, Supervisory contr
 
 %24
 
+According to the provided document, it is a brief history article on "Supervisory Control of Discrete-Event Systems" from 1980 to 2015. The article summarizes the development of this field during that period, noting the transition from centralized or "monolithic" control to more structured architectures, as well as the shift from "naive" to symbolic computation. The authors acknowledge that, like any history, some important contributions may have been overlooked or not fully addressed.
+
+The document starts by mentioning the background and early motivation of supervisory control of discrete-event systems around 1980. It highlights the distinction between discrete-event systems and continuous systems controlled by differential equations. Discrete-event systems are characterized by being discrete in time and state space, driven by instantaneous events, and non-deterministic in making state-transitional choices.
+
+The article then discusses the development of language controllability and monolithic supervisory control from 1981 to 1987. It describes how discrete-event systems control theory emerged, where the plant and control specification were modeled as finite-state machines. The control technology involved partitioning the language alphabet into controllable and uncontrollable events, with the controllable events being subject to disablement by a supervisor. The problem of supervisory control synthesis was formalized as the design of a finite-state supervisor that disables a suitable subset of controllable events to ensure that the controlled behavior satisfies the control specification.
+
+The concept of qualitative optimality was introduced to ensure that the controlled behavior is as rich as possible while still satisfying the specification constraint. The theory also introduced the concept of controllable language and the idea that the controllable sublanguages of a given specification language have a unique maximal element. The solution to the problem of optimal control is the top element of this semilattice of controllable sublanguages.
+
+In summary, the article provides an overview of the history of supervisory control of discrete-event systems, highlighting important developments and trends from 1980 to 2015.
+
 \section{* (Petri nets and discrete event systems) Petri nets serve as an important yet powerful alternative to automata for the modeling and control of untimed DES.}
 
 \paragraph{Answer}:
 
 %25
+optional
 
 \section{** Conventionally, people think of models as either toys or simple copies of reality.}
 
 \paragraph{Answer}:
 
 %26
+optional
 
 \section{A computer system operates with two parallel processors P1 and P2. The total capacity (queue and server included) of P1 is $K_1 = 1$, and that of P2 is $K_2 = 2$. The system receives two types of jobs, labeled $J_1$ and $J_2$. Jobs of type $J_1$ must be processed at P1, and jobs of type $J_2$ must be processed at P2. When a job is processed, it leaves the system. If a job finds a full queue upon arrival, then the job is simply rejected. Build an automaton model of this system.}
 
@@ -1341,6 +1363,28 @@ Transitions:
 \paragraph{Answer}:
 
 %28
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{findg.jpg}
+  \caption{G}
+  \label{fig:findg}
+\end{figure}
+
+
+\begin{enumerate}
+  \item Find G 
+  
+  As shown in Figure \ref{fig:findg}.
+  \item Check G is blocking or nonblocking (that can be done by using TCT)
+  
+  To check if G is blocking or nonblocking, we can use the TCT (Transition Closure Table) method. The TCT method involves iteratively computing the reachable states from the initial state and checking if there are any deadlock states (states from which no further transitions are possible).
+  \item If G is not non-blocking, analyse the blocking states and the event sequences leading to the blocking states from the initial state
+  
+  If G is found to be blocking, we can analyze the blocking states and the event sequences leading to them from the initial state. Blocking states are states from which no further progress can be made, i.e., no transitions are enabled.
+  \item Propose a supervisory control strategy such that the controlled system is non-blocking (one could use TCT to verify the proposed non-blocking strategy).
+  
+  To propose a supervisory control strategy that ensures non-blocking behavior, we can use the TCT method to verify the proposed strategy. The goal is to design a supervisor that allows the system to reach only non-blocking states and avoids deadlock or blocking situations.
+\end{enumerate}
 
 \section{Propose the Petri net model for the system in Question 28.}
 
@@ -1514,14 +1558,178 @@ So, in this case, $P(G) = \{a, c\}$, since b is not observable.
 \paragraph{Answer}:
 %33
 
+
+\begin{enumerate}
+  \item If $A \subseteq B$, then $P(A) \subseteq P(B)$ and $P^{-1}(A) \subseteq P^{-1}(B)$.
+  
+  Proof:
+  
+  For any $x \in P(A)$, there exists $a \in A$ such that $P(a) = x$. Since $A \subseteq B$, we have $a \in B$, which implies $P(a) \in P(B)$. Therefore, $x \in P(B)$, and we conclude that $P(A) \subseteq P(B)$.
+  
+  Similarly, for any $y \in P^{-1}(A)$, there exists $a \in A$ such that $P(a) = y$. Since $A \subseteq B$, we have $a \in B$, which implies $P(a) \in P(B)$. Therefore, $y \in P^{-1}(B)$, and we conclude that $P^{-1}(A) \subseteq P^{-1}(B)$.
+  
+  \item $P[P^{-1}(L)] = L$; $L \subseteq P^{-1}[P(L)]$.
+  
+  Proof:
+  
+  For any $x \in P[P^{-1}(L)]$, there exists $y \in P^{-1}(L)$ such that $P(y) = x$. Since $y \in P^{-1}(L)$, we have $P(y) \in L$. Therefore, $x \in L$, and we conclude that $P[P^{-1}(L)] \subseteq L$.
+  
+  On the other hand, for any $z \in L$, there exists $y \in P^{-1}(L)$ such that $P(y) = z$. Thus, $z \in P[P^{-1}(L)]$, and we conclude that $L \subseteq P[P^{-1}(L)]$.
+  
+  \item $P(A \cup B) = P(A) \cup P(B)$.
+  
+  Proof:
+  
+  For any $x \in P(A \cup B)$, there exists $c \in A \cup B$ such that $P(c) = x$. If $c \in A$, then $x \in P(A)$; if $c \in B$, then $x \in P(B)$. Therefore, $x \in P(A) \cup P(B)$, and we conclude that $P(A \cup B) \subseteq P(A) \cup P(B)$.
+  
+  On the other hand, for any $y \in P(A) \cup P(B)$, if $y \in P(A)$, then there exists $a \in A$ such that $P(a) = y$, so $y \in P(A \cup B)$; if $y \in P(B)$, then there exists $b \in B$ such that $P(b) = y$, so $y \in P(A \cup B)$. Therefore, $P(A) \cup P(B) \subseteq P(A \cup B)$.
+  
+  Combining the two inclusions, we have $P(A \cup B) = P(A) \cup P(B)$.
+  
+  \item $P^{-1}(A \cup B) = P^{-1}(A) \cup P^{-1}(B)$; $P^{-1}(A \cap B) = P^{-1}(A) \cap P^{-1}(B)$.
+  
+  \begin{enumerate}
+    \item $P^{-1}(A \cup B) = P^{-1}(A) \cup P^{-1}(B)$.
+    
+    Proof:
+    
+    Let $x \in P^{-1}(A \cup B)$. This means that $P(x) \in A \cup B$. We consider two cases:
+    
+    Case 1: $P(x) \in A$. In this case, we have $x \in P^{-1}(A)$.
+    
+    Case 2: $P(x) \in B$. In this case, we have $x \in P^{-1}(B)$.
+    
+    Therefore, in both cases, $x \in P^{-1}(A) \cup P^{-1}(B)$. Thus, we have shown that $P^{-1}(A \cup B) \subseteq P^{-1}(A) \cup P^{-1}(B)$.
+    
+    On the other hand, let $y \in P^{-1}(A) \cup P^{-1}(B)$. This means that either $y \in P^{-1}(A)$ or $y \in P^{-1}(B)$. We consider two cases:
+    
+    Case 1: $y \in P^{-1}(A)$. In this case, we have $P(y) \in A$. Since $A \subseteq A \cup B$, we have $P(y) \in A \cup B$. Therefore, $y \in P^{-1}(A \cup B)$.
+    
+    Case 2: $y \in P^{-1}(B)$. In this case, we have $P(y) \in B$. Since $B \subseteq A \cup B$, we have $P(y) \in A \cup B$. Therefore, $y \in P^{-1}(A \cup B)$.
+    
+    Therefore, in both cases, $y \in P^{-1}(A \cup B)$. Thus, we have shown that $P^{-1}(A) \cup P^{-1}(B) \subseteq P^{-1}(A \cup B)$.
+    
+    Hence, we conclude that $P^{-1}(A \cup B) = P^{-1}(A) \cup P^{-1}(B)$.
+    
+    \item $P^{-1}(A \cap B) = P^{-1}(A) \cap P^{-1}(B)$.
+    
+    Proof:
+    
+    Let $x \in P^{-1}(A \cap B)$. This means that $P(x) \in A \cap B$. We consider two cases:
+    
+    Case 1: $P(x) \in A$. In this case, we have $x \in P^{-1}(A)$.
+    
+    Case 2: $P(x) \in B$. In this case, we have $x \in P^{-1}(B)$.
+    
+    Therefore, in both cases, $x \in P^{-1}(A) \cap P^{-1}(B)$. Thus, we have shown that $P^{-1}(A \cap B) \subseteq P^{-1}(A) \cap P^{-1}(B)$.
+    
+    On the other hand, let $y \in P^{-1}(A) \cap P^{-1}(B)$. This means that $y \in P^{-1}(A)$ and $y \in P^{-1}(B)$. We consider two cases:
+    
+    Case 1: $y \in P^{-1}(A)$. In this case, we have $P(y) \in A$. Since $P(y) \in A$ and $P(y) \in B$, we have $P(y) \in A \cap B$. Therefore, $y \in P^{-1}(A \cap B)$.
+    
+    Case 2: $y \in P^{-1}(B)$. In this case, we have $P(y) \in B$. Since $P(y) \in A$ and $P(y) \in B$, we have $P(y) \in A \cap B$. Therefore, $y \in P^{-1}(A \cap B)$.
+    
+    Therefore, in both cases, $y \in P^{-1}(A \cap B)$. Thus, we have shown that $P^{-1}(A) \cap P^{-1}(B) \subseteq P^{-1}(A \cap B)$.
+    
+    Hence, we conclude that $P^{-1}(A \cap B) = P^{-1}(A) \cap P^{-1}(B)$.
+    
+  \end{enumerate}  
+  \item $P(AB) = P(A)P(B)$; $P^{-1}(AB) = P^{-1}(A)P^{-1}(B)$.
+
+  \begin{enumerate}
+    \item $P(AB) = P(A)P(B)$.
+    
+    Proof:
+    
+    Let $x \in P(AB)$. This means that there exists $y \in AB$ such that $P(y) = x$. Since $y \in AB$, we can write $y = ab$ for some $a \in A$ and $b \in B$. Therefore, we have $P(y) = P(ab) = P(a)P(b)$. Hence, $x = P(y) = P(a)P(b)$, which shows that $x \in P(A)P(B)$.
+    
+    On the other hand, let $z \in P(A)P(B)$. This means that there exist $a \in A$ and $b \in B$ such that $z = P(a)P(b)$. We can construct $y = ab$, which is an element of $AB$. Then, we have $P(y) = P(ab) = P(a)P(b) = z$. Therefore, $z \in P(AB)$.
+    
+    Hence, we conclude that $P(AB) = P(A)P(B)$.
+    
+    \item $P^{-1}(AB) = P^{-1}(A)P^{-1}(B)$.
+    
+    Proof:
+    
+    Let $x \in P^{-1}(AB)$. This means that $P(x) \in AB$. We can write $P(x) = ab$ for some $a \in A$ and $b \in B$. Therefore, we have $x \in P^{-1}(A)$ and $x \in P^{-1}(B)$. This implies that $x \in P^{-1}(A)P^{-1}(B)$.
+    
+    On the other hand, let $y \in P^{-1}(A)P^{-1}(B)$. This means that there exist $a \in A$ and $b \in B$ such that $y = ab$. We have $P(y) = P(ab) = P(a)P(b)$. Since $P(a) \in A$ and $P(b) \in B$, we can write $P(a)P(b) \in AB$. Therefore, $P(y) \in AB$ and $y \in P^{-1}(AB)$.
+    
+    Hence, we conclude that $P^{-1}(AB) = P^{-1}(A)P^{-1}(B)$.
+    
+  \end{enumerate}
+  
+  Proof: (to be completed)
+\end{enumerate}
+
 \section{Given H, K, L, and $\Sigma = \Sigma_c \dot{\cup} \Sigma_u$ such that $H \subseteq K = K \subseteq L = L \subseteq \Sigma^*$, suppose that H is controllable with respect to K and $\Sigma_u$ and K is controllable with respect to L and $\Sigma_u$. Show that H is controllable with respect to L and $\Sigma_u$ (check whether $L = \overline{L}$ is a necessity for the controllability of H with respect to L and $\Sigma_u$).}
 
 \paragraph{Answer}:
 %34
 
+To prove that H is controllable with respect to L and $\Sigma_u$, we need to show that for any two states $h_1, h_2 \in H$ and any string $w \in \Sigma_u^*$, there exists a control sequence $u \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $u$ reaches state $h_2$ and the output sequence is in L.
+
+Given that H is controllable with respect to K and $\Sigma_u$, we know that for any two states $h_1, h_2 \in H$ and any string $u \in \Sigma_u^*$, there exists a control sequence $v \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $v$ reaches state $h_2$ and the output sequence is in K.
+
+Similarly, we are given that K is controllable with respect to L and $\Sigma_u$, which means that for any two states $k_1, k_2 \in K$ and any string $u \in \Sigma_u^*$, there exists a control sequence $w \in \Sigma_u^*$ such that the system starting from $k_1$ and applying control sequence $w$ reaches state $k_2$ and the output sequence is in L.
+
+Now, let's consider two states $h_1, h_2 \in H$ and a string $u \in \Sigma_u^*$. Since H is controllable with respect to K and $\Sigma_u$, there exists a control sequence $v \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $v$ reaches state $h_2$ and the output sequence is in K.
+
+Since K is controllable with respect to L and $\Sigma_u$, there exists a control sequence $w \in \Sigma_u^*$ such that the system starting from $k_1 = h_1$ (as $h_1 \in H \subseteq K$) and applying control sequence $w$ reaches state $k_2 = h_2$ (as $h_2 \in H \subseteq K$) and the output sequence is in L.
+
+Therefore, we have shown that for any two states $h_1, h_2 \in H$ and any string $u \in \Sigma_u^*$, there exists a control sequence $w \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $w$ reaches state $h_2$ and the output sequence is in L.
+
+In conclusion, H is controllable with respect to L and $\Sigma_u$.
+
+Regarding the necessity of $L = \overline{L}$ for the controllability of H with respect to L and $\Sigma_u$, it is not a necessity. The controllability of H with respect to L and $\Sigma_u$ depends on the existence of control sequences that can steer the system from one state to another while generating the desired output sequence. The condition $L = \overline{L}$ is not directly related to this concept.
+
 \section{Let MACH as depicted below be a generator with $\Sigma = \{\alpha , \beta , \lambda , \mu \}$, where $\alpha$ and $\mu$ are controllable. Suppose that the SPEC is $K = \{\alpha\beta\alpha\beta\}$, i.e., MACH is shut down after two successful production cycles. By intuition, check if there exists a supervisor that can supervise MACH to implement this SPEC. If existing, portray it; otherwise, explain the reason of non-existence. Consider the case that $K = \{\alpha\beta\}$.}
 
 \paragraph{Answer}:
 %35
+
+To determine if there exists a supervisor that can supervise MACH to implement the given SPEC $K = \{\alpha\beta\alpha\beta\}$, we need to analyze the controllability and observability of the events in the SPEC.
+
+In this case, the SPEC requires two consecutive occurrences of the event sequence $\alpha\beta$. This means that the generator must produce $\alpha$ followed by $\beta$, and then repeat this sequence again.
+
+From the given information, we know that $\alpha$ and $\mu$ are controllable events. However, the event $\beta$ is not mentioned to be controllable or uncontrollable. Similarly, we don't have any information about the observability of any events.
+
+If $\beta$ is uncontrollable, then there is no way for the supervisor to ensure that the generator produces the required event sequence $\alpha\beta\alpha\beta$. In this case, it would be impossible to find a supervisor that can implement the given SPEC.
+
+On the other hand, if $\beta$ is controllable, then it is possible to design a supervisor that can enforce the SPEC. The supervisor can use the controllable events $\alpha$ and $\mu$ to ensure that the generator produces the required event sequence $\alpha\beta\alpha\beta$.
+
+For example, the supervisor can be designed as follows:
+
+\begin{itemize}
+  \item Initially, the supervisor allows the generator to produce events freely.
+  \item When the supervisor observes the event $\alpha$, it enables the controllable event $\beta$ to be produced next.
+  \item Once the supervisor observes the event $\beta$, it enables the controllable event $\alpha$ to be produced next.
+  \item Finally, when the fourth event is observed, the supervisor shuts down the generator using the controllable event $\mu$, indicating the completion of two successful production cycles.
+\end{itemize}
+
+Therefore, if $\beta$ is controllable, it is possible to find a supervisor that can implement the given SPEC $K = \{\alpha\beta\alpha\beta\}$.
+
+Now, let's consider the case when $K = \{\alpha\beta\}$, i.e., the generator is shut down after a single successful production cycle. In this case, the supervisor can be designed as follows:
+
+\begin{itemize}
+  \item Initially, the supervisor allows the generator to produce events freely.
+  \item When the supervisor observes the event $\alpha$, it enables the controllable event $\beta$ to be produced next.
+  \item Once the supervisor observes the event $\beta$, it shuts down the generator using the controllable event $\mu$, indicating the completion of a single successful production cycle.
+\end{itemize}
+
+Therefore, if $K = \{\alpha\beta\}$, it is also possible to find a supervisor that can implement this SPEC.
+
+In conclusion, if $\beta$ is controllable, it is possible to find a supervisor that can implement the SPEC $K = \{\alpha\beta\alpha\beta\}$ or $K = \{\alpha\beta\}$. However, if $\beta$ is uncontrollable, it would be impossible to find a supervisor that can implement the given SPEC.
+
+\section{Review the notion of equivalence relation and propose 2-3 examples of equivalence relations in our daily life.}
+
+\paragraph{Answer}:
+
+\begin{enumerate}
+  \item Friendship: Consider a group of friends. We can define an equivalence relation on this group based on friendship. Two individuals are related if they are friends with each other. This relation is reflexive (everyone is a friend of themselves), symmetric (if person A is a friend of person B, then person B is a friend of person A), and transitive (if person A is a friend of person B, and person B is a friend of person C, then person A is a friend of person C).
+  \item Equality: In mathematics, the relation of equality is an equivalence relation. Two numbers are related if they are equal to each other. This relation is reflexive (every number is equal to itself), symmetric (if a = b, then b = a), and transitive (if a = b and b = c, then a = c).
+  \item Language: In linguistics, we can define an equivalence relation based on language dialects. Two individuals are related if they speak the same dialect. This relation is reflexive (everyone speaks the dialect they are associated with), symmetric (if person A speaks the same dialect as person B, then person B speaks the same dialect as person A), and transitive (if person A speaks the same dialect as person B, and person B speaks the same dialect as person C, then person A speaks the same dialect as person C).
+\end{enumerate}
+
 
 \end{document}
