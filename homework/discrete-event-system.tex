@@ -1558,33 +1558,71 @@ So, in this case, $P(G) = \{a, c\}$, since b is not observable.
 \paragraph{Answer}:
 %33
 
+Chapter 4. page:89
 
 \begin{enumerate}
-  \item If $A \subseteq B$, then $P(A) \subseteq P(B)$ and $P^{-1}(A) \subseteq P^{-1}(B)$.
+  \item If $A \subseteq B$, then $PA \subseteq PB$ and $P^{-1}A \subseteq P^{-1}B$.
   
   Proof:
+
+  Let $s \in PA$. There necessarily exist $t \in \Sigma^*$ such that $t \in A$ and $Pt = s$. By $A \subseteq B$, $t \in B$. We have $Pt = s \in PB$
   
-  For any $x \in P(A)$, there exists $a \in A$ such that $P(a) = x$. Since $A \subseteq B$, we have $a \in B$, which implies $P(a) \in P(B)$. Therefore, $x \in P(B)$, and we conclude that $P(A) \subseteq P(B)$.
-  
-  Similarly, for any $y \in P^{-1}(A)$, there exists $a \in A$ such that $P(a) = y$. Since $A \subseteq B$, we have $a \in B$, which implies $P(a) \in P(B)$. Therefore, $y \in P^{-1}(B)$, and we conclude that $P^{-1}(A) \subseteq P^{-1}(B)$.
-  
+  Let $s \in P^{-1}A$. Then there exist $t \in A$ such that $Ps = t$. By $A \subseteq B$, $Ps \in B$ and $s\in P^{-1}B$
+
+  In the proof above, from $Ps \in B$, we cannot directly infer $P^{-1}[Ps] \subseteq P^{-1}B$ and cannot derive $s \in P^{-1}B$ by $s \in P^{-1}[Ps]$.
+
+  Portray $Ps \in B$ naturally means $s \in P^{-1}B$
+
   \item $P[P^{-1}(L)] = L$; $L \subseteq P^{-1}[P(L)]$.
   
-  Proof:
+
+  \begin{enumerate}
+    \item $P[P^{-1}(L)] = L$
+    
+    Proof:
+
+    To show $P[P^{-1}(L)] \subseteq L$, we need to prove $P[P^{-1}(L)] \subseteq L$ and $L \subseteq P[P^{-1}(L)]$.
   
-  For any $x \in P[P^{-1}(L)]$, there exists $y \in P^{-1}(L)$ such that $P(y) = x$. Since $y \in P^{-1}(L)$, we have $P(y) \in L$. Therefore, $x \in L$, and we conclude that $P[P^{-1}(L)] \subseteq L$.
-  
-  On the other hand, for any $z \in L$, there exists $y \in P^{-1}(L)$ such that $P(y) = z$. Thus, $z \in P[P^{-1}(L)]$, and we conclude that $L \subseteq P[P^{-1}(L)]$.
+    \begin{itemize}
+      \item let $s \in P[P^{-1}(L)]$, there necessarily exists $t \in \Sigma^*$ such that $t \in P^{-1}(L)$ and $Pt = s$. By $t \in P[P^{-1}(L)]$, $Pt \in L$(Note that $P^{-1}(L) = \{s\prime \in \Sigma^* | (\exists s \in L)Ps\prime = s\}$). We have $Pt = s \in L$ and thus $P[P^{-1}(L)] \subseteq L$
+      \item To show $L \subseteq P[P^{-1}(L)]$, let $s \in L$. $P^{-1}\{s\} \subseteq P^{-1}(L)$. $P[P^{-1}\{s\}] \subseteq P[P^{-1}(L)]]$ (by Property 1). By $s \in P[P^{-1}\{s\}]$, $s \in P[P^{-1}(L)]$ then $L \subseteq P[P^{-1}(L)]$ holds.
+    \end{itemize}
+      
+    \item $L \subseteq P^{-1}[P(L)]$
+    
+    Proof:
+
+    let $s \in L$. 
+
+    $\{s\} \subseteq L \Rightarrow P\{s\} \subseteq PL \Rightarrow P^{-1}[P\{s\}] \subseteq P^{-1}[P(L)]$.
+
+    By $s \in P^{-1}[P\{s\}]$, we have $s \in P^{-1}[P(L)]$. 
+
+    We conclude $L \subseteq P^{-1}[P(L)]$.
+
+  \end{enumerate}
   
   \item $P(A \cup B) = P(A) \cup P(B)$.
   
   Proof:
   
-  For any $x \in P(A \cup B)$, there exists $c \in A \cup B$ such that $P(c) = x$. If $c \in A$, then $x \in P(A)$; if $c \in B$, then $x \in P(B)$. Therefore, $x \in P(A) \cup P(B)$, and we conclude that $P(A \cup B) \subseteq P(A) \cup P(B)$.
-  
-  On the other hand, for any $y \in P(A) \cup P(B)$, if $y \in P(A)$, then there exists $a \in A$ such that $P(a) = y$, so $y \in P(A \cup B)$; if $y \in P(B)$, then there exists $b \in B$ such that $P(b) = y$, so $y \in P(A \cup B)$. Therefore, $P(A) \cup P(B) \subseteq P(A \cup B)$.
-  
-  Combining the two inclusions, we have $P(A \cup B) = P(A) \cup P(B)$.
+  ($\subseteq$) Let $s \in P(A \cup B)$. There necessarily exists $t \in \Sigma^*$ such that $t \in A \cup B$ and $Pt = s$. We have three cases:
+
+  \begin{itemize}
+    \item[(i)] $t \in A$ and $t \notin B$. Then $Pt \in PA$, i.e., $s \in PA$. Thus, $s \in PA \cup PB$
+    \item[(ii)] $t \in B$ and $t \notin A$. Then $Pt \in PB$, i.e., $s \in PB$. Thus, $s \in PA \cup PB$
+    \item[(iii)] $t \in A$ and $t \in B$. Then $Pt \in PA$ and $Pt \in PB$. Thus, $s \in PA \cup PB$
+  \end{itemize}
+
+  Finally, we have $P(A \cup B) \subseteq P(A) \cup P(B)$.
+
+  ($\supseteq$) Let $s \in P(A) \cup P(B)$. Then two cases are considered.
+
+  \begin{itemize}
+    \item[(i)] $s \in P(A)$ and $s \notin P(B)$(or $[s \in P(B) \& s \notin P(A)]$). There exists $t \in \Sigma^*$ such that $t \in A$ and $Pt = s$. Then, we have $t \in A \cup B$ and $Pt = s \in P(A \cup B) $.
+    \item[(ii)] $s \in P(A)$ and $s \in P(B)$. There exists $t_1 \in \Sigma^*$ and $t_2 \in \Sigma^*$ such that $t_1 \in A$, $t_2 \in B$ and $Pt_1 = Pt_2 = s$. $t_1 \in A \cup B$, $Pt_1 = s \in P(A \cup B)$. Thus, $PA \cup PB \subseteq P(A \cup B)$.
+  \end{itemize}
+
   
   \item $P^{-1}(A \cup B) = P^{-1}(A) \cup P^{-1}(B)$; $P^{-1}(A \cap B) = P^{-1}(A) \cap P^{-1}(B)$.
   
@@ -1593,45 +1631,91 @@ So, in this case, $P(G) = \{a, c\}$, since b is not observable.
     
     Proof:
     
-    Let $x \in P^{-1}(A \cup B)$. This means that $P(x) \in A \cup B$. We consider two cases:
+    ($\subseteq$) $P^{-1}(A \cup B) \subseteq P^{-1}(A) \cup P^{-1}(B)$.
+
+    Let $s \in P^{-1}(A \cup B)$. $(\exists t \in \Sigma^*) t \in A \cup B$ such that $Ps = t$.
     
-    Case 1: $P(x) \in A$. In this case, we have $x \in P^{-1}(A)$.
-    
-    Case 2: $P(x) \in B$. In this case, we have $x \in P^{-1}(B)$.
-    
-    Therefore, in both cases, $x \in P^{-1}(A) \cup P^{-1}(B)$. Thus, we have shown that $P^{-1}(A \cup B) \subseteq P^{-1}(A) \cup P^{-1}(B)$.
-    
-    On the other hand, let $y \in P^{-1}(A) \cup P^{-1}(B)$. This means that either $y \in P^{-1}(A)$ or $y \in P^{-1}(B)$. We consider two cases:
-    
-    Case 1: $y \in P^{-1}(A)$. In this case, we have $P(y) \in A$. Since $A \subseteq A \cup B$, we have $P(y) \in A \cup B$. Therefore, $y \in P^{-1}(A \cup B)$.
-    
-    Case 2: $y \in P^{-1}(B)$. In this case, we have $P(y) \in B$. Since $B \subseteq A \cup B$, we have $P(y) \in A \cup B$. Therefore, $y \in P^{-1}(A \cup B)$.
-    
-    Therefore, in both cases, $y \in P^{-1}(A \cup B)$. Thus, we have shown that $P^{-1}(A) \cup P^{-1}(B) \subseteq P^{-1}(A \cup B)$.
-    
-    Hence, we conclude that $P^{-1}(A \cup B) = P^{-1}(A) \cup P^{-1}(B)$.
+    \begin{itemize}
+      \item[(i)] $Ps \in A$, $Ps \notin B$
+      
+      $P^{-1}(Ps) \subseteq P^{-1}(A)$. $s \in P^{-1}(Ps)$, $s \in P^{-1}(A)$
+
+      $s \in P^{-1}(A) \Rightarrow s \in P^{-1}(A) \cup P^{-1}(B)$.
+
+      \item[(ii)] $Ps \notin A$, $Ps \in B$
+      
+      $P^{-1}(\{Ps\}) \subseteq P^{-1}(B)$.
+      
+      $s \in P^{-1}(Ps)$, $s \in P^{-1}(B) \Rightarrow s \in P^{-1}(B) \cup P^{-1}(A)$
+
+      \item[(iii)] $Ps \in A$, $Ps \in B$
+      
+      $P^{-1}(\{Ps\}) \subseteq P^{-1}(A)$ and $P^{-1}(Ps) \subseteq P^{-1}(B)$
+
+      By $s \in P^{-1}(\{Ps\})$, then
+
+      $s \in P^{-1}(A)$, $s \in P^{-1}(B)$, $s \in P^{-1}(A) \cup P^{-1}(B)$ 
+
+    \end{itemize}
+
+    ($\supseteq$) Show $P^{-1}(A) \cup P^{-1}(B) \supseteq P^{-1}(A \cup B)$.
+
+    Let $s \in P^{-1}(A) \cup P^{-1}(B)$. Three cases:
+
+    \begin{itemize}
+      \item[(i)] $s \in P^{-1}(A)$, $s \notin P^{-1}(B)$
+      
+      $Ps \in A \Rightarrow Ps \in A \cup B$
+
+      $P^{-1}(\{Ps\}) \subseteq P^{-1}(A \cup B)$
+
+      By $s \in P^{-1}(\{Ps\})$, $s \in P^{-1}(A \cup B)$.
+
+      \item[(ii)] $s \in P^{-1}(B)$, $s \notin P^{-1}(A)$ (similar to (i))
+      
+      \item[(iii)] $s \in P^{-1}(A)$ and $s \in P^{-1}(B)$
+      
+      $Ps \in A$, $Ps \in B \Rightarrow Ps \in A \cup B$
+
+      $P^{-1}(\{Ps\}) \subseteq P^{-1}(A \cup B)$
+
+      $s \in P^{-1}(\{Ps\}) \Rightarrow s \in P^{-1}(A \cup B)$
+
+
+    \end{itemize}
+
+    Finally, we have
+
+    $P^{-1}(A \cup B) = P^{-1}(A) \cup P^{-1}(B)$
+
+
     
     \item $P^{-1}(A \cap B) = P^{-1}(A) \cap P^{-1}(B)$.
     
     Proof:
     
-    Let $x \in P^{-1}(A \cap B)$. This means that $P(x) \in A \cap B$. We consider two cases:
-    
-    Case 1: $P(x) \in A$. In this case, we have $x \in P^{-1}(A)$.
-    
-    Case 2: $P(x) \in B$. In this case, we have $x \in P^{-1}(B)$.
-    
-    Therefore, in both cases, $x \in P^{-1}(A) \cap P^{-1}(B)$. Thus, we have shown that $P^{-1}(A \cap B) \subseteq P^{-1}(A) \cap P^{-1}(B)$.
-    
-    On the other hand, let $y \in P^{-1}(A) \cap P^{-1}(B)$. This means that $y \in P^{-1}(A)$ and $y \in P^{-1}(B)$. We consider two cases:
-    
-    Case 1: $y \in P^{-1}(A)$. In this case, we have $P(y) \in A$. Since $P(y) \in A$ and $P(y) \in B$, we have $P(y) \in A \cap B$. Therefore, $y \in P^{-1}(A \cap B)$.
-    
-    Case 2: $y \in P^{-1}(B)$. In this case, we have $P(y) \in B$. Since $P(y) \in A$ and $P(y) \in B$, we have $P(y) \in A \cap B$. Therefore, $y \in P^{-1}(A \cap B)$.
-    
-    Therefore, in both cases, $y \in P^{-1}(A \cap B)$. Thus, we have shown that $P^{-1}(A) \cap P^{-1}(B) \subseteq P^{-1}(A \cap B)$.
-    
-    Hence, we conclude that $P^{-1}(A \cap B) = P^{-1}(A) \cap P^{-1}(B)$.
+    ($\subseteq$) Let $s \in P^{-1}(A \cap B)$.
+
+    $(\exists t \in \Sigma^*) t \in A \cap B$ and $Ps = t$
+
+    $t \in A$ and $t \in B$
+
+    Since $s \in P^{-1}(\{Ps\}) = P^{-1}\{t\}$, $s \in P^{-1}(A)$ and $s \in P^{-1}(B)$
+
+    $s \in P^{-1}(A) \cap P^{-1}(B)$
+
+    ($\supseteq$) Let $s \in P^{-1}(A) \cap P^{-1}(B)$, i.e., $s \in P^{-1}(A)$ and $s \in P^{-1}(B)$
+
+    $Ps \in A$ and $Ps \in B$ $Ps \in (A \cap B)$
+
+    $P^{-1}(\{Ps\}) \subseteq P^{-1}(A \cap B)$
+
+    By $s \in P^{-1}(\{Ps\})$, $s \in P^{-1}(A \cap B)$
+
+    $P^{-1}(A) \cap P^{-1}(B) \subseteq P^{-1}(A \cap B)$.
+
+
+
     
   \end{enumerate}  
   \item $P(AB) = P(A)P(B)$; $P^{-1}(AB) = P^{-1}(A)P^{-1}(B)$.
@@ -1641,21 +1725,52 @@ So, in this case, $P(G) = \{a, c\}$, since b is not observable.
     
     Proof:
     
-    Let $x \in P(AB)$. This means that there exists $y \in AB$ such that $P(y) = x$. Since $y \in AB$, we can write $y = ab$ for some $a \in A$ and $b \in B$. Therefore, we have $P(y) = P(ab) = P(a)P(b)$. Hence, $x = P(y) = P(a)P(b)$, which shows that $x \in P(A)P(B)$.
-    
-    On the other hand, let $z \in P(A)P(B)$. This means that there exist $a \in A$ and $b \in B$ such that $z = P(a)P(b)$. We can construct $y = ab$, which is an element of $AB$. Then, we have $P(y) = P(ab) = P(a)P(b) = z$. Therefore, $z \in P(AB)$.
-    
-    Hence, we conclude that $P(AB) = P(A)P(B)$.
+    ($\subseteq$) Let $s \in P(AB)$. $(\exists t \in \Sigma^*) t \in AB$ and $Ps = t$. Since
+
+    $AB = \{s_1s_2 \mid s_1 \in A, s_2 \in B\}$,
+
+    Let $t = t_1t_2$ with $t_1 \in A$ and $t_2 \in B$.
+
+    $Pt = Pt_1 \cdot Pt_2 \in P(A)P(B)$
+
+    $s \in P(A)P(B)$
+
+    ($\supseteq$) Let $s \in P(A)P(B)$ with $s = s_1s_2$.
+
+    $P(A)P(B) = \{s_1s_2 \mid s_1 \in P(A), s_2 \in P(B)\}$
+
+    $s_1 \in P(A) \Rightarrow \exists t_1 \in A Pt_1 = t_1$
+
+    $s_2 \in P(B) \Rightarrow \exists t_2 \in B Pt_2 = t_2$
+
+    By $t_1t_2 \in AB$, $P(t_1t_2) = P(t_1)P(t_2) = s_1s_2 = s \in P(AB)$.
+
+
     
     \item $P^{-1}(AB) = P^{-1}(A)P^{-1}(B)$.
     
     Proof:
     
-    Let $x \in P^{-1}(AB)$. This means that $P(x) \in AB$. We can write $P(x) = ab$ for some $a \in A$ and $b \in B$. Therefore, we have $x \in P^{-1}(A)$ and $x \in P^{-1}(B)$. This implies that $x \in P^{-1}(A)P^{-1}(B)$.
-    
-    On the other hand, let $y \in P^{-1}(A)P^{-1}(B)$. This means that there exist $a \in A$ and $b \in B$ such that $y = ab$. We have $P(y) = P(ab) = P(a)P(b)$. Since $P(a) \in A$ and $P(b) \in B$, we can write $P(a)P(b) \in AB$. Therefore, $P(y) \in AB$ and $y \in P^{-1}(AB)$.
-    
-    Hence, we conclude that $P^{-1}(AB) = P^{-1}(A)P^{-1}(B)$.
+    ($\subseteq$) Let $s \in P^{-1}(AB)$. $Ps \in AB$
+
+    $(\exists s_1s_2 \in \Sigma^*) Ps_1 \in A$, $Ps_2 \in B$, $s = s_1s_2$
+
+    $p^{-1}(Ps_1) \subseteq P^{-1}(A)$, $p^{-1}(Ps_2) \subseteq P^{-1}(B)$
+
+    Since $s_1 \in P^{-1}(Ps_1)$, $s_2 \in P^{-1}(Ps_2)$
+
+    $s_1s_2 \in P^{-1}(A)P^{-1}(B)$
+
+    ($\supseteq$) Let $s \in P^{-1}(A)P^{-1}(B)$
+
+    $(\exists t_1t_2 \in \Sigma^*) t_1 \in A$, $t_2 \in B$ $Ps=t_1t_2$
+
+    $t_1t_2 \in AB$, $P{-1}(t_1t_2) \subseteq P^{-1}(AB)$. $P^{-1}(Ps) \subseteq P^{-1}(AB)$.
+
+    $s \in P^{-1}(Ps) \Rightarrow s \in P^{-1}(AB)$.
+
+
+
     
   \end{enumerate}
   
@@ -1731,5 +1846,16 @@ In conclusion, if $\beta$ is controllable, it is possible to find a supervisor t
   \item Language: In linguistics, we can define an equivalence relation based on language dialects. Two individuals are related if they speak the same dialect. This relation is reflexive (everyone speaks the dialect they are associated with), symmetric (if person A speaks the same dialect as person B, then person B speaks the same dialect as person A), and transitive (if person A speaks the same dialect as person B, and person B speaks the same dialect as person C, then person A speaks the same dialect as person C).
 \end{enumerate}
 
+
+\section{Given a plant G with some control specification}
+
+\paragraph{Answer}:
+
+wait
+
+
+\section{Given $K \subseteq \Sigma^*$, prove that there exists a $\Sigma_u$-enabling, non-marking, and non-blocking supervisor such that $L(G||S) = K$ if and only if $\emptyset \neq  K = \overline{K} = \overline{L_m(G) \cap K} $ and $K$ is controllable.}
+
+\paragraph{Answer}:
 
 \end{document}
