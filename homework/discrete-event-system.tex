@@ -1541,9 +1541,16 @@ In conclusion, if $K \subseteq L(G)$ and L(G) is prefix-closed, then the complem
 
 \paragraph{Answer}:
 %32
-To determine the observable part (P(G)) of a generator G with an alphabet $\Sigma$, you need to find the set of symbols in $\Sigma$ that are observable, which means they appear in the generated strings. In this case, we have $\Sigma = \{a, b, c\}$ and it is mentioned that b is not observable. So, we need to find the observable symbols, which are $\{a, c\}$, and that will be P(G).
+Determine the probability $P(G)$ for the given generator $G$ with $\Sigma = \{a, b, c\}$, where b is not observable.
 
-So, in this case, $P(G) = \{a, c\}$, since b is not observable.
+To find $P(G)$, we need to analyze the information available in the documents. Unfortunately, the documents do not directly provide the probability $P(G)$. However, we can make some observations based on the information given.
+
+$K$ is not observable with respect to $G$ and $P$. This implies that the events in $K$, which includes $b$, cannot be directly observed in $G$.
+
+$\Sigma = \{a, b, c, d, e, f, g\}$. Although it is not directly related to the given generator $G$, it gives us some insight into the control and observability aspects of discrete event systems.
+
+Based on the available information, we can conclude that the probability $P(G)$ cannot be determined solely from the given documents. We would need additional information or specifications about the behavior and transitions of the generator G to calculate the probability.
+
 
 \section{Show the properties of projection.}
 
@@ -1803,43 +1810,19 @@ Regarding the necessity of $L = \overline{L}$ for the controllability of H with 
 \paragraph{Answer}:
 %35
 
-To determine if there exists a supervisor that can supervise MACH to implement the given SPEC $K = \{\alpha\beta\alpha\beta\}$, we need to analyze the controllability and observability of the events in the SPEC.
+As Figure \ref{fig:des35} shows.
 
-In this case, the SPEC requires two consecutive occurrences of the event sequence $\alpha\beta$. This means that the generator must produce $\alpha$ followed by $\beta$, and then repeat this sequence again.
-
-From the given information, we know that $\alpha$ and $\mu$ are controllable events. However, the event $\beta$ is not mentioned to be controllable or uncontrollable. Similarly, we don't have any information about the observability of any events.
-
-If $\beta$ is uncontrollable, then there is no way for the supervisor to ensure that the generator produces the required event sequence $\alpha\beta\alpha\beta$. In this case, it would be impossible to find a supervisor that can implement the given SPEC.
-
-On the other hand, if $\beta$ is controllable, then it is possible to design a supervisor that can enforce the SPEC. The supervisor can use the controllable events $\alpha$ and $\mu$ to ensure that the generator produces the required event sequence $\alpha\beta\alpha\beta$.
-
-For example, the supervisor can be designed as follows:
-
-\begin{itemize}
-  \item Initially, the supervisor allows the generator to produce events freely.
-  \item When the supervisor observes the event $\alpha$, it enables the controllable event $\beta$ to be produced next.
-  \item Once the supervisor observes the event $\beta$, it enables the controllable event $\alpha$ to be produced next.
-  \item Finally, when the fourth event is observed, the supervisor shuts down the generator using the controllable event $\mu$, indicating the completion of two successful production cycles.
-\end{itemize}
-
-Therefore, if $\beta$ is controllable, it is possible to find a supervisor that can implement the given SPEC $K = \{\alpha\beta\alpha\beta\}$.
-
-Now, let's consider the case when $K = \{\alpha\beta\}$, i.e., the generator is shut down after a single successful production cycle. In this case, the supervisor can be designed as follows:
-
-\begin{itemize}
-  \item Initially, the supervisor allows the generator to produce events freely.
-  \item When the supervisor observes the event $\alpha$, it enables the controllable event $\beta$ to be produced next.
-  \item Once the supervisor observes the event $\beta$, it shuts down the generator using the controllable event $\mu$, indicating the completion of a single successful production cycle.
-\end{itemize}
-
-Therefore, if $K = \{\alpha\beta\}$, it is also possible to find a supervisor that can implement this SPEC.
-
-In conclusion, if $\beta$ is controllable, it is possible to find a supervisor that can implement the SPEC $K = \{\alpha\beta\alpha\beta\}$ or $K = \{\alpha\beta\}$. However, if $\beta$ is uncontrollable, it would be impossible to find a supervisor that can implement the given SPEC.
+\begin{figure}[h]
+  \centering
+  \includegraphics{assets/DES35.jpg}
+  \caption{Homework 35}
+  \label{fig:des35}
+\end{figure}
 
 \section{Review the notion of equivalence relation and propose 2-3 examples of equivalence relations in our daily life.}
 
 \paragraph{Answer}:
-
+%36
 \begin{enumerate}
   \item Friendship: Consider a group of friends. We can define an equivalence relation on this group based on friendship. Two individuals are related if they are friends with each other. This relation is reflexive (everyone is a friend of themselves), symmetric (if person A is a friend of person B, then person B is a friend of person A), and transitive (if person A is a friend of person B, and person B is a friend of person C, then person A is a friend of person C).
   \item Equality: In mathematics, the relation of equality is an equivalence relation. Two numbers are related if they are equal to each other. This relation is reflexive (every number is equal to itself), symmetric (if a = b, then b = a), and transitive (if a = b and b = c, then a = c).
@@ -1848,14 +1831,132 @@ In conclusion, if $\beta$ is controllable, it is possible to find a supervisor t
 
 
 \section{Given a plant G with some control specification}
+Given a plant $G$ with some control specification, the set of control patterns is $\Gamma=\left\{\gamma \mid \Sigma_u \subseteq \gamma\right\}$, i.e., a control pattern $\gamma$ is usually a super-set of $\Sigma_u$. Suppose that $V$ is a supervisory control function that implements the control specification. Given $s \in L(G), V(s) \in \Gamma$ defines the set of events that are feasible or active after $s$ is generated by $G$. It implies that the events in $\Sigma-V(s)$ should be disabled upon the occurrence of $s$.
+
+Let $f(s)=\Sigma-V(s)$. The generated language $L(f / G)$ and the marked language $L_m(f / G)$ of the controlled system under the supervision of $f$ are respectively defined as
+\begin{enumerate}
+  \item $\varepsilon \in L(f / G) ;\left(\forall s \in \Sigma^*\right)(\forall \sigma \in \Sigma)[s \in L(f / G)] \&[s \sigma \in L(G)] \&[\sigma \notin f(s)] \Rightarrow s \sigma \in L(f / G)$.
+  \item $L_m(f / G)=L(f / G) \cap L_m(G)$
+\end{enumerate}
 
 \paragraph{Answer}:
+%37
+\begin{enumerate}
+  \item Obviously, $L(f/ G) \subseteq \overline{L(f/ G)}$
+  \item To show $\overline{L(f/ G)} \subseteq L(f/ G)$, let $s \in \overline{L(f/ G)}$.
+\end{enumerate}
+Then, $\left(\exists t \in \Sigma^*\right)$ st $\in L(f/ G)$.
+By induction, let $t=\varepsilon$ or $t=\sigma \in \Sigma$.
+Then $s \in L(f/ G)$ (by definition of $L(f/ G)$ ).
+(continued) Suppose that $s \in L(f/ G), t=\sigma_1 \sigma_2 \cdots \sigma_k$, and $s t \in L(f/ G)$, where $\sigma_i \in \Sigma, i \in \mathbb{N}_k$.
 
-wait
+We will show $s \in L(f/ G)$ if $t=\sigma_1 \sigma_2 \cdots \sigma_k \sigma_k+1$ and $s t \in L(f/ G)$. Then,
+$$
+\sigma_{k+1} \in V\left(s \sigma_1 \sigma_2 \cdots \sigma_k\right)
+$$
+and
+$$
+s \sigma_1 \sigma_2 \cdots \sigma_k \sigma_{k+1} \in L(G)
+$$
+By $s \sigma_1 \sigma_2 \cdots \sigma_k \in L(f/ G)$ (by assumption) and $s \sigma_1 \sigma_2 \cdots \sigma_k \in L(G)[$ since $\mathrm{L}(\mathrm{G})$ is closed],
+$$
+\sigma_k \in V\left(s \sigma_1 \sigma_2 \cdots \sigma_{k-1}\right)
+$$
+Thus, $s \sigma_1 \sigma_2 \cdots \sigma_{k-1} \in L(f/ G)$. By induction, we reach $s \sigma_1 \in L(f/ G)$, implying that $s \in L(f/ G), \sigma_1 \in V(s), s \sigma_1 \in L(G)$. Thus it holds $s \in L(f/ G)$.
+
 
 
 \section{Given $K \subseteq \Sigma^*$, prove that there exists a $\Sigma_u$-enabling, non-marking, and non-blocking supervisor such that $L(G||S) = K$ if and only if $\emptyset \neq  K = \overline{K} = \overline{L_m(G) \cap K} $ and $K$ is controllable.}
 
+%38
+
+\section{Let $G$ be a plant and $K_1,K_2 \subseteq \Sigma^*$ be the desired and generated language under supervision, respectively. Prove that there exists a $\Sigma_u$-enabling, non-marking, and non-blocking supervisor $S$ such that $L_m(G||S) =K_1$ and $L(G||S) = K_2$ if and only if.}
+\begin{enumerate}
+  \item $\overline{K_1}=K_2 \neq \emptyset$
+  \item $K_1$ is relative closed with respect to $L_m(G)$, and
+  \item $K_2$ is controllable.
+\end{enumerate}
+
 \paragraph{Answer}:
+%39
+
+$K_1$ is $L_m(G)$-closed, then $K_1=K_1 \cap L_m(G) K_2$ is $L_m(G)$-closed, then
+
+\begin{equation*}
+  \begin{aligned}
+  K_2&=\overline{K_2} \cap L_m(G) \\
+   K_1 \cap K_2&=\overline{K_1} \cap L_m(G) \cap \overline{K_2} \cap L_m(G)=\overline{K_1} \cap \overline{K_2} \cap L_m(G)
+  \end{aligned}
+\end{equation*}
+
+$\text { So, } K_1 \cap K_2 \text { is } L_m(G) \text {-closed and controllable. }$
+
+\section{Let $G$ be a trim automaton with $L_m(G)=\left(\alpha \gamma^* \beta\right)^*$. Let $K=(\alpha \beta)^*$ and $\Sigma_{u c}=\{\alpha, \beta\}$. }
+
+\begin{enumerate}
+  \item[(a)] Find a supervisor $S$ such that $L_m(S / G)=K$ and check whether $S$ is nonblocking;
+  \item[(b)] If we cannot find a nonblocking supervisor $S$ such that $L_m(S / G)=K$, explain your reasoning;
+  \item[(c)] Portray $L_m(G)$ and $K$ and use TCT to verify the reached conclusion.
+\end{enumerate}
+
+\paragraph{Answer}:
+%40
+
+wait
+
+\section{Let $L(G)=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta, u_2 \alpha \gamma\right\}}$, where $\Sigma=\Sigma_c$ and $E_{u o}=\left\{u_1, u_2\right\}$ (an event is controllable even if it is unobservable). (a) Let $K_1=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta\right\}}$. Find, if possible, a (partially observable) supervisor $S_P$ such that $L\left(S_P / G\right)=K_1 ;$ (b) Let $K_2=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta, u_2 \alpha\right\}}$. Find, if possible, a (partially observable) supervisor $S_P$ such that $L\left(S_P / G\right)=K_2$. Use TCT to verify the obtained results.}
+
+\paragraph{Answer}:
+%41
+wait
+
+\section{Consider $\sigma=\left\{\alpha_1, \beta_1, \gamma_1, \alpha_2, \beta_2, \gamma_2\right\}$ and a string $s=\alpha_1 \gamma_1 \alpha_2 \gamma_1$. Build an automaton $G$ such that $L(G)=$ $\Sigma^* \backslash \Sigma^*\{s\} \Sigma^*$. Analyze the reason why $G$ satisfies the requirement.}
+
+\paragraph{Answer}:
+%42
+wait
+
+\section{Suppose that a plant $G$ has its alphabet $\Sigma=\left\{a_1, a_2, b_1, b_2, g_1, g_2\right\}$. Build another automaton that will generate the sublanguage of $L(G)$ where all the strings in $L(G)$ that contains the substrings $a_1 a_2 b_2$ or $a_1 a_2 g_2$ are removed.}
+
+\paragraph{Answer}:
+%43
+wait
+
+\section{Consider a plant $G$ with $L(G)=a^* b^*$ and the prefix-closed admissible language}
+
+Consider a plant $G$ with $L(G)=a^* b^*$ and the prefix-closed admissible language is
+$$
+L_a=\left\{a^n b^m \mid n \geq m \geq 0\right\}
+$$
+Let the set of uncontrollable events be $E_{u c}=\{a\}$. Check if $L_a$ is controllable and if it is a regular language.
+
+\paragraph{Answer}:
+%44
+wait
+
+\section{Given a plant $G$ with $\Sigma_{u c} \subseteq \Sigma$ being the set of uncontrollable events and $K \subseteq \Sigma^*$.}
+ 
+Given a plant $G$ with $\Sigma_{u c} \subseteq \Sigma$ being the set of uncontrollable events and $K \subseteq \Sigma^*$.Show the definition of controllability is equivalent to
+$$
+\bar{K} \Sigma_{u c}^* \cap L(G) \subseteq \bar{K}
+$$
+
+\paragraph{Answer}:
+%45
+We know the defination of controllable Let $K \subseteq \Sigma^*(K=\emptyset)$. K is controllable with respect to $\mathrm{G}$ if
+$$
+\begin{array}{r}
+\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K} \\
+\bar{K} \Sigma_u=\left\{s \in \Sigma^* \mid s=s^{\prime} \sigma, \sigma \in \Sigma_u, s^{\prime} \in K\right\}
+\end{array}
+$$
+Equivalently, $\left(\forall s \in \Sigma^*\right)(\forall \sigma \in \Sigma) s \in K$ and $\sigma \in \Sigma_u$ and $s \sigma \in L(G) \Rightarrow s \sigma \in$
+$K$
+For exmple $L_1=\{\alpha \lambda \mu\}$ and $\overline{L_1}=\{\varepsilon, \alpha, \alpha \lambda, \alpha \lambda \mu\}$. $L_1$ is uncontrollable since $s=\alpha \in \bar{K}, \beta \in \Sigma_u, \alpha \beta \in L(G)[\alpha \beta \notin \bar{K}]$. For $s=\alpha, \sigma=\beta$ or $\lambda$
+Test $\lambda: \lambda \alpha \in K\left(\lambda \in \Sigma_u\right)$ controllable
+Test $\beta: \alpha \beta \notin L_1$ uncontrollable. Thus $L_1$ is uncontrollable.
+
+
+
 
 \end{document}
