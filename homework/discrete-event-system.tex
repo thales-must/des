@@ -6,6 +6,8 @@
 \date{October 2023}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{tcolorbox}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -1956,6 +1958,427 @@ For exmple $L_1=\{\alpha \lambda \mu\}$ and $\overline{L_1}=\{\varepsilon, \alph
 Test $\lambda: \lambda \alpha \in K\left(\lambda \in \Sigma_u\right)$ controllable
 Test $\beta: \alpha \beta \notin L_1$ uncontrollable. Thus $L_1$ is uncontrollable.
 
+
+\section{Check the possibility that we can always construct a supervisor $S$ for a plant $G$ such that}
+(a) $L(S / G)=L(G)$,(b) $L(S / G)=L_m(G)$, (c) $L(S / G)=\emptyset$, (d) $L(S / G)=\{\varepsilon\}$, and (e) $L_m(S / G)=\emptyset$.
+
+
+\paragraph{Answer}:
+%46
+wait
+
+\section{Consider the automata $G$ and $H$ as shown. Let $\Sigma_{uc} = \{d\}$.}
+(a) Find all the controllable sublanguage of $L(H)$ with respect to $G$ and $\Sigma_{u c}$.
+
+(b) Find all the controllable sublanguage of $L_m(H)$ with respect to $G$ and $\Sigma_{u c}$.
+
+\paragraph{Answer}:
+%47
+wait
+
+
+\section{(Controllability test of language) There is a procedure to test the controllability of a language.}
+\begin{enumerate}
+  \item Suppose that $K$ and $L(G)$ are regular.
+  \item Let $H$ be an automaton that generates $K$ and $G$ be an automaton that generates $L(G)$. Controllability can be checked by comparing the active event set of each state of $H \times G$ with the feasible event set of the corresponding state of $G$ (given by the second component of the state of $H \times G$ ).
+  \item If there is an uncontrollable event in the latter that does not appear in the former, then $K$ is not controllable.
+  \item The worst-case computational complexity of this test is $\mathcal{O}(|E| m n)$, where $m$ is the number of states of $H$ and $n$ is the number of states of $G$.
+\end{enumerate}
+
+
+\paragraph{Answer}:
+%48
+Proof We know the defination of controllable Let $K \subseteq \Sigma^*(K=\emptyset)$. $K$ is controllable with respect to $\mathrm{G}$ if
+$$
+\begin{array}{r}
+\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K} \\
+\bar{K} \Sigma_u=\left\{s \in \Sigma^* \mid s=s^{\prime} \sigma, \sigma \in \Sigma_u, s^{\prime} \in K\right\}
+\end{array}
+$$
+Equivalently, $\left(\forall s \in \Sigma^*\right)(\forall \sigma \in \Sigma) s \in K$ and $\sigma \in \Sigma_u$ and $s \sigma \in L(G) \Rightarrow s \sigma \in$
+$K$
+For exmple $L_1=\{\alpha \lambda \mu\}$ and $\overline{L_1}=\{\varepsilon, \alpha, \alpha \lambda, \alpha \lambda \mu\}$. $L_1$ is uncontrollable since $s=\alpha \in \bar{K}, \beta \in \Sigma_u, \alpha \beta \in L(G)[\alpha \beta \notin \bar{K}]$. For $s=\alpha, \sigma=\beta$ or $\lambda$
+Test $\lambda: \lambda \alpha \in K\left(\lambda \in \Sigma_u\right)$ controllable
+Test $\beta: \alpha \beta \notin L_1$ uncontrollable. Thus $L_1$ is uncontrollable.
+
+
+\section{(Supervisor realization for a controllable language) Supervisor realization involves the computation of an automaton (generator) to represent a controllable language. Typically and conventionally, we consider two cases: $K=\bar{K} \subseteq L(G)$ and $K \subseteq L_m(G)$ with $K \neq \emptyset$}
+\paragraph{Question} Propose a controllable language $K$ for a plant $G$ with $K = \bar{K} \subseteq L(G)$ and $K \neq  \emptyset$ and find its realization. Repeat the above for a plant and a non-empty language $K \subseteq L_m(G)$
+
+\paragraph{Answer}:
+%49
+
+
+Let $G$ be a DES with $\Sigma=\{\alpha, \beta, \mu, \lambda\}$, where $\alpha:=11, \beta:=22, \mu:=$ $33, \lambda:=44 . \Sigma_o=\{\mu\}$, and $K=\{\alpha \mu, \beta \alpha\} \subseteq L_m(G)$. Naturally, we have $B=\{(1,1),(2,2)\}$. For For boundary state $(1,1), T(1,1)=\{b\}$ and $\Sigma(1,1)=$ $\{\mu\}$. Then $P^{-1} P[T(1,1)] \Sigma(1,1) \cap \bar{K}=\{\alpha, \beta, \lambda\}^*\{\mu\} \cap\{\alpha \mu, \beta \alpha\}=\{\alpha \mu, \beta \mu\} \cap$ $\{\alpha \mu, \beta \alpha\}=\{\alpha \mu\} \neq \emptyset . G=\operatorname{Meet}\{G 1, G 2\}$
+
+\section{A cat and a mouse are placed in a maze with five rooms. Each door in a room is exclusively for either the cat or the mouse and can be used only in the direction indicated. Initially, the cat is in Room 3 and the mouse in Room 5. To help us understand the behavior of cat and mouse, we propose here their models by Petri nets. Actually, a transition (graphically represented by a bar) between two places (pictorially visualized by cycles) denotes a transition of an automaton. Specifically, in a Petri net model, a place can be regarded as a state of an automaton. The movement of the cat or mouse is done along the directed arrows in its Petri net model. Accordingly its automaton model can be constructed by treating a place (cycle) of the Petri net as a state while a related transition is treated as an event. Then, the model of cat has five states and that of mouse has the same number of states. With the help of these hints, try to solve the following questions (hint: TCT procedure mutex($q_1$, $q_2$) will be used).}
+
+\begin{enumerate}
+  \item Model the cat $(C)$ and mouse $(M)$ as finite state automata and compute the plant $G=C \| M$.
+  \item It is required that the cat and mouse can never share a room and the cat and the mouse can return to their initial rooms. From plant $G$, identify the an automaton that satisfies the requirements.
+  \item Find a supervisor using TCT assuming that all the events are controllable.
+  \item Propose a number of different pairs of $\left(\Sigma_c, \Sigma_u\right)$ and find their corresponding supremal controllable sublanguages using TCT.
+  \item Suppose that there are two cats. Repeat (1)-(4) as above (note that the Petri net modeling philosophy remains helpful to create the automaton model of multiple cats or mouses).
+\end{enumerate}
+
+\paragraph{Answer}:
+%50
+wait
+
+
+\section{Consider the Small Factory consisting of two machines M1 and M2 and a buffer with capacity}
+
+\paragraph{Question} Let us now consider another control specification. Let K2 be the admissible language corresponding to the specification that if both machines break down, M2 should be repaired first. Find K2 using TCT and check its controllability.
+
+\paragraph{Answer}:
+%51
+wait
+
+\section{Given a plant $G$ with alphabet $\Sigma^*$ and a control specification (language) $E$, sup($E$) is the supremal controllable language with respect to $G$ and $E$}
+
+\paragraph{Question 6.} Show $\sup \left(E_1\right) \subseteq \sup \left(E_2\right)$ if $E_1 \subseteq E_2$ (monotonicity of supremal controllable sublanguages).
+\paragraph{question 7.} Show sup($E$) is prefix-closed if $E$ is prefix-closed.
+\paragraph{question 8.} Show the following properties pertaining to the supremal controllable sublanguage.
+\paragraph{Proposition 1} (Properties of supremal controllable sublanguage).
+\begin{enumerate}
+  \item $sup(E_1 \cap E_2) \subseteq sup(E_1) \cap sup(E_2)$;
+  \item $sup(E_1 \cap E_2) = sup(sup(E_1) \cap sup(E_2))$;
+  \item $sup(E_1 \cap E_2) = sup(E_1) \cap sup(E_2)$ if $E_1$ and $E_2$ are not conflicting (trivially true if $E_1$ and $E_2$ are prefix-closed).
+  \item $sup(E_1 \cup E_2) \subseteq sup(E_1 \cup E_2)$
+\end{enumerate}
+
+
+\paragraph{Answer}:
+%52
+
+wait
+
+
+\section{Given a control specification $E \subseteq L(G)$ for some $G$ with $L(G) \subseteq \Sigma^*$, we define the class of prefix-closed and controllable superlanguages of $E$}
+
+\paragraph{Question 9.} Question 9. Show that $\inf (E) \in \arg (E)$ and $\inf (E)$ is controllable.
+
+In the worst case, $\inf (E)=L(G)$ since $L(G) \in \arg (E)$. If $E$ is controllable, $\inf (E)=\bar{E}$.
+
+\paragraph{Question 10.} Show the following properties.
+
+\begin{enumerate}
+  \item  $E_1 \subseteq E_2 \Longrightarrow \inf \left(E_1\right) \subseteq \inf \left(E_2\right)$;
+  \item $\inf \left(E_1 \cap E_2\right) \subseteq \inf \left(E_1\right) \cap \inf \left(E_2\right)$;
+  \item $\inf \left(E_1 \cup E_2\right)=\inf \left(E_1\right) \cup \inf \left(E_2\right)$.
+\end{enumerate}
+
+\paragraph{Answer}:
+%53
+
+wait
+
+\section{Let $\Sigma=\{\alpha, \beta, \lambda, \mu\}, \Sigma_o=\{\alpha, \beta\}, L(G)=\overline{\{\alpha, \beta, \lambda \alpha, \mu \alpha\}}, K=\overline{\{\alpha, \lambda \alpha\}}$. Verify that $K$ is observable with respect to $L(G), \Sigma_o$, and $\Sigma_c=\Sigma$}
+
+\paragraph{Answer}:
+%54
+
+Proof $\Sigma=\{\alpha, \beta, \lambda, \mu\}, \Sigma_o=\{\alpha, \beta\}$ $L(G)=\overline{\lambda \alpha+\mu(\alpha+\beta)}$. Let $K=\overline{\lambda \alpha+\mu \beta} . \quad K=\{\varepsilon, \lambda, \mu, \lambda \alpha, \mu \beta\}=\bar{K}$ (prefix-closed). Check $(\varepsilon, \lambda),(\varepsilon, \mu)$, and $(\lambda, \mu) . K$ is closed, so condition (2) is dropped.
+
+\begin{enumerate}
+  \item  $s=\varepsilon, s^{\prime}=\lambda$. Check $\sigma=\lambda$ or $\mu(\varepsilon \alpha, \varepsilon \beta \notin \bar{K})$. Note that $s^{\prime} \sigma=\lambda \lambda \notin L(G)$ and $s^{\prime} \sigma=\lambda \mu \notin L(G)$. Thus, $(\varepsilon, \lambda) \in a^{\prime c} t_K$.
+  \item $s=\varepsilon, s^{\prime}=\mu$. Check $\sigma=\lambda$ or $\mu(\varepsilon \alpha, \varepsilon \beta \notin \bar{K})$. Note that $s^{\prime} \sigma=\mu \lambda \notin L(G)$ and $s^{\prime} \sigma=\mu \mu \notin L(G)$. Thus, $(\varepsilon, \mu) \in a^{\prime} t_K$.
+  \item $s=\lambda, s^{\prime}=\mu$. Check $\sigma=\alpha(\lambda \mu, \lambda \lambda, \lambda \beta \notin \bar{K})$. Note that $s \sigma=\lambda \alpha \in K$, $s^{\prime} \sigma=\mu \alpha \in L(G)$ but $s^{\prime} \sigma=\mu \alpha \notin \bar{K}$. Thus, $(\lambda, \mu) \notin$ act ${ }_K$.
+\end{enumerate}
+
+Suppose $L_m(G)=\varepsilon+\lambda(\varepsilon+\alpha)+\mu(\alpha+\beta), J=\varepsilon+\lambda \alpha+\mu \beta$ Then $J=K$ but $J$ is not even $L_m(G)$-closed, since $\lambda \in \bar{J} \cap L_m(G), \lambda \notin J$ Now $\varepsilon \in J \cap L_m(G)$ and $\lambda \in J \cap L_m(G)$, but $\lambda \notin J$. so in this case $(\varepsilon, \lambda) \notin a c t_J$.
+
+\section{Give an example of fixed $L(G), K, \Sigma_o$, and two different $\Sigma_c$ 's such that $K$ is observable with respect to the first choice of $\Sigma_c$ but not with respect to the second one.}
+
+\paragraph{Answer}:
+%55
+The DES $G$ is following picture, where $a:=11, b:=22, c:=33, d:=44$ $\Sigma=\{a, b, c, d\}, \Sigma_o=\{a, c\}, \Sigma_c=\{a, c\}, \Sigma_u=\{b, d\}, L(G)=\{\varepsilon, a, a b, a b c, a d\}$. Let $K=\{a d, a b\}, \bar{K}=\{\varepsilon, a, a d, a b\}$.
+Then $P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}, L(G) \cap P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}$
+$\Longrightarrow \bar{K}=L(G) \cap P^{-1} P \bar{K}$
+$\Longrightarrow \bar{K}$ is $(L(G), P)$-normal.
+And we have $\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K}, K$ is controllable. Let $s:=a b \in \bar{K}$ for $\sigma:=c \in \Sigma$, then $s \sigma:=a b c \in L(G)-\bar{K} \Longrightarrow \sigma \in \Sigma_o \cap \Sigma_c$.
+
+\section{ Let $L(G)=\overline{\left\{u_1 a b, u_1 a g, u_2 a g\right\}}$ with  $\Sigma_c=\Sigma $ and $ \Sigma_{u o}=\left\{u_1, u_2\right\} $.}
+
+\paragraph{Proof}:
+%56 review
+We know the defination of controllable Let $K \subseteq \Sigma^*(K=\emptyset)$. $\mathrm{K}$ is controllable with respect to $\mathrm{G}$ if
+$$
+\begin{array}{r}
+\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K} \\
+\bar{K} \Sigma_u=\left\{s \in \Sigma^* \mid s=s^{\prime} \sigma, \sigma \in \Sigma_u, s^{\prime} \in K\right\}
+\end{array}
+$$
+Equivalently, $\left(\forall s \in \Sigma^*\right)(\forall \sigma \in \Sigma) s \in K$ and $\sigma \in \Sigma_u$ and $s \sigma \in L(G) \Rightarrow s \sigma \in$
+$K$
+For exmple $L_1=\{\alpha \lambda \mu\}$ and $\overline{L_1}=\{\varepsilon, \alpha, \alpha \lambda, \alpha \lambda \mu\}$. $L_1$ is uncontrollable since $s=\alpha \in \bar{K}, \beta \in \Sigma_u, \alpha \beta \in L(G)[\alpha \beta \notin \bar{K}]$. For $s=\alpha, \sigma=\beta$ or $\lambda$
+Test $\lambda: \lambda \alpha \in K\left(\lambda \in \Sigma_u\right)$ controllable
+Test $\beta: \alpha \beta \notin L_1$ uncontrollable. Thus $L_1$ is uncontrollable.
+
+\section{Consider the languages $L(G)=\overline{L(G)} \subseteq \Sigma^*$ and $L=\bar{L} \subseteq \Sigma_o^*$, where $P: \Sigma \rightarrow \Sigma_o$ is a natural projection. Let $\Sigma_{u c} \subseteq \Sigma$ be the set of uncontrollable events. Assume that $L \subseteq P[L(G)]$. Define the language}
+
+$$
+K=P^{-1}(L) \cap L(G)
+$$
+
+\begin{enumerate}
+  \item Prove that $K$ is observable with respect to $L(G), \Sigma_o$, and $\Sigma$.
+  \item Show that " $K$ is controllable with respect to $L(G)$ and $\Sigma_{u c}$ " if and only if " $L$ is controllable with respect to $P[L(G)]$ and $\Sigma_{u c} \cap \Sigma_o$."
+\end{enumerate}
+
+\paragraph{Answer}:
+%57
+
+The DES $G$ is following picture, where $a:=11, b:=22, c:=33, d:=44$ $\Sigma=\{a, b, c, d\}, \Sigma_o=\{a, c\}, \Sigma_c=\{a, c\}, \Sigma_u=\{b, d\}, L(G)=\{\varepsilon, a, a b, a b c, a d\}$. Let $K=\{a d, a b\}, \bar{K}=\{\varepsilon, a, a d, a b\}$.
+Then $P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}, L(G) \cap P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}$
+$\Longrightarrow \bar{K}=L(G) \cap P^{-1} P \bar{K}$
+$\Longrightarrow \bar{K}$ is $(L(G), P)$-normal.
+And we have $\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K}, K$ is controllable. Let $s:=a b \in \bar{K}$ for $\sigma:=c \in \Sigma$, then $s \sigma:=a b c \in L(G)-\bar{K} \Longrightarrow \sigma \in \Sigma_o \cap \Sigma_c$.
+
+\section{Consider the languages $K \subseteq L(G)=\overline{L(G)} \subseteq \Sigma^*$ and the natural projection $P: \Sigma \rightarrow \Sigma_o$. Show that the language
+$$
+P^{-1}[P(K)] \cap L(G)
+$$
+is observable with respect to $L(G), \Sigma_o$, and all choices $\Sigma_c \subseteq \Sigma$.}
+
+\paragraph{Answer}:
+%58
+
+The DES $G$ is following picture, where $a:=11, b:=22, c:=33, d:=44$ $\Sigma=\{a, b, c, d\}, \Sigma_o=\{a, c\}, \Sigma_c=\{a, c\}, \Sigma_u=\{b, d\}, L(G)=\{\varepsilon, a, a b, a b c, a d\}$. Let $K=\{a d, a b\}, \bar{K}=\{\varepsilon, a, a d, a b\}$.
+Then $P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}, L(G) \cap P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}$
+$\Longrightarrow \bar{K}=L(G) \cap P^{-1} P \bar{K}$
+$\Longrightarrow \bar{K}$ is $(L(G), P)$-normal.
+And we have $\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K}, K$ is controllable. Let $s:=a b \in \bar{K}$ for $\sigma:=c \in \Sigma$, then $s \sigma:=a b c \in L(G)-\bar{K} \Longrightarrow \sigma \in \Sigma_o \cap \Sigma_c$.
+
+\section{Check the observability of a language using observer automata (Refer to Chapter 6B).}
+
+\paragraph{Answer}:
+%59
+
+wait
+
+\section{(Observability test) Observability checking using observer automata is subject to the computational complexity problem owing to the construction of an observer.}
+
+\paragraph{Answer}:
+%60
+
+wait
+
+\section{(Supervisor implementation under partial observation) We first tautologically present a result regarding the existence of a supervisor for a DES with partial observation.}
+
+\paragraph{Answer}:
+%61
+
+wait
+
+\section{Show that the property of normality is preserved under union and intersection.}
+
+\paragraph{Answer}:
+%62
+MACH $=$ Create(MACH, $[\operatorname{mark} 0],[\operatorname{tran}[0,11,1],[1,10,0],[1,12,2],[2,13,0]])(3,4)$
+
+ALLMACH $=$ allevent(MACH)
+
+Nonconflicting(MACH, ALLMACH $)=$ True $\mathrm{MACH}$ is nonblocking.
+
+\section{(Decentralized control problem) A system is usually subject to a number of control specifications.}
+
+\paragraph{Answer}:
+%63
+
+repeat
+
+\section{(Decentralized control problem) Now let us consider another plant that is a manufacturing system consisting of two machines namely MACH 1 and MACH2, two buffers B1 and B2 with capacity 3 and 1, respectively, and a testing unit that will check the quality of the final products finished on MACH2.}
+
+\paragraph{Answer}:
+%64
+
+repeat
+
+\section{Use TCT to provide a solution to the missionaries and cannibals problem.}
+
+\paragraph{Answer}:
+%65
+
+\begin{figure}
+  \centering
+  \includegraphics{assets/MISSIONARIES.jpg}
+  \caption{Missionaries and Cannibals Problem}
+  \label{fig:des65}
+\end{figure}
+
+As Figure \ref{fig:des65} shows.
+
+\section{The Tower of Hanoi is a mathematical game or puzzle. It consists of three rods and a number of disks of different sizes, which can slide onto any rod. The puzzle starts with the disks in a neat stack in ascending order of size on one rod, the smallest at the top, thus making a conical shape.}
+
+\paragraph{Answer}:
+%66
+
+wait
+
+
+\section{Once upon a time a farmer went to a market and purchased a wolf, a goat, and a cabbage.}
+
+\paragraph{Answer}:
+%67
+
+%...
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/FARMER.jpg}
+     \caption{farmer.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/WORF.jpg}
+    \caption{wolf.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/GOAT.jpg}
+    \caption{goat.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/CABBAGE.jpg}
+    \caption{cabbage.}
+  \end{subfigure}
+  \begin{subfigure}[b]{\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES67.jpg}
+    \caption{crossing river.}
+  \end{subfigure}
+  \caption{DES67.}
+  \label{fig:des67}
+\end{figure}
+%...
+
+As Figure \ref{fig:des67} shows.
+
+
+\section{Theorem: Let $K \subseteq L_m(G), K \neq \emptyset$. There exists a nonblocking feasible supervisory control $V$ for $G$ such that $L_m(V / G)=K$ iff}
+\begin{itemize}
+  \item $K$ is controllable with respect to $G$,
+  \item $K$ is observable with respect to $(G, P)$, and
+  \item $K$ is $L_m(G)$-closed.
+\end{itemize}
+
+\paragraph{Proof}:
+%68
+
+(If) With $V$ defined as in the proof of the nonblocking supervisory control theorem, it can be shown as before that $L(V / G)=K$. Then, $L_m(V / G)=L(V / G) \cap K=K \cap K=K$ such that $L_m(V / G)=K=L(V / G)$, namely $V$ is nonblocking for $G$. (Only if) We have $K=L_m(V / G)=L(V / G)$. Then the proof that $K$ is controllable is unchanged from that of the nonblocking supervisory control theorem.
+
+\section{Corollary: Let $K \subseteq L(G)$ be nonempty and closed. There exists a feasible supervisory control $V$ for $G$ such that $L(V / G)=K$ iff $K$ is controllable with respect to $G$ and observable with respect to $(G, P)$.}
+
+
+\paragraph{Proof}:
+%69
+
+(If) With $V$ defined as in the proof of the nonblocking supervisory control theorem, it can be shown as before that $L(V / G)=K$. Then, $L_m(V / G)=L(V / G) \cap K=K \cap K=K$ such that $L_m(V / G)=K=L(V / G)$, namely $V$ is nonblocking for $G$.
+(Only if) We have $K=\operatorname{Lm}(V / G)=L(V / G)$. Then the proof that $K$ is controllable is unchanged from that of the nonblocking supervisory control theorem.
+
+\section{Propose a plant $G$  and two observable languages  $K_1$  and  $K_2$  such that  $K_1 \cap K_2$  is not observable. }
+
+
+\paragraph{Answer}:
+%70
+We prpose a plant $G$, such as the folowing picture, we denote $a:=11, b:=22$. Then $\Sigma=\{a, b\}, \Sigma_o=\{b\}, L(G)=\{\varepsilon, a, b, a b\}$. We let $K_1=\{a, b, a b\}, K_2=\{a, b, a b a\}$, where $K_1$ and $K_2$ are observable languages. $\mathrm{T}$ hen $K_1 \cap K_2=\{a, b\}$ is not observable.
+
+\section{In the slides of Chapter 6B, there is a procedure of observability test. Propose a plant G and a language K.
+Check the observability of K using the procedure.}
+
+\paragraph{Answer}:
+%71
+
+Let $G$ be a DES with $\Sigma=\{\alpha, \beta, \mu, \lambda\}$, where $\alpha:=11, \beta:=22, \mu:=$ $33, \lambda:=44$. $\Sigma_o=\{\mu\}$, and $K=\{\alpha \mu, \beta \alpha\} \subseteq L_m(G)$. Naturally, we have $B=\{(1,1),(2,2)\}$. For For boundary state $(1,1), T(1,1)=\{b\}$ and $\Sigma(1,1)=$ $\{\mu\}$. Then $P^{-1} P[T(1,1)] \Sigma(1,1) \cap \bar{K}=\{\alpha, \beta, \lambda\}^*\{\mu\} \cap\{\alpha \mu, \beta \alpha\}=\{\alpha \mu, \beta \mu\} \cap$ $\{\alpha \mu, \beta \alpha\}=\{\alpha \mu\} \neq \emptyset . G=\operatorname{Meet}\{G 1, G 2\}$
+
+\section{Find $\sup \mathcal{N}(E ; M)$  by illustration. }
+
+\paragraph{Answer}:
+%72
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{assets/DES72.png}
+  \caption{Homework 72}
+  \label{fig:des72}
+\end{figure}
+
+As Figure \ref{fig:des72} shows.
+
+\section{Find $\sup \mathcal{N}(E ; M)$ by illustration using Lin-Brandt formula $\left(\sup N(E ; M)=E-P^{-1} P(M-E)\right.$ if $\left.E \subseteq M\right)$. Multiple illustrations can be used to show the calculation steps.}
+
+\paragraph{Answer}:
+%73
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{assets/DES73.png}
+  \caption{Homework 73}
+  \label{fig:des73}
+\end{figure}
+
+As Figure \ref{fig:des73} shows.
+
+
+\section{Let $M$, $K \subseteq \Sigma_o^*$ be arbitrary. }
+
+$$
+N = P^{-1} K \cap M
+$$
+
+is always $(M, P )$-normal, so is $M - N$ .
+
+\paragraph{Proof}:
+%74
+
+(1)By definition, let $N \subseteq M \subseteq \Sigma^*$ (arbitrary), $\mathrm{N}$ is $(M, P)$-normal if $N=$ $M \cap P^{-1} P(N)$. Then we only to prove that
+$$
+N=P^{-1} K \cap M \Longrightarrow N=M \cap P^{-1} P(N)
+$$
+Because $M \cap P^{-1} P(N)=M \cap P^{-1} P\left(P^{-1} K \cap M\right)=M \cap P^{-1}(K \cap M)=$ $M \cap P^{-1}(K) \cap P^{-1}(M)=M \cap P^{-1}(K)=N$
+
+(2)Similarly, we want to prove that $M-N$ is also $(M, P)$-normal.
+By definition, we want to prove $N=P^{-1} K \cap M \Longrightarrow M-N=M \cap$
+$$
+\begin{aligned}
+& P^{-1} P(M-N) \\
+& \quad M \cap P^{-1} P(M-N)=M \cap P^{-1} P\left(M-P^{-1} K \cap M\right)=M \cap P^{-1}(M-K \cap M)= \\
+& M \cap P^{-1}(M)-P^{-1}(K) \cap P^{-1}(M)=M-M \cap P^{-1}(K)=M-N
+\end{aligned}
+$$
+
+
+\section{We have shown the truth of the following result in our class.}
+
+Propose a DES G, a language K, and natural projection P to demonstrate the truth of this proposition
+
+\paragraph{Answer}:
+%75
+
+
+The DES $G$ is following picture, where $a:=11, b:=22, c:=33, d:=44$ $\Sigma=\{a, b, c, d\}, \Sigma_o=\{a, c\}, \Sigma_c=\{a, c\}, \Sigma_u=\{b, d\}, L(G)=\{\varepsilon, a, a b, a b c, a d\}$. Let $K=\{a d, a b\}, \bar{K}=\{\varepsilon, a, a d, a b\}$.
+Then $P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}, L(G) \cap P^{-1} P \bar{K}=\{\varepsilon, a, a b, a d\}$ $\Longrightarrow \bar{K}=L(G) \cap P^{-1} P \bar{K}$
+$\Longrightarrow \bar{K}$ is $(L(G), P)$-normal.
+And we have $\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K}, K$ is controllable. Let $s:=a b \in \bar{K}$ for $\sigma:=c \in \Sigma$, then $s \sigma:=a b c \in L(G)-\bar{K} \Longrightarrow \sigma \in \Sigma_o \cap \Sigma_c$.
+
+\section{Prove the following result using structural induction on strings.}
+
+\paragraph{Proposition 2.} Let $K \subseteq L_m(G)$ be controllable and observable. Assume $P \sigma=\sigma$ for all $\sigma \in \Sigma_c$. Then, $K$ is $\left(L_m(G), P\right)$-normal and $K$ is $(L(G), P)$-normal.
+
+\paragraph{Answer}:
+%76
+wait
+
+
+\section{Control of a guideway: Stations A and B on a guideway are connected by a single one-way track from A to B. The track consists of 4 sections, with stoplights $\left({ }^*\right)$ and detectors (!) installed at various section junctions.}
+
+\paragraph{Answer}:
+%77
+wait
+
+\section{Write comments and suggestions (200 words or so) for the improvement of DES teaching}
+
+\paragraph{Answer}:
+%78
+wait
 
 
 
