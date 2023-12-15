@@ -1252,7 +1252,7 @@ $$
 
 
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\textwidth]{assets/DES27.jpg}
   \caption{Homework 27}
@@ -1320,7 +1320,7 @@ Figure \ref{fig:des27}
 \paragraph{Answer}:
 
 %28
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\linewidth]{assets/findg.jpg}
   \caption{G}
@@ -1502,7 +1502,7 @@ Therefore, we can conclude that $\overline{K} \subseteq L(G)$, as every prefix o
 \paragraph{Answer}:
 %32
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics{assets/DES32.jpg}
   \caption{Homework 32}
@@ -1781,7 +1781,7 @@ Test $\beta: \alpha \beta \notin L_1$ uncontrollable. Thus $L_1$ is uncontrollab
 
 As Figure \ref{fig:des35} shows.
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
   \includegraphics{assets/DES35.jpg}
   \caption{Homework 35}
@@ -1902,13 +1902,27 @@ Figure \ref{fig:des40}, Events in Table \ref{tab:des40}
 
 \paragraph{Answer}:
 %41
-wait
+
+Let $L(G)=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta\right\}}$, and $E_{uo} = \left\{u_1, u_2\right\}$
+
+Let $K_1=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta\right\}}$.
+
+check the controllability of $K_1$.
+
+As all events are controllable, $K_1$ is controllable.
+
+For supervisory control purposes, require either $K = \bar{K}$ or $K$ is $L_m(G)$-closed.
+
+$\exists s \in \bar{K}$
+
+
+
 
 \section{Consider $\sigma=\left\{\alpha_1, \beta_1, \gamma_1, \alpha_2, \beta_2, \gamma_2\right\}$ and a string $s=\alpha_1 \gamma_1 \alpha_2 \gamma_1$. Build an automaton $G$ such that $L(G)=$ $\Sigma^* \backslash \Sigma^*\{s\} \Sigma^*$. Analyze the reason why $G$ satisfies the requirement.}
 
 \paragraph{Answer}:
 %42
-wait
+
 
 \begin{table}
   \centering
@@ -1957,7 +1971,7 @@ wait
   \label{tab:des43}
 \end{table}
 
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics[width=0.6\linewidth]{assets/DES43.jpg}
   \caption{Homework43}
@@ -2130,7 +2144,9 @@ wait
 \paragraph{Answer}:
 %52
 
-wait
+Since $sup(E)$ is controllable,$ \overline{sup(E)}$ is controllable (by the definition of controllable languages).
+
+Note that $ \overline{sup(E)} \subseteq \bar{K} = K$. Then we have $\overline{sup(E)} \supseteq sup (K)$.
 
 
 \section{Given a control specification $E \subseteq L(G)$ for some $G$ with $L(G) \subseteq \Sigma^*$, we define the class of prefix-closed and controllable superlanguages of $E$}
@@ -2147,10 +2163,12 @@ In the worst case, $\inf (E)=L(G)$ since $L(G) \in \arg (E)$. If $E$ is controll
   \item $\inf \left(E_1 \cup E_2\right)=\inf \left(E_1\right) \cup \inf \left(E_2\right)$.
 \end{enumerate}
 
-\paragraph{Answer}:
+\paragraph{Proof}:
 %53
 
-wait
+Show that $inf(E) \in arg(E)$ and $inf(E)$ is controllable.
+
+A control specification $E \subseteq L(G)$ for some $G$ with $L(G) \subseteq \Sigma^*$, we define the class of prefix-closed and controllable superlanguages of $E$, $\arg (E) = \{K \in \Sigma^* \mid E \subseteq K \subseteq L(G), K = \bar{K}, \bar{K}\Sigma_{uc} \cap L(G) \subseteq \bar{K}\}$The class of prefix-closed and controllable superlanguages of $E$, $arg(E)$, is closed under intersection.The intersection of all the elements of $arg(E)$ and denote the result by $inf(E)$. $arg(E)$ is controllable. $inf(E)$ is controllable.
 
 \section{Let $\Sigma=\{\alpha, \beta, \lambda, \mu\}, \Sigma_o=\{\alpha, \beta\}, L(G)=\overline{\{\alpha, \beta, \lambda \alpha, \mu \alpha\}}, K=\overline{\{\alpha, \lambda \alpha\}}$. Verify that $K$ is observable with respect to $L(G), \Sigma_o$, and $\Sigma_c=\Sigma$}
 
@@ -2234,21 +2252,38 @@ And we have $\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K}, K$ is controllable. L
 \paragraph{Answer}:
 %59
 
-wait
+Let $\Sigma = \{u,b\}$ and Consider $L(G) = \overline{\{ub, bu\}}$.
+
+Let $\Sigma_{uo} = \{u\}$ and $\Sigma_{uc} = \{b\}$.
+
+Check the observability of $K_1 = \{bu\}$ and $K_2 = \{ub\}$.
+
+Suppose that we now modify $\Sigma_c = \{b\}$.
+
+Check the observability of $K_2 = \{ub\}$.
 
 \section{(Observability test) Observability checking using observer automata is subject to the computational complexity problem owing to the construction of an observer.}
 
 \paragraph{Answer}:
 %60
 
-wait
+Procedure of checking observability of $K \subseteq L_m(G)$
+
+$(\forall s \in T(x, y)) (\forall \sigma \in \Sigma(x, y)) [s \in \bar{K}] \& [s\sigma \notin \bar{K}] $.
+
+$P^{-1}P[T(x,y)] \Sigma(x, y) \cap \bar{K} \neq \emptyset \Rightarrow (\exists s\prime \in \bar{K}) (\exists \Sigma \in \Sigma(x, y)) [s\prime =\bar{K}] \& [P_s = P_{s\prime}] \& [s\prime \sigma \notin \bar{K}]$.
+
+A contradiction is exposed ($K$ is not observable).
 
 \section{(Supervisor implementation under partial observation) We first tautologically present a result regarding the existence of a supervisor for a DES with partial observation.}
 
 \paragraph{Answer}:
 %61
 
-wait
+Simply speaking, yet not so strictly, a canonical recognizer of a language $K$ is a deterministic finite-state automaton (with a full transition function) that marks $K$ with a minimum of states.
+
+$(\exists s \in \bar{K})\eta(y_0, P_s) = y \& s\sigma \in \bar{K}$
+
 
 \section{Show that the property of normality is preserved under union and intersection.}
 
@@ -2306,7 +2341,7 @@ Nonconflicting(MACH, ALLMACH $)=$ True $\mathrm{MACH}$ is nonblocking.
     \includegraphics[width=\linewidth]{assets/DES63-BRSPEC.jpg}
     \caption{BR.}
   \end{subfigure}
-  \begin{subfigure}{0.6\linewidth}
+  \begin{subfigure}{0.5\linewidth}
     \includegraphics[width=\linewidth]{assets/DES63-SPEC.jpg}
     \caption{Spec.}
   \end{subfigure}
@@ -2324,7 +2359,7 @@ Nonconflicting(MACH, ALLMACH $)=$ True $\mathrm{MACH}$ is nonblocking.
     \includegraphics[width=\linewidth]{assets/DES63-BUFSUP.jpg}
      \caption{BUFSUP.}
   \end{subfigure}
-  \begin{subfigure}{0.6\linewidth}
+  \begin{subfigure}{0.5\linewidth}
     \includegraphics[width=\linewidth]{assets/DES63-BRSUP.jpg}
     \caption{BRSUP.}
   \end{subfigure}
@@ -2348,14 +2383,21 @@ Figure \ref{fig:des63-sup} shows SUP.
 \paragraph{Answer}:
 %64
 
-repeat
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\linewidth]{assets/DES64-G.jpg}
+  \caption{Homework64-G}
+  \label{fig:des64}
+\end{figure}
+
+Figure \ref{fig:des64} shows G.
 
 \section{Use TCT to provide a solution to the missionaries and cannibals problem.}
 
 \paragraph{Answer}:
 %65
 
-\begin{figure}
+\begin{figure}[h!]
   \centering
   \includegraphics{assets/MISSIONARIES.jpg}
   \caption{Missionaries and Cannibals Problem}
@@ -2449,9 +2491,9 @@ Let $G$ be a DES with $\Sigma=\{\alpha, \beta, \mu, \lambda\}$, where $\alpha:=1
 \paragraph{Answer}:
 %72
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
-  \includegraphics{assets/DES72.png}
+  \includegraphics[width=0.6\textwidth]{assets/DES72.png}
   \caption{Homework 72}
   \label{fig:des72}
 \end{figure}
@@ -2463,9 +2505,9 @@ As Figure \ref{fig:des72} shows.
 \paragraph{Answer}:
 %73
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \centering
-  \includegraphics{assets/DES73.png}
+  \includegraphics[width=0.6\textwidth]{assets/DES73.png}
   \caption{Homework 73}
   \label{fig:des73}
 \end{figure}
@@ -2534,7 +2576,43 @@ In conclusion, based on the given information, it is not possible to find a (par
 
 \paragraph{Answer}:
 %77
-wait
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.8\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES77-VSUPER.jpg}
+     \caption{vsuper.}
+  \end{subfigure}
+  \begin{subfigure}{0.8\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES77-VSUPER1.jpg}
+    \caption{vsuper1.}
+  \end{subfigure}
+  \caption{DES77-super1.}
+  \label{fig:des77-super1}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\linewidth]{assets/DES77-VSUPER3.jpg}
+  \caption{DES77-super3.}
+  \label{fig:des77-super3}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\linewidth]{assets/DES77-VSUPER4.jpg}
+  \caption{DES77-super4.}
+  \label{fig:des77-super4}
+\end{figure}
+
+Compare vsuper and vsuper1 \ref{fig:des77-super1}
+
+\begin{enumerate}
+  \item vsuper2 is empty.
+  \item vsuper3 shows Figure \ref{fig:des77-super3}.
+  \item vsuper4 shows Figure \ref{fig:des77-super4}.
+\end{enumerate}
+
 
 \section{Write comments and suggestions (200 words or so) for the improvement of DES teaching}
 
