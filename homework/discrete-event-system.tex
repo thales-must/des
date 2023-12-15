@@ -12,6 +12,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
 \begin{document}
   \maketitle
   \tableofcontents
@@ -1130,6 +1131,8 @@ Russell's paradox had a profound impact on set theory. It revealed issues of sel
 \paragraph{Answer}:
 %21
 
+optional
+
 \section{Given an alphabet $\Sigma$, a language is a subset of $\Sigma^*$. Two languages $L_1$ and $L_2$ are said to be \textit{nonconflicting} if}
 
 $\overline{L_1 \cap L_2} = \overline{L_1} \cap \overline{L_2} $
@@ -1150,7 +1153,7 @@ where $\overline{L_i} (i = 1, 2)$ is the prefix-closure of $L_i$. Give an exampl
   \item Language $L_2$: {1, 11, 111, ...} (The set of all strings consisting of '1' with different lengths, including the empty string $\epsilon$).
 \end{itemize}
 
-In this case, the prefix-closure of $L_1$ is $L_1$, and the prefix-closure of $L_2$ is $L_2$. The intersection of their complements ($\overline{L_1} \cap \overline{L_2}$) is still $L_1$ and $L_2$, respectively. However, the intersection of the original languages ($\overline{L_1 \cap L_2}$) is the empty set ($\phi $), indicating that they are conflicting languages. There are no strings that belong to both $L_1$ and $L_2$ in their original forms.
+In this case, the prefix-close of $L_1$ is $L_1$, and the prefix-close of $L_2$ is $L_2$. The intersection of their complements ($\overline{L_1} \cap \overline{L_2}$) is still $L_1$ and $L_2$, respectively. However, the intersection of the original languages ($\overline{L_1 \cap L_2}$) is the empty set ($\phi $), indicating that they are conflicting languages. There are no strings that belong to both $L_1$ and $L_2$ in their original forms.
 
 \textbf{Non-Conflicting Languages:}
 
@@ -1159,9 +1162,8 @@ In this case, the prefix-closure of $L_1$ is $L_1$, and the prefix-closure of $L
   \item Language $B$: {1, 10, 110, 1110, ...} (The set of strings that start with '1' and can have any number of additional '0's or '1's).
 \end{itemize}
 
-In this case, the prefix-closure of $A$ is $A$, and the prefix-closure of $B$ is $B$. The intersection of their complements ($\overline{A} \cap \overline{B}$) is still $A$ and $B$, respectively. The intersection of the original languages ($\overline{A \cap B}$) is also non-empty and contains strings like "0" and "1" that belong to both $A$ and $B$. Therefore, $A$ and $B$ are non-conflicting languages.
+In this case, the prefix-close of $A$ is $A$, and the prefix-close of $B$ is $B$. The intersection of their complements ($\overline{A} \cap \overline{B}$) is still $A$ and $B$, respectively. The intersection of the original languages ($\overline{A \cap B}$) is also non-empty and contains strings like "0" and "1" that belong to both $A$ and $B$. Therefore, $A$ and $B$ are non-conflicting languages.
 
-To verify these results using TCT (Theory of Computation Tools), construct deterministic finite automata (DFAs) for the languages and then compare the intersections to determine whether they are conflicting or non-conflicting.
 
 \section{Given an alphabet $\Sigma$, a language $L \subseteq  \Sigma^*$ is said to be prefix-closed (closed for simplicity) if $L = \overline{L}$. A language $L \subseteq  K$ is said to be closed with respect to K, or simply K-closed if $L = \overline{L} \cap K$.}
 
@@ -1174,87 +1176,9 @@ To verify these results using TCT (Theory of Computation Tools), construct deter
 \paragraph{Answer}:
 %23
 
-\paragraph{(a)}:
+Let $L_1=\{a b, a c\}, L_2=\{a b, a d\}$, and $\Sigma=\{a, b, c, d\} . \overline{L_1}=\{\varepsilon, a, a b, a c\}$ and $\overline{L_2}=\{\varepsilon, a, a b, a d\} . \overline{L_1} \cap \overline{L_2}=\{\varepsilon, a, a b\} . \overline{L_1 \cap L_2}=\{a b\}=\{\varepsilon, a, a b\}$. Then, $L_1$ and $L_2$ are non-conflicting.
 
-\textbf{$L_1 \cap L_2$ is Prefix-Closed Within Itself:}
-
-Since $L_1$ and $L_2$ are both K-closed, they are individually prefix-closed within themselves. This means that for any string in $L_1$ or $L_2$, it does not have any proper prefixes within $L_1$ or $L_2$.
-
-Now, consider the intersection $L_1 \cap L_2$. For any string $\omega \in L_1 \cap L_2$, it means that $\omega$ is both in $L_1$ and $L_2$. Therefore, it follows that $\omega$ does not have any proper prefixes within $L_1$ (because $L_1$ is prefix-closed), and $\omega$ does not have any proper prefixes within $L_2$ (because $L_2$ is prefix-closed). As a result, $\omega$ does not have any proper prefixes within $L_1 \cap L_2$.
-
-This demonstrates that $L_1 \cap L_2$ is prefix-closed within itself.
-
-\textbf{$L_1 \cap L_2 \subset K$:}
-
-Because $L_1$ and $L_2$ are both K-closed, it means that they are both subsets of K. That is, for any string in $L_1$ or $L_2$, it is also a member of K.
-
-Now, let's consider the intersection $L_1 \cap L_2$. For any string $\sigma \in L_1 \cap L_2$, it means that $\omega$ is both in $L_1$ and $L_2$. Since $L_1$ and $L_2$ are both subsets of K, it follows that $\sigma$ is a member of K as well, as it satisfies the condition of being in both $L_1$ and $L_2$.
-
-This demonstrates that $L_1 \cap L_2 \subset K$.
-
-Therefore, we have shown that $L_1 \cap L_2$ is both prefix-closed within itself and a subset of K, which means that it is K-closed, as required.
-
-\paragraph{(b)}:
-
-we need to demonstrate that $L^\prime$ satisfies the properties of being prefix-closed within itself and being a subset of K.
-
-\begin{enumerate}
-  \item $L^\prime$ is Prefix-Closed Within Itself:
-  
-  Given that $L = \overline{L}$, it means that L is a prefix-closed language within itself. For any string $\omega \in L$, it does not have any proper prefixes within L.
-
-  Now, consider the language $L^\prime$. For any string $\omega \in L^\prime$, it means that $\omega$ is both in L (which is prefix-closed) and in K. Since $\omega  \in L$, it does not have any proper prefixes within L. Additionally, because $\omega \in K$, it follows that $\omega$ is a member of K.
-  
-  Therefore, $\omega$ does not have any proper prefixes within $L^\prime$ (since it doesn't have any within L), and $\omega$ is a member of K.
-  
-  This demonstrates that $L^\prime$ is prefix-closed within itself.
-
-  \item $L^\prime$ is a Subset of K:
-  
-  Given that $L^\prime = L \cap K$, it implies that $L^\prime$ is the intersection of L and K. Therefore, for any string $\omega \in L^\prime$, it means that $\omega$ is both in L and in K.
-
-  Since $L = \overline{L}$, it follows that for any string in L (including those in $L^\prime$), they do not have any proper prefixes within L. Additionally, because $\omega \in K$, it follows that $\omega$ is a member of K.
-
-  This demonstrates that $L^\prime$ is a subset of K.
-
-  Therefore, we have shown that $L^\prime$ is both prefix-closed within itself and a subset of K, which means that it is K-closed, as required.
-
-\end{enumerate}
-
-\paragraph{(c)}:
-
-\textbf{Closed Languages ($L = \overline{L}$):}
-
-\begin{enumerate}
-  \item Language $L_1: \{\epsilon\}$ (the language containing only the empty string)
-  
-  $L_1$ is closed because it is equal to its own complement. There are no proper prefixes of $\epsilon$, so it is prefix-closed.
-  
-  \item Language $L_2: \{0, 1, 00, 11, \ldots\}$ (the set of all strings consisting of '0' and '1', including the empty string $\epsilon$)
-  
-  $L_2$ is closed because it contains all possible strings of '0' and '1', and there are no proper prefixes within itself.
-\end{enumerate}
-
-\textbf{K-Closed Languages ($L = \overline{L} \cap K$):}
-
-\begin{enumerate}
-  \item Language $A: \{0, 00, 000, \ldots\}$ (the set of all strings consisting of '0' with different lengths, including the empty string $\epsilon$)
-  
-  If $K = \{0\}$, then A is K-closed because it is the intersection of its own complement and K. A consists of strings without proper prefixes, and it is a subset of K.
-  
-  \item Language $B: \{1, 11, 111, \ldots\}$ (the set of all strings consisting of '1' with different lengths, including the empty string $\epsilon$)
-  
-  If $K = \{1\}$, then B is K-closed because it is the intersection of its own complement and K. B consists of strings without proper prefixes, and it is a subset of K.
-
-  \item Language $C: \{\epsilon, 00, 11, 0000, 1111, \ldots\}$ (the set of all strings consisting of repeated '0's or '1's, including the empty string $\epsilon$)
-  
-  If $K = \{\epsilon, 0, 1\}$, then C is K-closed because it is the intersection of its own complement and K. C consists of strings without proper prefixes, and it is a subset of K.
-
-  \item Language $D: \{ab, aab, aaab, \ldots\}$ (the set of strings with 'a's followed by one or more 'b's)
-  
-  If $K = \{ab, aab, \ldots\}$, then D is K-closed because it is the intersection of its own complement and K. D consists of strings without proper prefixes, and it is a subset of K.
-
-\end{enumerate}
+Let $L_1=\{a b\}, L_2=\{a c\}$, and $\Sigma=\{a, b, c\} . \overline{L_1}=\{\varepsilon, a, a b\}$ and $\overline{L_2}=$ $\{\varepsilon, a, a c\} . \overline{L_1} \cap \overline{L_2}=\{\varepsilon, a\} . \overline{L_1 \cap L_2}=\{\emptyset\}=\varepsilon$. Then, $L_1$ and $L_2$ are conflicting. They share prefix a but they do not share the trace containing $a$.
 
 \section{$\Delta $ One refers to a review article on the history of supervisory control theory (SCT) of DES if she/he is interested in the development of DES modeling, }
 
@@ -1283,10 +1207,19 @@ optional
 
 \section{** Conventionally, people think of models as either toys or simple copies of reality.}
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{assets/DES26.png}
+  \caption{Toys}
+  \label{fig:des26}
+\end{figure}
+
 \paragraph{Answer}:
 
+
+
 %26
-optional
+Figure \ref{fig:des26}
 
 \section{A computer system operates with two parallel processors P1 and P2. The total capacity (queue and server included) of P1 is $K_1 = 1$, and that of P2 is $K_2 = 2$. The system receives two types of jobs, labeled $J_1$ and $J_2$. Jobs of type $J_1$ must be processed at P1, and jobs of type $J_2$ must be processed at P2. When a job is processed, it leaves the system. If a job finds a full queue upon arrival, then the job is simply rejected. Build an automaton model of this system.}
 
@@ -1302,62 +1235,84 @@ optional
   Note that the model has six states totally.
 \end{tcolorbox}
 
-\paragraph{Answer}:
+\paragraph{Answer}: 
 
 %27
 
-States:
+$$
+A=\left(Y, \Sigma, \eta, y_0, Y_m\right)
+$$
+$\Sigma=\{11,12,22,21\}, 11$ means J1 comes in, 12 means J1 comes out, 22 means J2 comes in, 22 means $\mathrm{J} 2$ comes out.
+$$
+\begin{aligned}
+& Y=\{0,1,2,3,4,5\} \\
+& Y_m=\{0\}
+\end{aligned}
+$$
 
-\begin{itemize}
-  \item State (0, 0): Initial state. No jobs are in the system.
-  \item State (1, 0): A job of type $J_1$ is in the queue for P1.
-  \item State (2, 0): Two jobs of type J1 are in the queue for P1 (queue full, no room for $J_2$).
-  \item State (0, 1): A job of type $J_2$ is in the queue for P2.
-  \item State (0, 2): Two jobs of type $J_2$ are in the queue for P2 (queue full, no room for $J_1$).
-  \item State (1, 1): A job of type $J_1$ is in the queue for P1, and a job of type $J_2$ is in the queue for P2 (both queues occupied).
-\end{itemize}
 
-Transitions:
 
-\begin{enumerate}
-  \item From State (0, 0):
-  \begin{itemize}
-    \item On arrival of a job of type $J_1$, transition to State (1, 0).
-    \item On arrival of a job of type $J_2$, transition to State (0, 1).
-  \end{itemize}
-  \item From State (1, 0):
-  \begin{itemize}
-    \item On arrival of another job of type $J_1$, transition to State (2, 0) (queue for P1 is full).
-    \item On arrival of a job of type $J_2$, transition to State (1, 1) ($J_2$ joins P2's queue).
-    \item On departure of the $J_1$ job from P1, transition back to State (0, 0).
-  \end{itemize}
-  \item From State (2, 0):
-  \begin{itemize}
-    \item On arrival of a job of type $J_1$, stay in State (2, 0) (queue is full, job rejected).
-    \item On arrival of a job of type $J_2$, stay in State (2, 0) (queue is full, job rejected).
-    \item On departure of the $J_1$ job from P1, transition to State (0, 0) (queue for P1 is free).
-  \end{itemize}
-  \item From State (0, 1):
-  \begin{itemize}
-    \item On arrival of a job of type $J_1$, transition to State (1, 1) ($J_1$ joins P1's queue).
-    \item On arrival of another job of type $J_2$, transition to State (0, 2) (queue for P2 is full).
-    \item On departure of the $J_2$ job from P2, transition back to State (0, 0).
-  \end{itemize}
-  \item From State (0, 2):
-  \begin{itemize}
-    \item On arrival of a job of type $J_1$, stay in State (0, 2) (queue is full, job rejected).
-    \item On arrival of a job of type $J_2$, stay in State (0, 2) (queue is full, job rejected).
-    \item On departure of the $J_2$ job from P2, transition to State (0, 1) (queue for P2 is free).
-  \end{itemize}
-  \item From State (1, 1):
-  \begin{itemize}
-    \item On arrival of another job of type $J_1$, stay in State (1, 1) (both queues are full, job rejected).
-    \item On arrival of another job of type $J_2$, stay in State (1, 1) (both queues are full, job rejected).
-    \item On departure of the $J_1$ job from P1, transition to State (0, 1) (queue for P1 is free).
-    \item On departure of the $J_2$ job from P2, transition to State (1, 0) (queue for P2 is free).
-  \end{itemize}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{assets/DES27.jpg}
+  \caption{Homework 27}
+  \label{fig:des27}
+\end{figure}
+
+Figure \ref{fig:des27}
+
+% States:
+
+% \begin{itemize}
+%   \item State (0, 0): Initial state. No jobs are in the system.
+%   \item State (1, 0): A job of type $J_1$ is in the queue for P1.
+%   \item State (2, 0): Two jobs of type J1 are in the queue for P1 (queue full, no room for $J_2$).
+%   \item State (0, 1): A job of type $J_2$ is in the queue for P2.
+%   \item State (0, 2): Two jobs of type $J_2$ are in the queue for P2 (queue full, no room for $J_1$).
+%   \item State (1, 1): A job of type $J_1$ is in the queue for P1, and a job of type $J_2$ is in the queue for P2 (both queues occupied).
+% \end{itemize}
+
+% Transitions:
+
+% \begin{enumerate}
+%   \item From State (0, 0):
+%   \begin{itemize}
+%     \item On arrival of a job of type $J_1$, transition to State (1, 0).
+%     \item On arrival of a job of type $J_2$, transition to State (0, 1).
+%   \end{itemize}
+%   \item From State (1, 0):
+%   \begin{itemize}
+%     \item On arrival of another job of type $J_1$, transition to State (2, 0) (queue for P1 is full).
+%     \item On arrival of a job of type $J_2$, transition to State (1, 1) ($J_2$ joins P2's queue).
+%     \item On departure of the $J_1$ job from P1, transition back to State (0, 0).
+%   \end{itemize}
+%   \item From State (2, 0):
+%   \begin{itemize}
+%     \item On arrival of a job of type $J_1$, stay in State (2, 0) (queue is full, job rejected).
+%     \item On arrival of a job of type $J_2$, stay in State (2, 0) (queue is full, job rejected).
+%     \item On departure of the $J_1$ job from P1, transition to State (0, 0) (queue for P1 is free).
+%   \end{itemize}
+%   \item From State (0, 1):
+%   \begin{itemize}
+%     \item On arrival of a job of type $J_1$, transition to State (1, 1) ($J_1$ joins P1's queue).
+%     \item On arrival of another job of type $J_2$, transition to State (0, 2) (queue for P2 is full).
+%     \item On departure of the $J_2$ job from P2, transition back to State (0, 0).
+%   \end{itemize}
+%   \item From State (0, 2):
+%   \begin{itemize}
+%     \item On arrival of a job of type $J_1$, stay in State (0, 2) (queue is full, job rejected).
+%     \item On arrival of a job of type $J_2$, stay in State (0, 2) (queue is full, job rejected).
+%     \item On departure of the $J_2$ job from P2, transition to State (0, 1) (queue for P2 is free).
+%   \end{itemize}
+%   \item From State (1, 1):
+%   \begin{itemize}
+%     \item On arrival of another job of type $J_1$, stay in State (1, 1) (both queues are full, job rejected).
+%     \item On arrival of another job of type $J_2$, stay in State (1, 1) (both queues are full, job rejected).
+%     \item On departure of the $J_1$ job from P1, transition to State (0, 1) (queue for P1 is free).
+%     \item On departure of the $J_2$ job from P2, transition to State (1, 0) (queue for P2 is free).
+%   \end{itemize}
   
-\end{enumerate}
+% \end{enumerate}
 
 
 \section{A workcell consists of two machines M1 and M2 and an automated guided vehicle AGV, along with two auxiliary devices: input buffer and output buffer whose capacity is assumed to be large enough.}
@@ -1367,7 +1322,7 @@ Transitions:
 %28
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{findg.jpg}
+  \includegraphics[width=\linewidth]{assets/findg.jpg}
   \caption{G}
   \label{fig:findg}
 \end{figure}
@@ -1393,6 +1348,16 @@ Transitions:
 \paragraph{Answer}:
 
 %29
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\linewidth]{assets/DES29.png}
+  \caption{Petri net model}
+  \label{fig:des29}
+\end{figure}
+
+Figure \ref{fig:des29}.
+
 
 \section{Given $L, L_1, L_2, L_3 \subseteq  \Sigma^*$, show}
 
@@ -1519,40 +1484,43 @@ Transitions:
 
 \section{Let G be a generator with the alphabet $\Sigma$ and $K \subseteq \Sigma^*$ be a language. Show $\overline{K} \subseteq L(G)$ if $K \subseteq L(G)$: [hint: L(G) is prefix-closed].}
 
-\paragraph{Answer}:
+\paragraph{Proof}:
 %31
-To prove that the complement of language $\overline{K} \subseteq L(G)$ when $K \subseteq of L(G)$, given that L(G) is prefix-closed, we can use the property of prefix-closed languages.
 
-\textbf{Proof:}
+To show that $\overline{K} \subseteq L(G)$ given that $K \subseteq L(G)$ and $L(G)$ is prefix-closed, we can use the fact that $L(G)$ being prefix-closed implies that it contains all the prefixes of its language. 
 
-Suppose $K \subseteq L(G)$. This means that for every string x in K, x is also in L(G) because $K \subseteq L(G)$.
+Since $K \subseteq L(G)$, every prefix of a word in $K$ is also a prefix of a word in $L(G)$. But $L(G)$ is prefix-closed, which means that it contains all its prefixes. Therefore, every prefix of a word in $K$ is also in $L(G)$. 
 
-Since L(G) is prefix-closed, we know that if a string x is in L(G), all of its prefixes are also in L(G).
+Now, let's consider $\overline{K}$, which represents the complement of $K$. This means that $\overline{K}$ contains all the words that are not in $K$. Since $L(G)$ contains every prefix of a word in $K$, it follows that $L(G)$ also contains every prefix of a word in $\overline{K}$. 
 
-Now, let's consider the complement of K, which is $\overline{K}$. For any string y in $\overline{K}$, it means that y is not in K (because $\overline{K}$ is the set of all strings not in K).
+Therefore, we can conclude that $\overline{K} \subseteq L(G)$, as every prefix of a word in $\overline{K}$ is also in $L(G)$. This result holds under the assumption that $K \subseteq L(G)$ and $L(G)$ is prefix-closed.
 
-Since $K \subseteq L(G)$, if y is not in K, it is also not in L(G). This is because L(G) contains K, and if a string is not in K, it's not in L(G) either.
 
-Therefore, for any string y in $\overline{K}$, it is not in K, and it is also not in L(G).
-
-This implies that every string in $\overline{K}$ is also not in L(G), which is equivalent to saying that $\overline{K} \subseteq L(G)$.
-
-In conclusion, if $K \subseteq L(G)$ and L(G) is prefix-closed, then the complement of K, $\overline{K} \subseteq L(G)$.
 
 \section{Given a generator G with $\Sigma = \{a, b, c\}$ as shown below, assume that b is not observable. Find P (G).}
 
 \paragraph{Answer}:
 %32
-Determine the probability $P(G)$ for the given generator $G$ with $\Sigma = \{a, b, c\}$, where b is not observable.
 
-To find $P(G)$, we need to analyze the information available in the documents. Unfortunately, the documents do not directly provide the probability $P(G)$. However, we can make some observations based on the information given.
+\begin{figure}[h]
+  \centering
+  \includegraphics{assets/DES32.jpg}
+  \caption{Homework 32}
+  \label{fig:des32}
+\end{figure}
 
-$K$ is not observable with respect to $G$ and $P$. This implies that the events in $K$, which includes $b$, cannot be directly observed in $G$.
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|}
+    $q$ & 11\\
+    $b$ & 22\\
+    $c$ & 13\\
+  \end{tabular}
+  \caption{Homework32}
+  \label{tab:des32}
+\end{table}
 
-$\Sigma = \{a, b, c, d, e, f, g\}$. Although it is not directly related to the given generator $G$, it gives us some insight into the control and observability aspects of discrete event systems.
-
-Based on the available information, we can conclude that the probability $P(G)$ cannot be determined solely from the given documents. We would need additional information or specifications about the behavior and transitions of the generator G to calculate the probability.
-
+Figure \ref{fig:des32}, events in table \ref{tab:des32}
 
 \section{Show the properties of projection.}
 
@@ -1788,24 +1756,23 @@ Chapter 4. page:89
 
 \section{Given H, K, L, and $\Sigma = \Sigma_c \dot{\cup} \Sigma_u$ such that $H \subseteq K = K \subseteq L = L \subseteq \Sigma^*$, suppose that H is controllable with respect to K and $\Sigma_u$ and K is controllable with respect to L and $\Sigma_u$. Show that H is controllable with respect to L and $\Sigma_u$ (check whether $L = \overline{L}$ is a necessity for the controllability of H with respect to L and $\Sigma_u$).}
 
-\paragraph{Answer}:
+\paragraph{Proof}:
 %34
+We know the defination of controllable Let $K \subseteq \Sigma^*(K=\emptyset)$. K is controllable with respect to $\mathrm{H}$ if
+$$
+\begin{array}{r}
+\bar{K} \Sigma_u \cap L(H) \subseteq \bar{K} \\
+\bar{K} \Sigma_u=\left\{s \in \Sigma^* \mid s=s^{\prime} \sigma, \sigma \in \Sigma_u, s^{\prime} \in K\right\}
+\end{array}
+$$
+Equivalently, $\left(\forall s \in \Sigma^*\right)(\forall \sigma \in \Sigma) s \in K$ and $\sigma \in \Sigma_u$ and $s \sigma \in L(H) \Rightarrow s \sigma \in$
+$K$
+For exmple $L_1=\{\alpha \lambda \mu\}$ and $\overline{L_1}=\{\varepsilon, \alpha, \alpha \lambda, \alpha \lambda \mu\}$. L is uncontrollable since $s=\alpha \in \bar{K}, \beta \in \Sigma_u, \alpha \beta \in L(H)[\alpha \beta \notin \bar{K}]$. For $s=\alpha, \sigma=\beta$ or $\lambda$
 
-To prove that H is controllable with respect to L and $\Sigma_u$, we need to show that for any two states $h_1, h_2 \in H$ and any string $w \in \Sigma_u^*$, there exists a control sequence $u \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $u$ reaches state $h_2$ and the output sequence is in L.
+Test $\lambda: \lambda \alpha \in K\left(\lambda \in \Sigma_u\right)$ controllable
 
-Given that H is controllable with respect to K and $\Sigma_u$, we know that for any two states $h_1, h_2 \in H$ and any string $u \in \Sigma_u^*$, there exists a control sequence $v \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $v$ reaches state $h_2$ and the output sequence is in K.
 
-Similarly, we are given that K is controllable with respect to L and $\Sigma_u$, which means that for any two states $k_1, k_2 \in K$ and any string $u \in \Sigma_u^*$, there exists a control sequence $w \in \Sigma_u^*$ such that the system starting from $k_1$ and applying control sequence $w$ reaches state $k_2$ and the output sequence is in L.
-
-Now, let's consider two states $h_1, h_2 \in H$ and a string $u \in \Sigma_u^*$. Since H is controllable with respect to K and $\Sigma_u$, there exists a control sequence $v \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $v$ reaches state $h_2$ and the output sequence is in K.
-
-Since K is controllable with respect to L and $\Sigma_u$, there exists a control sequence $w \in \Sigma_u^*$ such that the system starting from $k_1 = h_1$ (as $h_1 \in H \subseteq K$) and applying control sequence $w$ reaches state $k_2 = h_2$ (as $h_2 \in H \subseteq K$) and the output sequence is in L.
-
-Therefore, we have shown that for any two states $h_1, h_2 \in H$ and any string $u \in \Sigma_u^*$, there exists a control sequence $w \in \Sigma_u^*$ such that the system starting from $h_1$ and applying control sequence $w$ reaches state $h_2$ and the output sequence is in L.
-
-In conclusion, H is controllable with respect to L and $\Sigma_u$.
-
-Regarding the necessity of $L = \overline{L}$ for the controllability of H with respect to L and $\Sigma_u$, it is not a necessity. The controllability of H with respect to L and $\Sigma_u$ depends on the existence of control sequences that can steer the system from one state to another while generating the desired output sequence. The condition $L = \overline{L}$ is not directly related to this concept.
+Test $\beta: \alpha \beta \notin L_1$ uncontrollable. Thus $L_1$ is uncontrollable.
 
 \section{Let MACH as depicted below be a generator with $\Sigma = \{\alpha , \beta , \lambda , \mu \}$, where $\alpha$ and $\mu$ are controllable. Suppose that the SPEC is $K = \{\alpha\beta\alpha\beta\}$, i.e., MACH is shut down after two successful production cycles. By intuition, check if there exists a supervisor that can supervise MACH to implement this SPEC. If existing, portray it; otherwise, explain the reason of non-existence. Consider the case that $K = \{\alpha\beta\}$.}
 
@@ -1904,7 +1871,32 @@ $\text { So, } K_1 \cap K_2 \text { is } L_m(G) \text {-closed and controllable.
 \paragraph{Answer}:
 %40
 
-wait
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES40-LMG.jpg}
+     \caption{$L_m(G)$.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES40-K.jpg}
+    \caption{$K$.}
+  \end{subfigure}
+  \caption{Homework40}
+  \label{fig:des40}
+\end{figure}
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|}
+    $\alpha$ & 11\\
+    $\beta$ & 12\\
+    $\gamma$ & 13\\
+  \end{tabular}
+  \caption{Homework40}
+  \label{tab:des40}
+\end{table}
+
+Figure \ref{fig:des40}, Events in Table \ref{tab:des40}
 
 \section{Let $L(G)=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta, u_2 \alpha \gamma\right\}}$, where $\Sigma=\Sigma_c$ and $E_{u o}=\left\{u_1, u_2\right\}$ (an event is controllable even if it is unobservable). (a) Let $K_1=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta\right\}}$. Find, if possible, a (partially observable) supervisor $S_P$ such that $L\left(S_P / G\right)=K_1 ;$ (b) Let $K_2=\overline{\left\{u_1 \alpha \gamma, u_1 \alpha \beta, u_2 \alpha\right\}}$. Find, if possible, a (partially observable) supervisor $S_P$ such that $L\left(S_P / G\right)=K_2$. Use TCT to verify the obtained results.}
 
@@ -1918,11 +1910,62 @@ wait
 %42
 wait
 
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|}
+    $\alpha_1$ & 11\\
+    $\alpha_2$ & 12\\
+    \hline
+    $\beta_1$ & 21\\
+    $\beta_2$ & 22\\
+    \hline
+    $\gamma_1$ & 31\\
+    $\gamma_2$ & 32\\
+  \end{tabular}
+  \caption{Homework42}
+  \label{tab:des42}
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\linewidth]{assets/DES42.jpg}
+  \caption{Homework42}
+  \label{fig:des42}
+\end{figure}
+
+Figure \ref{fig:des42}, Evnets in the table \ref{tab:des42}
+
 \section{Suppose that a plant $G$ has its alphabet $\Sigma=\left\{a_1, a_2, b_1, b_2, g_1, g_2\right\}$. Build another automaton that will generate the sublanguage of $L(G)$ where all the strings in $L(G)$ that contains the substrings $a_1 a_2 b_2$ or $a_1 a_2 g_2$ are removed.}
 
 \paragraph{Answer}:
 %43
 wait
+
+\begin{table}
+  \centering
+  \begin{tabular}{|c|c|}
+    $a_1$ & 11\\
+    $a_2$ & 12\\
+    \hline
+    $b_1$ & 21\\
+    $b_2$ & 22\\
+    \hline
+    $g_1$ & 31\\
+    $g_2$ & 32\\
+  \end{tabular}
+  \caption{Homework43}
+  \label{tab:des43}
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\linewidth]{assets/DES43.jpg}
+  \caption{Homework43}
+  \label{fig:des43}
+\end{figure}
+
+Figure \ref{fig:des43}, Evnets in the table \ref{tab:des43}
+
 
 \section{Consider a plant $G$ with $L(G)=a^* b^*$ and the prefix-closed admissible language}
 
@@ -1934,7 +1977,10 @@ Let the set of uncontrollable events be $E_{u c}=\{a\}$. Check if $L_a$ is contr
 
 \paragraph{Answer}:
 %44
-wait
+
+Take into account any finite length string $s \in \bar{L_a}\Sigma_{uc} \cap L(G)$. String s takes the form of $s = a^n$ for some $n \in \mathbb{N}$ sine any string of the form $a^jb^k(j \in \mathbb{N}, k \geq 1)$ does not belong to $\bar{L_a}\Sigma_{uc}$. This means that $s^n$ belongs to $\bar{L_a}$. That is, $L_a$ is controllable.
+
+$L_a$ requires to memorize how many times event $a$ happens to decide the number of allowed events of $b$ after a substring of $a\prime s$. Due to this required counting, $L_a$ is not regular (recall the definition of regular languages).
 
 \section{Given a plant $G$ with $\Sigma_{u c} \subseteq \Sigma$ being the set of uncontrollable events and $K \subseteq \Sigma^*$.}
  
@@ -1965,7 +2011,13 @@ Test $\beta: \alpha \beta \notin L_1$ uncontrollable. Thus $L_1$ is uncontrollab
 
 \paragraph{Answer}:
 %46
-wait
+\begin{itemize}
+  \item[(a)] True, taking $S(s) = \Sigma$ for any $s \in L(G)$.
+  \item[(b)] False, we need that $L_m(G)$ is prefix-closed and controllable. 
+  \item[(c)] False, as $L(S|G)$ is not empty.
+  \item[(d)] False, $\{\epsilon\}$ needs to be controllable.
+  \item[(e)] False, we need to have K such that $K \subseteq L(G)$, $K$ is controllable, and $K \cap L_m(G) = \emptyset$. 
+\end{itemize}
 
 \section{Consider the automata $G$ and $H$ as shown. Let $\Sigma_{uc} = \{d\}$.}
 (a) Find all the controllable sublanguage of $L(H)$ with respect to $G$ and $\Sigma_{u c}$.
@@ -1974,7 +2026,9 @@ wait
 
 \paragraph{Answer}:
 %47
-wait
+
+$L(H)=\{ \epsilon, a(bcb)*, bc, ba(cbb)* \}$
+
 
 
 \section{(Controllability test of language) There is a procedure to test the controllability of a language.}
@@ -2023,7 +2077,32 @@ Let $G$ be a DES with $\Sigma=\{\alpha, \beta, \mu, \lambda\}$, where $\alpha:=1
 
 \paragraph{Answer}:
 %50
-wait
+
+
+%...
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{assets/CAT.jpg}
+     \caption{Cat.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{assets/MOUSE.jpg}
+    \caption{Mouse.}
+  \end{subfigure}
+  \begin{subfigure}[b]{\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES50-G.jpg}
+    \caption{G.}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.8\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES50-MUTEX.jpg}
+    \caption{Mutex.}
+  \end{subfigure}
+  \caption{homework50.}
+  \label{fig:des50}
+\end{figure}
+
+Figure \ref{fig:des50}
 
 
 \section{Consider the Small Factory consisting of two machines M1 and M2 and a buffer with capacity}
@@ -2186,7 +2265,83 @@ Nonconflicting(MACH, ALLMACH $)=$ True $\mathrm{MACH}$ is nonblocking.
 \paragraph{Answer}:
 %63
 
-repeat
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.26\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-M1.jpg}
+     \caption{Machine1.}
+  \end{subfigure}
+  \begin{subfigure}{0.26\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-M2.jpg}
+     \caption{Machine2.}
+  \end{subfigure}
+  \begin{subfigure}{0.26\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-BUF.jpg}
+    \caption{BUF.}
+  \end{subfigure}
+  \begin{subfigure}{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-BR.jpg}
+    \caption{BR.}
+  \end{subfigure}
+  \begin{subfigure}{\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-G.jpg}
+    \caption{G.}
+  \end{subfigure}
+  \caption{homework63.}
+  \label{fig:des63}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-G-ALL.jpg}
+     \caption{G all.}
+  \end{subfigure}
+  \begin{subfigure}{0.3\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-BUFSPEC.jpg}
+     \caption{BUF.}
+  \end{subfigure}
+  \begin{subfigure}{0.2\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-BRSPEC.jpg}
+    \caption{BR.}
+  \end{subfigure}
+  \begin{subfigure}{0.6\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-SPEC.jpg}
+    \caption{Spec.}
+  \end{subfigure}
+  \caption{homework63-spec.}
+  \label{fig:des63-spec}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.6\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-SUP.jpg}
+     \caption{SUP.}
+  \end{subfigure}
+  \begin{subfigure}{0.6\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-BUFSUP.jpg}
+     \caption{BUFSUP.}
+  \end{subfigure}
+  \begin{subfigure}{0.6\linewidth}
+    \includegraphics[width=\linewidth]{assets/DES63-BRSUP.jpg}
+    \caption{BRSUP.}
+  \end{subfigure}
+  \caption{homework63-sup.}
+  \label{fig:des63-sup}
+\end{figure}
+
+
+Figure \ref{fig:des63} shows G.
+
+Figure \ref{fig:des63-spec} shows Spec.
+
+Figure \ref{fig:des63-sup} shows SUP.
+
+
+
+
 
 \section{(Decentralized control problem) Now let us consider another plant that is a manufacturing system consisting of two machines namely MACH 1 and MACH2, two buffers B1 and B2 with capacity 3 and 1, respectively, and a testing unit that will check the quality of the final products finished on MACH2.}
 
@@ -2365,7 +2520,14 @@ And we have $\bar{K} \Sigma_u \cap L(G) \subseteq \bar{K}, K$ is controllable. L
 
 \paragraph{Answer}:
 %76
-wait
+
+Based on the given documents, we can conclude that it is not possible to find a (partially observable) supervisor $S_P$ such that $L(S_P / G) = K_1=\overline{\{u_1 \alpha \gamma, u_1 \alpha \beta\}}$. Similarly, it is also not possible to find a supervisor $S_P$ such that $L(S_P / G) = K_2=\overline{\{u_1 \alpha \gamma, u_1 \alpha \beta, u_2 \alpha\}}$.
+
+To verify the controllability of $K_1$ and $K_2$, we can use the Theorem of Controllable Languages (TCT). TCT states that a language is controllable if and only if it is closed under prefixes and suffixes. 
+
+However, in this case, both $K_1$ and $K_2$ are not controllable. This means that there does not exist any supervisor that can produce these languages while ensuring controllability.
+
+In conclusion, based on the given information, it is not possible to find a (partially observable) supervisor $S_P$ such that $L(S_P / G) = K_1$ or $L(S_P / G) = K_2$. Additionally, both $K_1$ and $K_2$ are not controllable.
 
 
 \section{Control of a guideway: Stations A and B on a guideway are connected by a single one-way track from A to B. The track consists of 4 sections, with stoplights $\left({ }^*\right)$ and detectors (!) installed at various section junctions.}
@@ -2378,8 +2540,21 @@ wait
 
 \paragraph{Answer}:
 %78
-wait
+Prof. Li Zhiwu,
 
+I would like to provide you with some suggestions to improve the discrete-event system (DES) course.Here are my recommendations:
+
+\begin{enumerate}
+  \item Provide materials in advance: It would be helpful if you could provide some course materials in advance. As students come from various backgrounds and have different levels of proficiency, giving them the opportunity to preview the content will enable them to better prepare for the course.
+
+  \item Increase the frequency of assignments with smaller workloads: It would be beneficial to have more frequent assignments with smaller workloads. This will allow students to receive timely feedback and guidance, enabling them to make necessary adjustments and improvements to their learning strategies.
+
+  \item Incorporate practical case studies: To make the course less abstract, it would be great to include more practical case studies and examples. Applying the concepts and theories of discrete-event systems to real-world scenarios will help students better understand and grasp the subject matter.
+
+  \item Enhance the usability of TCT software: It would be ideal if the TCT (Supervisory Control Theory) software could be made more user-friendly. Specifically, it would be beneficial if the software allowed for the import of YAML files, easier modification of variables, and the ability to create backups
+\end{enumerate}
+
+That's all, thank you for your course, I got more than what I expected.
 
 
 \end{document}
